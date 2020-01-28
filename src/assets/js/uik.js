@@ -23,3 +23,4 @@ wow = new wow({
 wow.init();
 
 var jqueryLightSlider = require('./plugins/lightslider.min.js');
+var jqueryFancyBox = require('./plugins/jquery.fancybox.js');

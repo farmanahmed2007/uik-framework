@@ -216,6 +216,9 @@
 %radCircle {
     border-radius: 50%;
 }
+%themeRadius {
+    border-radius: 50%;
+}
 
 %op0 {
     @include opacity(0);
