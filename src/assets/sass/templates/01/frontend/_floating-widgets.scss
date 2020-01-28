@@ -1,0 +1,94 @@
+.floating-widget {
+    width: 270px;
+    height: 350px;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    z-index: 999;
+    overflow: hidden;
+    @include phone {
+        display: none;
+    }
+    @include tabletL {
+        display: block;
+    }
+    > form {
+        background: var(--charcoal-alpha7);
+        padding: 20px;
+        label {
+            color: var(--white);
+        }
+        select,
+        input {
+            margin-bottom: 0px !important;
+        }
+        .input-block {
+            margin-bottom: 3px !important;
+        }
+    }
+    .closeBtn {
+        width: 30px;
+        height: 30px;
+        line-height: 30px;
+        background: #000000;
+        @extend %posAbsolute;
+        color: #555;
+        top: 0;
+        z-index: 999;
+        text-align: center;
+        cursor: pointer;
+        overflow: hidden;
+        &:hover {
+            color: var(--white);
+        }
+    }
+    .openBtn {
+        position: fixed;
+        top: -1px;
+        bottom: 0;
+        font-size: 20px;
+        margin: auto;
+        transform: rotate(-90deg);
+        width: 353px;
+        padding-top: 70px;
+        height: 115px;
+        cursor: pointer;
+        z-index: 1000;
+        line-height: 45px;
+        overflow: hidden;
+        > div {
+            text-align: center;
+            letter-spacing: 4px;
+            color: var(--white);
+            background: var(--red);
+            @include box-shadow (2px 0px 19px var(--black-alpha1));
+            @include text-shadow (2px, 2px, 2px, var(--black-alpha6));
+            padding-bottom: 3px;
+        }
+        @include phone {
+            display: none;
+        }
+        @include tabletL {
+            display: block;
+        }
+    }
+    &.left {
+        left: -300px;
+        .closeBtn {
+            right: 20px;
+        }
+        .openBtn {
+            left: -189px;
+        }        
+    }
+    &.right {
+        right: -300px;
+        .closeBtn {
+            right: 20px;
+        }
+        .openBtn {
+            right: -134px;
+        }
+    }
+}

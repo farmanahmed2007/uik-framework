@@ -1,0 +1,32 @@
+.main-footer {
+    position: inherit;
+    width: auto;
+    bottom: 0;
+    width: calc(100% - 230px);
+    background: var(--white);
+    padding: 15px;
+    @extend %pullLeft;
+    color: var(--gray-dark);
+    border-top: 1px solid var(--gray);
+    z-index: 840;
+    margin-left: 0;
+    @extend %transitionAll300;
+    @include phone {
+        margin-left: 0;
+    }
+    @include tabletP {
+        margin-left: 230px;
+        @include translate(230px, 0);
+    }
+}
+
+@media print {
+    .main-footer {
+        margin-left: 0 !important;
+        min-height: 0 !important;
+        -webkit-transform: translate(0, 0) !important;
+        -ms-transform: translate(0, 0) !important;
+        -o-transform: translate(0, 0) !important;
+        transform: translate(0, 0) !important
+    }
+}

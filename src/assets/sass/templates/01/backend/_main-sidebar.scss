@@ -1,0 +1,222 @@
+.main-sidebar {
+	@extend %posFixed;
+	min-height: inherit;
+	width: 230px;
+	z-index: 1020;
+	@extend %transitionAll300;
+	@include phone_and_tabletP {
+		display: block;
+		left: -230px;
+		top: 100px;
+		height: calc(100vh - 100px);
+	}
+	@include tabletL {
+		left: 0;
+		top: 50px;
+		height: calc(100vh - 50px);
+	}
+	
+	.sidebar {
+		height: 100%;
+		padding-bottom: 0;
+		overflow: hidden;
+		@extend %displayFlex;
+        flex-direction: column;
+		.user-panel {
+			@extend %posRelative;
+			@extend %width100;
+			height: 50px;
+			padding: 10px;
+			overflow: hidden;
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+			> .image {
+				> img {
+					@extend %width100;
+					max-width: 45px;
+					height: 100%;
+				}
+			}
+			> .info {
+				padding: 0 0 0 15px;
+				line-height: 1;
+				@extend %posAbsolute;
+				left: 55px;
+				> p {
+					font-weight: 600;
+					margin-bottom: 9px;
+				}
+				> a {
+					text-decoration: none;
+					padding-right: 5px;
+					margin-top: 3px;
+                    font-size: 11px;
+				}
+			}
+		}
+		.slimScrollDiv {
+			float: left;
+            width: 100% !important;
+            @include phone {
+                height: calc(100vh - 150px) !important;
+            }
+            @include tabletL {
+                height: calc(100vh - 100px) !important;
+            }
+		}
+		.sidebar-menu {
+			padding: 0;
+			white-space: nowrap;
+            overflow: hidden;
+            @include phone {
+                height: calc(100vh - 150px) !important;
+            }
+            @include tabletL {
+                height: calc(100vh - 100px) !important;
+            }
+			li {
+				@extend %posRelative;
+				margin: 0;
+				padding: 0;
+				@extend %transitionAll300;
+				a {
+					@extend %posRelative;
+					@extend %fs14;
+					padding: 12px 35px 12px 12px;
+					display: block;
+					border-left: 3px solid transparent;
+					.fa-angle-left {
+						width: auto;
+						height: auto;
+						padding: 0;
+						margin-right: 10px;
+						@include transition(transform 0.5s ease);
+						position: absolute;
+						top: 50%;
+						right: 10px;
+						margin-top: -8px;
+						@include rotate(-90deg);
+					}
+					.pull-right-container {
+						@extend %posAbsolute;
+						right: 10px;
+						top: 0;
+						bottom: 0;
+						margin: auto;
+						height: 20px;
+					}
+				}
+				> .treeview-menu {
+					display: none;
+					border-left: 3px solid transparent;
+					.treeview-menu {
+						padding-left: 10px;
+					}
+					li {
+						margin: 0;
+						@extend %posRelative;
+						a {
+							padding: 10px 10px 10px 40px;
+							display: block;
+							@extend %fs14;
+							@extend %posRelative;
+							&:before {
+								content: '';
+								@extend %posAbsolute;
+								left: 19px;
+								top: 19px;
+								width: 10px;
+								height: 1px;
+							}
+							&:after {
+								content: '';
+								@extend %posAbsolute;
+								left: 29px;
+								top: 17px;
+								width: 5px;
+								height: 5px;
+								@include border-radius(50%);
+							}
+						}
+						&:before {
+							content: '';
+							@extend %posAbsolute;
+							left: 21px;
+							top: 0;
+							width: 1px;
+							height: 41px;
+						}
+						&:last-child {
+							&:before {
+								height: 20px;
+							}
+						}
+					}
+				}
+				&.menu-open {
+					> a {
+						> .pull-right-container {
+							@include rotate(90deg);
+							@extend %transitionAll300;
+						}
+					}
+					> .treeview-menu {
+						display: block;
+						@extend %transitionAll300;
+						> .treeview {
+							> .treeview-menu {
+								display: none;
+							}
+							&.menu-open {
+								&:before {
+									height: 20px;
+								}
+								> .treeview-menu {
+									> li {
+										&:first-child {
+											&:before {
+												top: -19px;
+												height: 60px;
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+				.label,
+				.badge {
+					margin-right: 5px;
+				}
+				.badge {
+					margin-top: 3px;
+				}
+				&.header {
+					padding: 10px 25px 10px 15px;
+					font-size: 12px;
+					white-space: nowrap;
+					overflow: hidden;
+					text-overflow: clip;
+				}
+				&.active {
+					> a {
+						border-left: 3px solid transparent;
+						font-size: 14px;
+					}
+					.treeview-menu {
+						display: block;
+					}
+				}
+			}
+		}
+		.sidebar-form {
+			overflow: hidden;
+			text-overflow: clip;
+			input:focus {
+				border-color: transparent;
+			}
+		}
+	}
+}

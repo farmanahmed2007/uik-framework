@@ -1,0 +1,27 @@
+#stock-list {
+	@extend %displayFlex;
+	flex: 1;
+	@include phone {
+		flex-direction: column;
+	}
+	@include tabletP {
+		flex-direction: row;
+	}
+	#sidebar {
+		@include phone {
+			width: 100%;
+		}
+		@include tabletP {
+			width: 250px;
+			margin-right: 20px;
+		}
+	}
+	#main {
+		@include phone {
+			width: 100%;
+		}
+		@include tabletP {
+			width: calc(100% - 270px);
+		}
+	}
+}

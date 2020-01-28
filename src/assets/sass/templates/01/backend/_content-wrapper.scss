@@ -1,0 +1,103 @@
+.content-wrapper {
+	min-height: inherit !important;
+	position: fixed;
+	overflow: hidden;
+	overflow-y: auto;
+	background-color: #ecf0f5;
+	@extend %transitionAll300;
+	z-index: 1000;
+	@include phone {
+		top: 100px;
+		width: 100%;
+		height: calc(100vh - 100px);
+		@include translate(0px, 0);
+		margin-left: 0;
+	}
+	@include tabletL {
+		top: 50px;
+		width: calc(100% - 230px);
+		height: calc(100vh - 50px);
+        @include translate(230px, 0);
+        margin-left: 0;
+	}
+	.content {
+		min-height: 250px;
+		padding: 15px;
+		margin-right: auto;
+		margin-left: auto;
+		.box {
+			.box-body {
+				.dashboard-icons {
+					@extend %displayFlex;
+					flex-wrap: wrap;
+					> div {
+						margin: 5px;
+						@include phone {
+							width: 100%;
+						}
+						@include phoneL {
+							width: calc(50% - 10px);
+						}
+						@include tabletL {
+							width: calc(33% - 10px);
+						}
+						@include desktop {
+							width: calc(25% - 10px);
+						}
+						a {
+							@extend %width100;
+							background-color: var(--blue-dark);
+							padding: 5px;
+							@extend %displayFlex;
+							align-items: center;
+							box-sizing: border-box;
+							.dashIcon {
+								width: 70px;
+								height: 70px;
+								background-color: var(--blue-alpha4);
+								border-radius: 50%;
+								margin-right: 10px;
+							}
+							.dashDetail {
+								width: calc(100% - 80px);
+								line-height: 20px;
+								padding: 15px 0;
+								span,
+								h5 {
+									color: var(--white);
+									font-size: 18px;
+								}
+								h5 {
+									margin-bottom: 0 !important;
+								}
+							}
+							&:hover {
+								background-color: var(--charcoal-dark);
+								.dashIcon {
+									background-color: var(--blue-dark);
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	.content-header {
+		position: relative;
+		padding: 15px 15px 0 15px;
+		@media print {
+			display: none !important;
+		}
+		h1 {
+			margin: 0;
+			font-size: 24px;
+			small {
+				font-size: 15px;
+				display: inline-block;
+				padding-left: 4px;
+				font-weight: 300;
+			}
+		}
+	}
+}

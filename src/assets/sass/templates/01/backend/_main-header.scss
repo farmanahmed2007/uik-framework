@@ -1,0 +1,154 @@
+.main-header {
+	@extend %width100;
+	@extend %posFixed;
+	top: 0;
+	right: 0;
+	left: 0;
+	max-height: 100px;
+	z-index: 1020;
+	@include phone_and_tabletL {
+		position: relative;
+	}
+	.logo {
+		display: block;
+		@extend %fw-4;
+		height: 50px;
+		font-size: 20px;
+		line-height: 50px;
+		text-align: center;
+		width: 230px;
+		padding: 0 15px;
+		overflow: hidden;
+		@extend %transitionAll300;
+		@include phone_and_tabletL {
+			width: 100%;
+			float: none;
+		}
+		@include tabletL {
+			float: left;
+		}
+		.logo-lg {
+			display: block;
+			@extend %transitionAll300;
+		}
+
+		.logo-mini {
+			display: none;
+			@extend %transitionAll300;
+		}
+	}
+	.sidebar-toggle {
+		width: 50px;
+		@extend %pullLeft;
+		background: none;
+		text-align: center;
+		background-color: transparent;
+		background-image: none;
+		padding: 15px;
+		font-family: 'fontello';
+		&:before {
+			content: '\f0c9';
+		}
+		&:hover {
+			color: var(--white);
+		}
+		&:focus,
+		&:active {
+			background: transparent;
+		}
+		.icon-bar {
+			display: none;
+		}
+	}
+	.newsTicker {
+		color: var(--white);
+		padding: 15px;
+		width: auto;
+		@extend %pullLeft;
+		@include phone {
+			display: none;
+		}
+		@include tabletP {
+			display: block;
+		}
+	}
+	.navbar-brand {
+		color: var(--white);
+	}
+	.navbar {
+		min-height: 50px;
+		@extend %pullNone;
+		@extend %b0;
+		@extend %noRad;
+		@extend %transitionAll300;
+		@include phone {
+			width: 100%;
+			margin: 0;
+		}
+		@include tabletL {
+			margin-left: 230px;
+			width: calc(100% - 230px);
+		}
+		.nav {
+			> li {
+				> a {
+					> .label {
+						position: absolute;
+						top: 9px;
+						right: 7px;
+						text-align: center;
+						font-size: 9px;
+						padding: 2px 3px;
+						line-height: 0.9;
+					}
+				}
+			}
+		}
+	}
+
+	.navbar-custom-menu {
+		@include phone_and_tabletL {
+			float: right;
+		}
+		.navbar-nav {
+			@extend %displayFlex;
+			align-items: center;
+			align-content: center;
+			justify-content: center;
+			height: 50px;
+			> li {
+				display: inline-flex;
+				align-items: center;
+				> a {
+					padding: 16px;
+					@include phone_and_tabletL {
+						color: inherit;
+						background: transparent;
+					}
+				}
+				> ul {
+					> li {
+						width: auto;
+					}
+					&.active {
+						@extend %displayFlex;
+						justify-content: space-between;
+					}
+				}
+			}
+		}
+	}
+	.navbar-right {
+		@include phone_and_tabletL {
+			float: none;
+			a {
+				color: inherit;
+				background: transparent;
+			}
+			> li {
+				color: inherit;
+				border: 0;
+			}
+		}
+	}
+}
