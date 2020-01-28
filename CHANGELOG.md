@@ -2,7 +2,7 @@
 
 All notable changes to this project will be documented in this file.
 
-## [0.1.5] - 28-01-2020
+## [0.1.3] - 28-01-2020
 
 ### Added
 - Fancybox CSS & JS v2.1.5
