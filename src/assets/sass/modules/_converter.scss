@@ -1,0 +1,145 @@
+.converter {
+	position: absolute;
+	bottom: 100%;
+	left: -65px;
+	z-index: 50;
+	padding: 5px 10px;
+	width: 186px;
+	min-height: 153px;
+	margin-bottom: 6px;
+	background-color: #f4f4f4;
+	color: #414040;
+	font-size: 12px;
+	opacity: 1;
+	line-height: 16px;
+	text-align: center;
+    border: 1px solid #dddcdc;
+    &:after {
+        border: 10px solid transparent;
+        border-top: 10px solid #f4f4f4;
+        position: absolute;
+        bottom: -19px;
+        left: 83px;
+        content: "";
+        pointer-events: none;
+    }
+    &:before {
+        border: 10px solid transparent;
+        border-top: 10px solid #dddcdc;
+        position: absolute;
+        bottom: -20px;
+        left: 83px;
+        content: "";
+        pointer-events: none;
+    }
+    h6 {
+        margin-top: 10px;
+    }
+    input {
+        margin-bottom: 15px;
+    }
+    .no_icon {
+        background: none;
+        text-transform: uppercase;
+        line-height: 18px;
+    }
+    ul {
+        list-style: none;
+        overflow: hidden;
+        margin: 0;
+        li {
+            float: left;
+            width: 50px;
+            height: 24px;
+            margin-right: 5px;
+            margin-bottom: 5px;
+            background: #fff;
+            border: 1px solid #dddcdc;
+            line-height: 22px;
+            font-weight: normal;
+            cursor: pointer;
+            -webkit-transition: all 0.25s linear;
+            -moz-transition: all 0.25s linear;
+            transition: all 0.25s linear;
+            &:nth-child(3n) {
+                margin-right: 0;
+            }
+            &.active {
+                border: 1px solid #7e858b;
+            }
+            span {
+                background-image: url('/assets/img/icons/flags.png');
+                background-repeat: no-repeat;
+                width: 22px;
+                height: 16px;
+                display: block;
+                margin: 3px;
+                float: left;
+            }
+        }
+    }
+}
+
+.page-template-template-car-user-cars-php .converter {
+	top: -162px;
+}
+
+.single .converter {
+    left: 10px
+}
+
+.usd {
+	background-position: 0 0;
+}
+
+.eur {
+	background-position: -64px 0;
+}
+
+.gbp {
+	background-position: -32px 0;
+}
+
+.chf {
+	background-position: 0 -104px;
+}
+
+.aud {
+	background-position: -32px -78px;
+}
+
+.cad {
+	background-position: 0 -78px;
+}
+
+.sek {
+	background-position: 0 -52px;
+}
+
+.czk {
+	background-position: -64px -26px;
+}
+
+.nok {
+	background-position: -32px -52px;
+}
+
+.jpy {
+	background-position: -64px -104px;
+}
+
+.rub {
+	background-position: -64px -78px;
+}
+
+.rub + div {
+	font-size: 10px;
+}
+
+.chf + div {
+	font-size: 8px;
+}
+
+.convert {
+    cursor: pointer
+}

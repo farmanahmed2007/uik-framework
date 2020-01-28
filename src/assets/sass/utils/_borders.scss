@@ -1,0 +1,106 @@
+.border-initial {
+	border-color: initial !important;
+}
+.b-0,
+.b-0:before,
+.b-0:after {
+	border-style: 0 !important;
+	border-width: 0 !important;
+}
+[class="b-"],
+[class^="b-"],
+[class=" b-"],
+[class*=" b-"] {
+	border-style: solid !important;
+}
+@for $value from 0 through 10 {
+	.b-#{$value} {
+		border-width: #{$value + "px"} !important;
+	}
+	.b-t-#{$value} {
+		border-top-width: #{$value + "px"} !important;
+	}
+	.b-r-#{$value} {
+		border-right-width: #{$value + "px"} !important;
+	}
+	.b-b-#{$value} {
+		border-bottom-width: #{$value + "px"} !important;
+	}
+	.b-l-#{$value} {
+		border-left-width: #{$value + "px"} !important;
+	}
+	.b-t-b-#{$value} {
+		border-top-width: #{$value + "px"} !important;
+		border-bottom-width: #{$value + "px"} !important;
+	}
+	.b-l-r-#{$value} {
+		border-left-width: #{$value + "px"} !important;
+		border-right-width: #{$value + "px"} !important;
+	}
+}
+
+@each $color, $value in $colors {
+	$dashColor: "--" + $color;
+	@for $i from 1 through 10 {
+		@if $i == 10 {
+			.border-#{$color} {
+				border-color: #{$value} !important;
+			}
+		} @else {
+			.border-#{$color}-alpha#{$i} {
+				border-color: rgba($value, $i/10) !important;
+			}
+		}
+	}
+	.border-#{$color}-light {
+		border-color: var(#{$dashColor}-light) !important;
+	}
+	.border-#{$color}-dark {
+		border-color: var(#{$dashColor}-dark) !important;
+	}
+}
+
+@each $color, $value in $notifColors {
+	$dashColor: "--" + $color;
+	@for $i from 1 through 10 {
+		@if $i == 10 {
+			.border-#{$color} {
+				border-color: #{$value} !important;
+			}
+		} @else {
+			.border-#{$color}-alpha#{$i} {
+				border-color: rgba($value, $i/10) !important;
+			}
+		}
+	}
+	.border-#{$color}-light {
+		border-color: var(#{$dashColor}-light) !important;
+	}
+	.border-#{$color}-dark {
+		border-color: var(#{$dashColor}-dark) !important;
+	}
+}
+
+.no-rad {
+	border-radius: 0 !important;
+}
+@for $value from 1 through 40 {
+	.rad-#{$value} {
+		border-radius: #{$value + "px"} !important;
+	}
+	.rad-t-l-#{$value} {
+		border-top-left-radius: #{$value + "px"} !important;
+	}
+	.rad-t-r-#{$value} {
+		border-top-right-radius: #{$value + "px"} !important;
+	}
+	.rad-b-l-#{$value} {
+		border-bottom-left-radius: #{$value + "px"} !important;
+	}
+	.rad-b-r-#{$value} {
+		border-bottom-right-radius: #{$value + "px"} !important;
+	}
+}
+.rad-circle {
+	border-radius: 50% !important;
+}

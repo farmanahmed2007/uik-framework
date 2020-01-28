@@ -1,0 +1,378 @@
+.alert-dismissable .close,
+.alert-dismissible .close {
+	@extend %posRelative;
+	top: -2px;
+	right: -21px;
+	color: inherit;
+}
+
+.alert {
+	position: relative;
+	width: 100%;
+	padding: 10px;
+	border: 0;
+	margin: 0;
+	border-radius: 0;
+	color: var(--white);
+	@extend %width100;
+	@extend %displayFlex;
+	@extend %flexRow;
+	@extend %flexAlignCenter;
+	min-height: 70px;
+	z-index: 9999;
+	> i {
+		width: 40px;
+		font-size: 18px;
+		height: 40px;
+		margin-right: 10px;
+		line-height: 38px;
+		color: var(--white);
+		border: solid 1px transparent;
+		text-align: center;
+	}
+	h4 {
+		margin: 0;
+		font-weight: 600;
+		line-height: 13px;
+		@extend %width100;
+		p {
+			// @extend %fontInherit;
+			@extend %fs14;
+			margin-bottom: 5px;
+			&:only-child {
+				margin: 0;
+			}
+			&:first-child {
+				@extend %fs18;
+			}
+		}
+		span {
+			// @extend %fs14;
+			@extend %fs12;
+		}
+	}
+	.close {
+		@extend %posAbsolute;
+		top: 0;
+		right: 20px;
+		border: 0;
+		font-size: 21px;
+		color: var(--white);
+		background-color: var(--black-alpha2);
+		&:hover {
+			background-color: var(--black-alpha6);
+		}
+	}
+	.icon {
+		margin-right: 10px;
+	}
+	&.style1,
+	&.style4 {
+		@each $color, $value in $notifColors {
+			/* #{to-upper-case($color)} ALERT */
+			$dashColor: "--" + $color;
+			&.alert-#{$color} {
+				color: var(--white);
+				background-color: var(#{$dashColor});
+				> i {
+					background-color: var(#{$dashColor}-dark);
+				}
+			}
+		}
+	}
+	&.style2,
+	&.style3 {
+		@each $color, $value in $notifColors {
+			/* #{to-upper-case($color)} ALERT */
+			$dashColor: "--" + $color;
+			&.alert-#{$color} {
+				background-color: var(#{$dashColor});
+				> i {
+					background-color: var(#{$dashColor}-dark);
+				}
+				.close {
+					background-color: var(#{$dashColor}-dark);
+					&:hover {
+						background-color: var(--black);
+					}
+				}
+			}
+		}
+	}
+	&.style3 {
+		@extend %flexAlignCenter;
+		h4 {
+			padding: 10px;
+			border-width: 1px;
+			border-style: solid;
+		}
+		@each $color, $value in $notifColors {
+			$dashColor: "--" + $color;
+			&.alert-#{$color} {
+				h4 {
+					border-color: var(#{$dashColor});
+				}
+			}
+		}
+	}
+	&.style4 {
+		align-items: start;
+		> i {
+			height: 100%;
+			position: absolute;
+			top: 0;
+			left: 0;
+			@extend %displayFlex;
+			@extend %flexJustifyCenter;
+			@extend %flexAlignCenter;
+		}
+		h4 {
+			padding: 10px;
+			padding-left: 50px;
+			color: var(--white);
+		}
+	}
+	&.style5 {
+		border-radius: 15px;
+		border: 1px solid var(--black-alpha5);
+		@extend %posRelative;
+		margin-right: 13px;
+		@extend %displayFlex;
+		align-items: center;
+		padding: 8px;
+		@each $color, $value in $notifColors {
+			$dashColor: "--" + $color;
+			&.alert-#{$color} {
+				> i,
+				p {
+					color: var(#{$dashColor});
+				}
+				.close {
+					background-color: var(#{$dashColor});
+					color: var(--white);
+				}
+			}
+		}
+		> i {
+			font-size: 30px;
+		}
+		.close {
+			height: 45px;
+			width: 45px;
+			border-radius: 50%;
+			right: -20px;
+			font-size: 23px;
+			@extend %floatToYCenter;
+			line-height: 47px;
+			text-align: center;
+		}
+	}
+	&.style6,
+	&.style7 {
+		border-width: 1px 1px 1px 5px;
+		border-style: solid;
+		border-top-color: var(--black-alpha5) !important;
+		border-right-color: var(--black-alpha5) !important;
+		border-bottom-color: var(--black-alpha5) !important;
+		border-radius: 5px;
+		font-weight: 500;
+		@extend %posRelative;
+		@each $color, $value in $notifColors {
+			$dashColor: "--" + $color;
+			&.alert-#{$color} {
+				border-left-color: var(#{$dashColor});
+			}
+		}
+	}
+	&.style6 {
+		// padding: 20px 10px;
+		h4 {
+			margin: 0 20px 0 10px;
+		}
+		.close {
+			right: 0;
+			width: 25px;
+			height: 100%;
+			i {
+				@extend %floatToYCenter;
+			}
+		}
+	}
+	&.style7 {
+		h4 {
+			p {
+				color: var(--black-alpha5);
+			}
+		}
+		> i {
+			border-radius: 50%;
+		}
+	}
+	&.style7,
+	&.style8,
+	&.style9 {
+		.close {
+			background-color: transparent;
+			color: var(--black-alpha5);
+			right: 0;
+			@extend %floatToYCenter;
+		}
+	}
+	&.style6,
+	&.style7,
+	&.style8 {
+		> i {
+			border-radius: 50%;
+		}
+		h4 {
+			p {
+				color: var(--black-alpha5);
+			}
+		}
+		@each $color, $value in $notifColors {
+			$dashColor: "--" + $color;
+			&.alert-#{$color} {
+				> i {
+					color: var(#{$dashColor});
+					background-color: lighten($value, 50%);
+				}
+				h4 {
+					p {
+						color: var(#{$dashColor});
+					}
+				}
+			}
+		}
+	}
+	&.style8 {
+		border-width: 1px 1px 5px 1px;
+		border-style: solid;
+		border-top-color: var(--black-alpha5) !important;
+		border-right-color: var(--black-alpha5) !important;
+		border-left-color: var(--black-alpha5) !important;
+		border-radius: 5px;
+		font-weight: 500;
+		@extend %posRelative;
+		@each $color, $value in $notifColors {
+			$dashColor: "--" + $color;
+			&.alert-#{$color} {
+				border-bottom-color: var(#{$dashColor});
+			}
+		}
+		> i {
+			margin-left: 5px;
+		}
+	}
+	&.style9 {
+		@each $color, $value in $notifColors {
+			$dashColor: "--" + $color;
+			&.alert-#{$color} {
+				border: 2px solid var(#{$dashColor}-dark);
+				background-color: var(#{$dashColor});
+				.close {
+					color: var(#{$dashColor}-dark);
+				}
+			}
+		}
+		h4 {
+			p {
+				color: var(--white);
+			}
+			span {
+				color: var(--black-alpha8);
+			}
+		}
+	}
+	&.style10 {
+		border: 1px solid var(--black-alpha2);
+		border-radius: 3px;
+		.icon {
+			height: 45px;
+			width: 45px;
+			overflow: hidden;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			border-radius: 50%;
+			margin-right: 10px;
+			img {
+				width: 100%;
+				height: 100%;
+			}
+		}
+		h4 {
+			p {
+				display: inline-block;
+				&:first-child {
+					font-size: 16px;
+					color: var(--black-alpha9);
+				}
+				&:nth-child(2) {
+					float: right;
+					margin-right: 45px;
+					font-size: 12px;
+					color: var(--black-alpha5);
+				}
+			}
+			span {
+				color: var(--black-alpha8);
+				font-size: 13px;
+			}
+		}
+		.close {
+			background-color: transparent !important;
+			color: var(--black-alpha5);
+			top: 10px;
+		}
+	}
+	&.style11 {
+		padding: 10px 15px;
+		@each $color, $value in $notifColors {
+			$dashColor: "--" + $color;
+			&.alert-#{$color} {
+				border: 2px solid var(#{$dashColor}-light);
+				background-color: lighten($value, 50%);
+				color: var(#{$dashColor});
+				h4 {
+					> p {
+						&:first-child {
+							color: var(#{$dashColor}-dark);
+						}
+					}
+					.list-style {
+						li {
+							&:before {
+								background: var(#{$dashColor});
+							}
+						}
+					}
+				}
+				.close {
+					color: var(#{$dashColor}-dark);
+				}
+			}
+		}
+		h4 {
+			> * {
+				margin: 5px 0;
+			}
+			> p {
+				font-size: 16px;
+			}
+			> span {
+				font-size: 13px;
+			}
+			> ul {
+				li {
+					font-size: 12px;
+					margin-bottom: 0px;
+				}
+			}
+		}
+		.close {
+			background-color: transparent !important;
+			color: var(--black-alpha5);
+			right: 0;
+		}
+	}
+}

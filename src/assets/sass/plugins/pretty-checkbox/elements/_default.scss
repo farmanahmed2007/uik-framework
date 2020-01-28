@@ -1,0 +1,47 @@
+.pretty {
+    &.p-default {
+        .state {
+            label {
+                @extend %cursorPointer;
+                &:after {
+                    transform: scale(0.6);
+                }
+            }
+        }
+        input {
+            &:checked~.state {
+                label {
+                    &:before {
+                        border: 4px solid var(--blue);
+                    }
+                    &:after {
+                        // background-color: $pretty--color-default !important;
+                        display: block;
+                    }
+                }
+            }
+        }
+        &.p-fill {
+            .state {
+                label {
+                    &:after {
+                        transform: scale(1);
+                    }
+                }
+            }
+        }
+        &.p-thick {
+            .state {
+                label {
+                    &:before,
+                    &:after {
+                        border-width: calc(1em / 7);
+                    }
+                    &:after {
+                        transform: scale(0.4) !important;
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,303 @@
+caption {
+	padding-top: 8px;
+	padding-bottom: 8px;
+	color: var(--black-light);
+	text-align: left;
+}
+
+th {
+	text-align: left;
+}
+
+.table {
+	@extend %width100;
+	max-width: 100%;
+	border-collapse: collapse;
+	font-size: 12px;
+	> thead,
+	> tbody,
+	> tfoot {
+		tr {
+			background-color: var(--gray);
+			> th,
+			> td {
+				padding: 5px;
+				width: 0;
+				border: 0;
+				vertical-align: middle;
+			}
+		}
+		&.text-left {
+			tr {
+				> th,
+				> td {
+					text-align: left;
+				}
+			}
+		}
+		&.text-center {
+			tr {
+				> th,
+				> td {
+					text-align: center;
+				}
+			}
+		}
+		&.text-right {
+			tr {
+				> th,
+				> td {
+					text-align: right;
+				}
+			}
+		}
+	}
+	
+	> thead {
+		tr {
+			border-bottom: 2px solid var(--gray);
+			> th {
+				font-weight: bold;
+				&.Clickable {
+					cursor: pointer;
+					text-decoration: underline;
+					padding: 5px 20px 5px 5px;
+					@extend %posRelative;
+					i {
+						@extend %floatToYCenter;
+						right: 5px;
+						height: 15px;
+					}
+				}
+			}
+			&.collapse.in {
+				display: table-row;
+			}
+		}
+	}
+	> tbody {
+		tr {
+			> th,
+			> td {
+				line-height: 18px;
+				color: var(--black-light);
+			}
+			&:nth-child(even) {
+				background-color: var(--gray-alpha1);
+			}
+			&:nth-child(odd) {
+				background-color: var(--gray-alpha2);
+			}
+			&:hover {
+				background-color: var(--gray-alpha3);
+			}
+		}
+		&.collapse.in {
+			display: table-row-group;
+		}
+	}
+	&.table-bordered {
+		@extend %b1;
+		@extend %borderGray;
+		> thead {
+			> tr {
+				> th,
+				> td {
+					border-bottom-width: 2px;
+				}
+			}
+		}
+		> thead,
+		> tbody,
+		> tfoot {
+			> tr {
+				> th,
+				> td {
+					@extend %b1;
+					@extend %borderGray;
+				}
+			}
+		}
+	}
+	&.table-hover {
+		> tbody {
+			> tr:hover {
+				> td,
+				> th {
+					background-color: var(--off-white);
+				}
+			}
+		}
+	}
+}
+
+.table-responsive2 {
+	> .table {
+		height: 1px;
+	}
+}
+
+.table-responsive,
+.table-responsive2 {
+	@include phone {
+		overflow-x: auto;
+		overflow-y: hidden;
+	}
+
+	@include tabletL {
+		overflow: inherit;
+	}
+
+	> .table {
+		@include phone {
+			width: 200%;
+			max-width: 200%;
+		}
+
+		@include desktop {
+			width: 100% !important;
+			max-width: 100% !important;
+		}
+	}
+}
+
+.table-responsive {
+	min-height: 0.01%;
+	width: 100%;
+	overflow-x: auto;
+	-webkit-overflow-scrolling: touch;
+	.table-bordered {
+		@extend %b1;
+		@extend %borderGrayDark;
+		@each $color, $value in $colors {
+			$dashColor: "--" + $color;
+			&.table-#{$color} {
+				border: 0;
+				> thead {
+					> tr {
+						background-color: var(#{$dashColor});
+						> th {
+							border-color: var(--gray-alpha1);
+						}
+					}
+				}
+				> tbody,
+				> tfoot {
+					> tr {
+						> td {
+							border-color: var(#{$dashColor}-alpha1);
+						}
+						&:nth-child(even) {
+							background-color: var(#{$dashColor}-alpha1);
+						}
+						&:nth-child(odd) {
+							background-color: var(#{$dashColor}-alpha2);
+						}
+						&:hover {
+							background-color: var(#{$dashColor}-alpha3);
+						}
+					}
+				}
+			}
+		}
+	}
+	@media print {
+		overflow: auto;
+		> .table {
+			> tr {
+				> th,
+				> td {
+					white-space: normal !important;
+				}
+			}
+		}
+	}
+}
+
+.scroll-desktop-160 {
+	.table-responsive, 
+	.table-responsive2 {
+		@include phone{
+			overflow-x: auto !important;
+			overflow-y: hidden !important;
+		}
+		.table {
+			@include desktop{
+				width: 160% !important;
+				max-width: 160% !important;
+			}
+		}
+	}
+}
+
+.scroll-desktop {
+	.table-responsive,
+	.table-responsive2 {
+		overflow-x: auto;
+		overflow-y: hidden;
+		.table {
+			width: 2235px !important;
+			max-width: 2235px !important;
+			@include phone {
+				width: 200%;
+				max-width: 200%;
+			}
+			@include desktop {
+				width: 100% !important;
+				max-width: 100% !important;
+			}
+		}
+	}
+}
+
+.no-scroll-desktop {
+	.table-responsive,
+	.table-responsive2 {
+		@include phone {
+			overflow-x: auto;
+			overflow-y: hidden;
+		}
+		@include desktop {
+			overflow: inherit;
+		}
+		> .table {
+			@include phone {
+				width: 200%;
+				max-width: 200%;
+			}
+			@include desktop {
+				width: 100% !important;
+				max-width: 100% !important;
+			}
+		}
+	}
+}
+
+.scrollArrows {
+	position: fixed;
+	width: 100px;
+	height: 40px;
+	right: 15px;
+	bottom: 15px;
+	cursor: pointer;
+}
+.scrollArrows .left,
+.scrollArrows .right {
+	width: 40px;
+	height: 40px;
+	padding: 10px;
+	color: var(--white);
+	background: var(--black-light);
+	@include opacity(0.4);
+}
+.scrollArrows .left:hover,
+.scrollArrows .right:hover {
+	background: var(--black);
+	@include opacity(1);
+}
+.scrollArrows .left {
+	@extend %pullLeft;
+}
+.scrollArrows .right {
+	@extend %pullRight;
+}

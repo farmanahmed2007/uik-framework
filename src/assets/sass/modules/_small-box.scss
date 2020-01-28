@@ -1,0 +1,80 @@
+.small-box {
+	border-radius: 2px;
+	position: relative;
+	display: block;
+	margin-bottom: 20px;
+	box-shadow: 0 1px 1px var(--black-alpha2);
+}
+
+.small-box > .inner {
+	padding: 10px;
+}
+
+.small-box > .small-box-footer {
+	position: relative;
+	text-align: center;
+	padding: 3px 0;
+	color: #fff;
+	display: block;
+	z-index: 10;
+	background: var(--black-alpha2);
+	text-decoration: none;
+}
+
+.small-box > .small-box-footer:hover {
+	color: #fff;
+}
+
+.small-box h3 {
+	font-size: 38px;
+	font-weight: bold;
+	margin: 0 0 10px 0;
+	white-space: nowrap;
+	padding: 0;
+}
+
+.small-box p {
+	font-size: 15px;
+}
+
+.small-box p > small {
+	display: block;
+	color: #f9f9f9;
+	font-size: 13px;
+	margin-top: 5px;
+}
+
+.small-box h3,
+.small-box p {
+	z-index: 5;
+}
+
+.small-box .icon {
+	@include transition(all linear 300s);
+	@extend %posAbsolute;
+	top: -10px;
+	right: 10px;
+	z-index: 0;
+	font-size: 90px;
+	color: rgba(0, 0, 0, 0.15);
+}
+
+.small-box:hover {
+	text-decoration: none;
+}
+
+.small-box:hover .icon {
+	font-size: 95px;
+}
+
+@media (max-width: 767px) {
+	.small-box {
+		text-align: center;
+	}
+	.small-box .icon {
+		display: none;
+	}
+	.small-box p {
+		font-size: 12px;
+	}
+}

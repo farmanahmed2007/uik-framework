@@ -1,0 +1,580 @@
+h1,
+h2,
+optgroup {
+    @extend %fw-7;
+}
+
+label,
+h3,
+h4,
+th {
+    @extend %fw-6;
+}
+
+kbd,
+a,
+h5,
+h6,
+b,
+strong {
+    @extend %fw-5;
+}
+
+h1 {
+    font-size: 40px;
+    line-height: 40px;
+}
+
+h2 {
+    font-size: 30px;
+    line-height: 30px;
+}
+
+h3 {
+    font-size: 25px;
+    line-height: 25px;
+}
+
+h4 {
+    font-size: 20px;
+    line-height: 20px;
+    >sup {
+        @extend %fs10;
+        @extend %fw-5;
+    }
+}
+
+h5 {
+    font-size: 16px;
+    line-height: 16px;
+}
+
+h6 {
+    font-size: 14px;
+    line-height: 14px;
+}
+
+label {
+    @extend %fs13;
+}
+
+p {
+    @extend %fs12;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin-bottom: 7px;
+    padding-bottom: 7px;
+    color: var(--theme-pro-gray);
+}
+
+.lead {
+    margin-bottom: 20px;
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 1.4;
+}
+
+.text-left {
+    text-align: left !important;
+}
+.text-right {
+    text-align: right !important;
+}
+.text-center {
+    text-align: center !important;
+}
+.text-justify {
+    text-align: justify !important;
+}
+
+.nowrap {
+    white-space: nowrap !important;
+}
+.lowercase {
+    text-transform: lowercase !important;
+}
+.uppercase {
+    text-transform: uppercase !important;
+}
+.capitalize {
+    text-transform: capitalize !important;
+}
+
+.no-pointer {
+    pointer-events: none !important;
+}
+.no-select {
+    user-select: none !important;
+}
+.no-resize {
+    resize: none !important;
+}
+.no-shadow {
+    box-shadow: none !important;
+}
+
+.no-hover {
+    &:hover,
+    &.active {
+        background-color: transparent !important;
+    }
+}
+
+.disabled,
+:disabled,
+[disabled] {
+    cursor: not-allowed;
+    @include user-select(none);
+    @include opacity(0.65);
+    pointer-events: none;
+    &:focus,
+    &:active {
+        cursor: not-allowed;
+        @include user-select(none);
+        @include opacity(0.65);
+    }
+}
+
+[readonly] {
+    @include opacity(1);
+    cursor: text;
+    @include user-select(none);
+}
+
+.center-block {
+    display: block !important;
+    margin-right: auto !important;
+    margin-left: auto !important;
+    float: none !important;
+}
+
+.floatToCenter {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+mark {
+    padding: 0.2em;
+    color: #000;
+    background-color: #ff0;
+}
+
+.dl-horizontal {
+    @extend %width100;
+    @extend %fw-6;
+    @extend %m0;
+    @extend %displayFlex;
+    dt,
+    dd {
+        padding: 3px 0;
+        @extend %displayFlex;
+        justify-content: flex-start;
+        align-items: center;
+        line-height: 25px;
+        @include phone {
+            width: 100%;
+        }
+        i,
+        .svg {
+            width: 15px;
+            height: 15px;
+            display: block;
+            @extend %pullLeft;
+            text-align: center;
+            margin-right: 5px;
+        }
+    }
+    dt {
+        @include tabletP {
+            width: 130px;
+        }
+    }
+    dd {
+        @include tabletP {
+            width: calc(100% - 130px) !important;
+        }
+    }
+}
+
+blockquote {
+    padding: 10px 20px;
+    margin: 0 0 20px;
+    font-size: 17.5px;
+    border-left: 5px solid #eee;
+    p:last-child,
+    ul:last-child,
+    ol:last-child {
+        margin-bottom: 0;
+    }
+    footer,
+    small {
+        display: block;
+        line-height: 1.42857143;
+        color: #777;
+        &:before {
+            content: "\2014 \00A0";
+        }
+    }
+}
+
+.blockquote-reverse,
+blockquote.pull-right {
+    padding-right: 15px;
+    padding-left: 0;
+    text-align: right;
+    border-right: 5px solid #eee;
+    border-left: 0;
+}
+
+.blockquote-reverse footer:before,
+blockquote.pull-right footer:before,
+.blockquote-reverse small:before,
+blockquote.pull-right small:before,
+.blockquote-reverse .small:before,
+blockquote.pull-right .small:before {
+    content: "";
+}
+
+.blockquote-reverse footer:after,
+blockquote.pull-right footer:after,
+.blockquote-reverse small:after,
+blockquote.pull-right small:after,
+.blockquote-reverse .small:after,
+blockquote.pull-right .small:after {
+    content: "\00A0 \2014";
+}
+
+.rawHTML,
+code,
+kbd,
+pre,
+samp {
+    font-family: var(--monospace);
+    font-size: 1em;
+}
+
+sub,
+sup {
+    @extend %posRelative;
+    font-size: 75%;
+    line-height: 0;
+    vertical-align: baseline;
+}
+
+sup {
+    top: -0.5em;
+}
+
+sub {
+    bottom: -0.25em;
+}
+
+address {
+    margin-bottom: 20px;
+    font-style: normal;
+    line-height: 1.42857143;
+}
+
+.rawHTML {
+    height: 230px !important;
+    color: var(--red);
+    font-size: 13px !important;
+    font-family: var(--monospace);
+    white-space: pre-line;
+    padding: 15px !important;
+    resize: none !important;
+    line-height: 24px !important;
+}
+
+.pre-scrollable {
+    max-height: 340px;
+    overflow-y: scroll;
+}
+
+kbd {
+    padding: 2px 4px;
+    color: #fff;
+    background-color: #333;
+    border-radius: 3px;
+    box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.25);
+    font-weight: 700;
+}
+
+.pre-scrollable {
+    max-height: 340px;
+    overflow-y: scroll;
+}
+
+hr {
+    height: 1px;
+    border: 0;
+    clear: both;
+    @extend %pullLeft;
+    @extend %width100;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-top-width: 1px;
+}
+
+.DoubleSepY {
+    border-left: 1px solid var(--white-alpha2);
+    border-right: 1px solid var(--black-alpha2);
+    width: 0px;
+    @extend %posAbsolute;
+    right: 0;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    @include phone {
+        display: none;
+    }
+    @include tabletP {
+        display: block;
+    }
+}
+
+.line-through {
+    text-decoration: line-through;
+}
+
+.text-with-divider {
+    margin: auto !important;
+    width: 100%;
+    text-align: center;
+    position: relative;
+    text-transform: uppercase;
+    display: block;
+    height: 30px;
+    line-height: 30px;
+    box-sizing: content-box;
+    &:before {
+        content: "";
+        @extend %width100;
+        @extend %posAbsolute;
+        top: 0px;
+        bottom: 0px;
+        left: 0;
+        right: 0;
+        margin: auto;
+        z-index: 9;
+        height: 2px;
+    }
+    &.solid {
+        &:before {
+            border-top: 1px solid var(--gray-dark);
+        }
+    }
+    &.dotted {
+        &:before {
+            border-top: 1px dotted var(--gray-dark);
+        }
+    }
+    &.dashed {
+        &:before {
+            border-top: 1px dashed var(--gray-dark);
+        }
+    }
+    &.double {
+        &:before {
+            border-top: 4px double var(--gray-dark);
+        }
+    }
+    &.groove,
+    &.ridge {
+         :before {
+            border-top: 6px ridge var(--gray-dark);
+        }
+    }
+    span {
+        height: 30px;
+        width: fit-content;
+        position: absolute;
+        top: 0px;
+        bottom: 0px;
+        left: 0;
+        right: 0;
+        margin: auto;
+        z-index: 30;
+        padding: 0 15px;
+        >* {
+            margin: 0 !important;
+        }
+    }
+}
+
+.title-with-border {
+    padding-bottom: 15px;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    margin-bottom: 15px;
+}
+
+.multi-border-title {
+    border-bottom: 3px solid var(--gray-alpha9);
+    margin-bottom: 20px;
+    >span {
+        border-bottom: 3px solid transparent;
+        padding: 5px 0;
+        @extend %fw-6;
+        display: inline-block;
+        margin-bottom: -3px;
+    }
+}
+
+.title-with-icon {
+    margin-bottom: 10px;
+    @include display(table);
+    .icon,
+    .title {
+        vertical-align: top;
+    }
+    .icon {
+        @include display(table-cell);
+        @include phone {
+            width: 100%;
+            margin: auto;
+        }
+        @include phoneL {
+            width: 25%;
+            padding: 10px;
+        }
+    }
+    .title {
+        @include display(table-cell);
+        @include phone {
+            width: 100%;
+            margin: auto;
+        }
+        @include phoneL {
+            width: calc(75% - 10px);
+        }
+    }
+}
+
+figure {
+    margin: 1em 40px;
+}
+
+img {
+    vertical-align: middle;
+}
+
+.img-responsive,
+.thumbnail>img,
+.thumbnail a>img,
+.carousel-inner>.item>img,
+.carousel-inner>.item>a>img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+.img-rounded {
+    border-radius: 6px;
+}
+
+.img-thumbnail {
+    display: inline-block;
+    max-width: 100%;
+    height: auto;
+    padding: 4px;
+    line-height: 1.42857143;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    -webkit-transition: all 0.2s ease-in-out;
+    -o-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
+}
+
+img.pull-left {
+    margin-right: 10px;
+}
+
+img.pull-right {
+    margin-left: 10px;
+}
+
+.animated-headline {
+    height: 46px;
+    overflow: hidden;
+    @extend %posRelative;
+    display: block;
+    @include phone {
+        float: none;
+    }
+    @include tabletP {
+        float: left;
+    }
+    >span {
+        font-size: 30px;
+        height: 46px;
+        line-height: 46px;
+        @extend %posRelative;
+        white-space: nowrap;
+        overflow: hidden;
+        font-family: var(--muli-black);
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+        @include phone {
+            text-align: center;
+            width: 100%;
+            display: block;
+            @include transform(translateZ(0));
+            will-change: height, scroll-position;
+            @include animation-dual(height 2.5s ease-in-out 0s infinite, switch 12.5s steps(5) infinite);
+            @include keyframes(slideCrop) {
+                0%,
+                to {
+                    height: 46px;
+                }
+                15%,
+                85% {
+                    height: 46px;
+                }
+            }
+            @include keyframes(switch) {
+                0% {
+                    top: 0;
+                }
+                to {
+                    top: -230px;
+                }
+            }
+        }
+        @include tabletP {
+            text-align: left;
+            width: inherit;
+            @include transform(translateZ(0));
+            will-change: width, scroll-position;
+            @include animation-dual( crop 2.5s cubic-bezier(0.445, 0.05, 0.55, 0.95) 0s infinite, switch 12.5s steps(5) infinite);
+            @include keyframes(crop) {
+                0%,
+                to {
+                    width: 0;
+                }
+                15%,
+                85% {
+                    width: 100%;
+                }
+            }
+            @include keyframes(switch) {
+                0% {
+                    top: 0;
+                }
+                to {
+                    top: -230px;
+                }
+            }
+        }
+    }
+}

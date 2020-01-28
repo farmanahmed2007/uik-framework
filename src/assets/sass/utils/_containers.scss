@@ -1,0 +1,140 @@
+body {
+	@extend %width100;
+	@extend %height100;
+	@extend %posRelative;
+	@extend %fw-4;
+	background: var(--white);
+	line-height: 1.5;
+	@include phone {
+        font-size: 15px
+    }
+    @include tabletL {
+        font-size: 13px;
+    }
+	&.uik_fullwidth {
+		@extend %width100;
+	}
+	&.uik_boxed {
+		width: 1366px;
+		display: block;
+		margin: 0 auto;
+	}
+}
+
+
+.container-fluid {
+	@extend %width100;
+	@extend %posRelative;
+	display: block;
+	margin: 0 auto;
+}
+.container {
+	@extend %posRelative;
+	display: block;
+	padding: 0 #{$container-padding};
+	margin: 0;
+    @include phone {
+        width: 100%;
+    }
+    @include desktop {
+		width: #{$desktop-width};
+		margin: 0 auto;
+		
+    }
+}
+
+
+#content {
+    @extend %posRelative;
+	overflow: hidden;
+	@include phone {
+		padding: 20px 0 80px 0;
+	}
+	@include tabletL {
+		padding: 60px 0 80px 0;
+	}
+}
+
+.section-title {
+	@extend %posRelative;
+	border-bottom: 1px solid var(--gray-dark);
+	margin-bottom: 10px;
+	padding-bottom: 10px;
+	color: #222;
+	img {
+		margin: 0 auto;
+		display: block;
+	}
+	h2, h3, h4 {
+		font-weight: 700;
+		span {
+			color: var(--blue);
+		}
+	}
+	span {
+		color: var(--blue);
+	}
+	p {
+		color: #585757;
+	}
+	.fancybox {
+		@include tabletP {
+			position: absolute;
+			right: 0;
+			top: 0;
+			z-index: 60;
+		}
+	}
+}
+
+section {
+	&.full_width_content {
+		.container {
+			@include desktop {
+				width: 100% !important;
+			}
+		}
+	}
+}
+
+.page-header {
+	margin-bottom: 15px;
+	@extend %posRelative;
+	.stock-tools,
+	#stock-tools {
+		@extend %posAbsolute;
+		right: 0;
+		top: 5px;
+    	z-index: 10;
+		@include phone {
+			display: none;
+		}
+		@include tabletL {
+			display: flex;
+			align-items: flex-start;
+		}
+		.totalCartItems,
+		.compareCars {
+			@extend %displayFlex;
+			align-items: flex-start;
+			margin-right: 5px;
+		}
+		a,
+		button {
+			box-shadow: none;
+			&:hover,
+			&.active {
+				background-color: var(--blue) !important;
+				color: var(--white) !important;
+			}
+		}
+	}
+	.sorting {
+		border-bottom: 0 !important
+	}
+}
+.page-footer {
+    border-top: 1 solid var(--gray-dark);
+    padding-top: 10px;
+    margin: 10px 0;
+}

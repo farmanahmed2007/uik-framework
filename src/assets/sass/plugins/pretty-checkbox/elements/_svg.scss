@@ -1,0 +1,57 @@
+.pretty {
+    &.p-svg {
+        .state {
+            .svg {
+                @extend %posAbsolute;
+                font-size: 1em;
+                width: 15px;
+                height: 15px;
+                left: 0;
+                z-index: $pretty--z-index-between;
+                text-align: center;
+                line-height: normal;
+                top: 0;
+                border: 0;
+                @extend %op0;
+                padding: 2px;
+            }
+            svg {
+                margin: 0;
+                @extend %width100;
+                @extend %height100;
+                text-align: center;
+                @extend %displayFlex;
+                flex: 1;
+                justify-content: center;
+                align-items: center;
+                line-height: 1;
+            }
+        }
+        input {
+            &:checked~.state {
+                label {
+                    &:after {
+                        border: 0;
+                    }
+                    &:before {
+                        border-color: var(--blue);
+                    }
+                }
+                .svg {
+                    @extend %op1;
+                }
+            }
+        }
+        &.p-fill {
+            input {
+                &:checked~.state {
+                    label {
+                        &:before {
+                            background-color: var(--blue);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

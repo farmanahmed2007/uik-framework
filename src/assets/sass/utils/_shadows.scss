@@ -1,0 +1,210 @@
+.sh1 {
+	@include box-shadow(0px 25px 10px -20px var(--black-alpha8));
+}
+.btn.sh1 {
+	@include box-shadow(0px 6px 15px 2px var(--black-alpha3));
+	&:hover {
+		@include box-shadow(0px 10px 15px 2px var(--black-alpha4));
+	}
+	&:focus {
+		@include box-shadow(0px 3px 15px var(--black-alpha3));
+	}
+}
+
+.sh2 {
+	@include box-shadow(0px 0px 12px var(--black-alpha5));
+}
+
+.sh3 {
+	@include box-shadow(0px 24px 38px 3px var(--black-alpha2));
+}
+
+.sh4 {
+	@include box-shadow(0px 10px 6px -6px var(--black-alpha2));
+}
+
+.sh5 {
+	@extend %posRelative;
+	&:before,
+	&:after {
+		z-index: -1;
+		@extend %posAbsolute;
+		content: "";
+		bottom: 15px;
+		left: 10px;
+		width: 50%;
+		top: 80%;
+		max-width: 300px;
+		@include box-shadow(0px 15px 10px var(--black-alpha2));
+		@include rotate(-3deg);
+	}
+	&:after {
+		@include rotate(3deg);
+		right: 10px;
+		left: auto;
+	}
+}
+
+.sh6 {
+	@extend %posRelative;
+	&:before {
+		z-index: -1;
+		@extend %posAbsolute;
+		content: "";
+		bottom: 15px;
+		left: 10px;
+		width: 50%;
+		top: 80%;
+		max-width: 300px;
+		@include box-shadow(0px 15px 10px var(--black-alpha2));
+		@include rotate(-3deg);
+	}
+}
+
+.sh7 {
+	@extend %posRelative;
+	&:after {
+		z-index: -1;
+		@extend %posAbsolute;
+		content: "";
+		bottom: 15px;
+		right: 10px;
+		left: auto;
+		width: 50%;
+		top: 80%;
+		max-width: 300px;
+		@include box-shadow(0px 15px 10px var(--black-alpha2));
+		@include rotate(3deg);
+	}
+}
+
+.sh8 {
+	@extend %posRelative;
+	&:before,
+	&:after {
+		z-index: -1;
+		@extend %posAbsolute;
+		content: "";
+		bottom: 25px;
+		left: 10px;
+		width: 50%;
+		top: 80%;
+		max-width: 300px;
+		@include box-shadow(0px 35px 20px var(--black-alpha2));
+		@include rotate(-8deg);
+	}
+	&:after {
+		@include rotate(8deg);
+		right: 10px;
+		left: auto;
+	}
+}
+
+.sh9 {
+	position: relative;
+	@include box-shadow-dual(0px 1px 4px var(--black-alpha2), 0px 0px 40px var(--black-alpha1) inset);
+	&:before,
+	&:after {
+		content: "";
+		position: absolute;
+		z-index: -1;
+		top: 50%;
+		bottom: 0;
+		left: 10px;
+		right: 10px;
+		@include box-shadow(0px 0px 20px var(--black-alpha2));
+		-moz-border-radius: 100px / 10px;
+		border-radius: 100px / 10px;
+	}
+	&:after {
+		right: 10px;
+		left: auto;
+		@include transform(skew(8deg) rotate(3deg));
+	}
+}
+
+.sh10 {
+	position: relative;
+	@include box-shadow-dual(0px 1px 4px var(--black-alpha2), 0px 0px 40px var(--black-alpha1) inset);
+	&:before,
+	&:after {
+		content: "";
+		position: absolute;
+		z-index: -1;
+		top: 0;
+		bottom: 0;
+		left: 10px;
+		right: 10px;
+		@include box-shadow(0px 0px 20px var(--black-alpha2));
+		border-radius: 100px / 10px;
+	}
+	&:after {
+		right: 10px;
+		left: auto;
+		@include transform(skew(8deg) rotate(3deg));
+	}
+}
+
+.sh11 {
+	position: relative;
+	@include box-shadow-dual(0px 1px 4px var(--black-alpha2), 0px 0px 40px var(--black-alpha1) inset);
+	&:before,
+	&:after {
+		content: "";
+		position: absolute;
+		z-index: -1;
+		@include box-shadow(0 0 20px var(--black-alpha8));
+		top: 10px;
+		bottom: 10px;
+		left: 0;
+		right: 0;
+		border-radius: 100px / 10px;
+	}
+	&:after {
+		right: 10px;
+		left: auto;
+		@include transform(skew(8deg) rotate(3deg));
+	}
+}
+
+.sh12 {
+	@include box-shadow-tri(0 11px 15px -7px var(--black-alpha2), 0 24px 38px 3px rgba(0, 0, 0, .14), 0 9px 46px 8px rgba(0, 0, 0, .12));
+}
+.sh13 {
+	@include box-shadow(0 0 2rem var(--black-alpha1));
+	@include transition(box-shadow ease 0.5s);
+	&:hover {
+		@include box-shadow(0 0 2rem var(--black-alpha2));
+	}
+}
+
+.sh14 {
+	box-shadow: 0 2px 10px var(--black-alpha2);
+}
+
+.sh15 {
+	@include box-shadow(0 0 2rem var(--black-alpha1));
+	@include transition(box-shadow ease 0.5s);
+	&:hover {
+		@include box-shadow(0 0 2rem var(--black-alpha2));
+	}
+}
+
+// @each $color, $value in $colors {
+//     /* #{to-upper-case($color)} */
+//     .long-shadow-#{$color} {
+//         text-shadow: longshadow(#{$value}, transparent, 50, 0.2);
+//     }
+// }
+
+// .long-shadow {
+//     $value: ();
+//     @for $i from 1 through 100 {
+//         $num: $i + px;
+//         $pct: $i / 500;
+//         $color: 0.2 - $pct;
+//         $textShadow: $num $num rgba(0, 0, 0, $color );
+//         $value: append($value, $textShadow, comma);
+//     }
+//     text-shadow: $value;
+// }

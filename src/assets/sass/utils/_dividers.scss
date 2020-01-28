@@ -1,0 +1,113 @@
+hr {
+    height: 1px;
+    border: 0;
+    clear: both;
+    @extend %pullLeft;
+    @extend %width100;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-top-width: 1px;
+    border-top-color: var(--gray-dark);
+    &.solid {
+        border-top-style: solid;
+    }
+    &.dotted {
+        border-top-style: dotted;
+    }
+    &.dashed {
+        border-top-style: dashed;
+    }
+    &.double {
+        border-top-style: double;
+        border-top-width: 4px;
+    }
+    &.ridge {
+        border-top-style: ridge;
+        border-top-width: 6px;
+    }
+    &.groove {
+        border-top-style: groove;
+        border-top-width: 6px;
+    }
+}
+
+.DoubleSepY {
+    border-left: 1px solid var(--white-alpha2);
+    border-right: 1px solid var(--black-alpha2);
+    width: 0px;
+    @extend %posAbsolute;
+    right: 0;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    @include phone {
+        display: none;
+    }
+    @include tabletP {
+        display: block;
+    }
+}
+
+.text-with-divider {
+    margin: auto !important;
+    @extend %width100;
+    @extend %posRelative;
+    text-transform: uppercase;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: content-box;
+    &:before {
+        @extend %floatToYCenter;
+        @extend %width100;
+        content: '';
+        margin: auto;
+        height: 2px;
+        border-top-width: 1px;
+        border-top-color: var(--gray-dark);
+    }
+    &.solid {
+        &:before {
+            border-top-style: solid;
+        }
+    }
+    &.dotted {
+        &:before {
+            border-top-style: dotted;
+        }
+    }
+    &.dashed {
+        &:before {
+            border-top: 1px dashed var(--gray-dark);
+        }
+    }
+    &.double {
+        &:before {
+            border-top-style: double;
+            border-top-width: 4px;
+        }
+    }
+    &.ridge {
+        &:before {
+            border-top-style: ridge;
+            border-top-width: 6px;
+        }
+    }
+    &.groove {
+        &:before {
+            border-top-style: groove;
+            border-top-width: 6px;
+        }
+    }
+    span {
+        width: fit-content;
+        max-width: 85%;
+        z-index: 2;
+        padding: 0 15px;
+        >* {
+            margin: 0 !important;
+        }
+    }
+}

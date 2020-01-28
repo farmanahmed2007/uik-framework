@@ -1,0 +1,31 @@
+.linear-gradient-vertical {
+    @include linear-gradient(var(--black-alpa3), var(--black-alpa1), 'vertical');
+}
+
+.linear-gradient-vertical-invert {
+    @include linear-gradient(var(--black-alpa1), var(--black-alpa3), 'vertical');
+}
+
+.linear-gradient-horizontal {
+    @include linear-gradient(var(--black-alpa3), var(--black-alpa1), 'horizontal');
+}
+
+.linear-gradient-horizontal-invert {
+    @include linear-gradient(var(--black-alpa1), var(--black-alpa3), 'horizontal');
+}
+
+.diagonal-gradient-tlbr {
+    @include diagonal-gradient-tlbr(rgba(black, 0.3), rgba(black, 0.1));
+}
+
+.diagonal-gradient-tlbr-invert {
+    @include diagonal-gradient-tlbr(rgba(black, 0.1), rgba(black, 0.3));
+}
+
+.diagonal-gradient-bltr {
+    @include diagonal-gradient-bltr(rgba(black, 0.3), rgba(black, 0.1));
+}
+
+.diagonal-gradient-bltr-invert {
+    @include diagonal-gradient-bltr(rgba(black, 0.1), rgba(black, 0.3));
+}

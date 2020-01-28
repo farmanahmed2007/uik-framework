@@ -1,0 +1,114 @@
+.list-style {
+	counter-reset: list-style-counter;
+	li {
+		padding: 0 0 0 15px;
+		line-height: 20px;
+		@extend %posRelative;
+		margin-bottom: 10px;
+		&:before {
+			content:'';
+			@extend %posAbsolute;
+			left: 0px;
+		}
+		.title {
+			font-size: 13px
+		}
+	}
+	li {
+		&:before {
+			background-color: var(--black);
+		}
+	}
+	&.outline {
+		li {
+			&:before {
+				border: 1px solid var(--black);
+				background-color: transparent;
+				color: var(--black) !important;
+			}
+		}
+	}
+	&.square {
+		li {
+			&:before {
+				width: 5px;
+				height: 5px;
+			}
+		}
+	}
+	&.round {
+		li {
+			&:before {
+                width: 5px;
+			    height: 5px;
+				@include border-radius(50%);
+				@extend %radCircle;
+			}
+		}
+	}
+	&.square-sm,
+	&.round-sm {
+		li {
+			&:before {
+				top: 8px;
+				width: 4px;
+				height: 4px;
+			}
+		}
+	}
+	&.square-md,
+	&.round-md {
+		li {
+			&:before {
+				top: 7px;
+				width: 6px;
+				height: 6px;
+			}
+		}
+	}
+	&.square-lg,
+	&.round-lg {
+		li {
+			&:before {
+				top: 6px;
+				width: 8px;
+				height: 8px;
+				
+			}
+		}
+	}
+	&.counter {
+		li {
+            padding-left: 25px;
+			&:before {
+				counter-increment: list-style-counter;
+				content: counter(list-style-counter);
+				padding: 0px 5px;
+				color: var(--white);
+				@extend %posAbsolute;
+				top: 0px;
+			}
+		}
+	}
+	&.counter-sm {
+		li {
+			&:before {
+				font-size: 12px;
+			}
+		}
+	}
+	&.counter-md {
+		li {
+			&:before {
+				font-size: 14px;
+			}
+		}
+	}
+	&.counter-lg {
+		li {
+			&:before {
+				font-size: 16px;
+			}
+		}
+	}
+}

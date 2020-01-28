@@ -1,0 +1,404 @@
+header {
+    display:block;
+    padding:3em 3em 2em 3em;
+}
+header p {
+    margin:2em 0 0 0 
+}
+section {
+    border-top:1px solid #eee;
+    padding:2em 3em 0 3em
+}
+section ul{
+   margin:0;
+   padding:0
+}
+section li{
+   display:inline-block;
+   background-color:#fff;
+   position:relative;
+   margin:0 0px 5px 0;
+   vertical-align:top;
+   border:1px solid #ccc;
+   padding:1em 1em 3em 1em;
+   cursor:default
+}
+.icon-box{
+    margin: 0;
+    width: 122px;
+    height: 77.4px;
+    @extend %posRelative;
+    background: #ccc;
+    text-align: center;
+}
+.icon{
+   display:inline-block
+}
+h1{
+   margin-top:0
+}
+h2{
+   margin:0;
+   padding:0;
+   font-size:1em;
+   font-weight:normal;
+   white-space:nowrap;
+   overflow:hidden;
+   text-overflow:ellipsis;
+   position:absolute;
+   left:1em;
+   right:1em;
+   bottom:1em
+}
+footer{
+   display:block;
+   margin:0;
+   padding:0 3em 3em 3em
+}
+footer p{
+   margin:0;
+   font-size:.7em
+}
+footer a{
+   color:#0f7595;
+   margin-left:0
+}
+i {
+   text-indent:200%;
+   white-space:nowrap;
+   display:inline-block;
+}
+
+
+
+
+.svg-flat-alipay {
+	background: url(../../img/payments/payment-sprite.svg) 14.285714285714286% 0 no-repeat;
+	width: 122px;
+	height: 76.4px;
+}
+.svg-flat-amex {
+	background: url(../../img/payments/payment-sprite.svg) 71.42857142857143% 11.104731281580156% no-repeat;
+	width: 122px;
+	height: 76.4px;
+}
+.svg-flat-default {
+	background: url(../../img/payments/payment-sprite.svg) 0 11.104731281580156% no-repeat;
+	width: 122px;
+	height: 76.4px;
+}
+.svg-flat-diners {
+	background: url(../../img/payments/payment-sprite.svg) 14.285714285714286% 11.104731281580156% no-repeat;
+	width: 122px;
+	height: 76.4px;
+}
+.svg-flat-discover {
+	background: url(../../img/payments/payment-sprite.svg) 0 22.20946256316031% no-repeat;
+	width: 122px;
+	height: 76.4px;
+}
+.svg-flat-elo {
+	background: url(../../img/payments/payment-sprite.svg) 14.285714285714286% 22.20946256316031% no-repeat;
+	width: 122px;
+	height: 76.4px;
+}
+.svg-flat-hipercard {
+	background: url(../../img/payments/payment-sprite.svg) 28.571428571428573% 0 no-repeat;
+	width: 122px;
+	height: 76.4px;
+}
+.svg-flat-jcb {
+	background: url(../../img/payments/payment-sprite.svg) 28.571428571428573% 11.104731281580156% no-repeat;
+	width: 122px;
+	height: 76.4px;
+}
+.svg-flat-maestro {
+	background: url(../../img/payments/payment-sprite.svg) 0 33.31419384474047% no-repeat;
+	width: 122px;
+	height: 76.4px;
+}
+.svg-flat-maestro-old {
+	background: url(../../img/payments/payment-sprite.svg) 14.285714285714286% 33.31419384474047% no-repeat;
+	width: 122px;
+	height: 76.4px;
+}
+.svg-flat-mastercard {
+	background: url(../../img/payments/payment-sprite.svg) 28.571428571428573% 33.31419384474047% no-repeat;
+	width: 122px;
+	height: 76.4px;
+}
+.svg-flat-mastercard-old {
+	background: url(../../img/payments/payment-sprite.svg) 42.857142857142854% 0 no-repeat;
+	width: 122px;
+	height: 76.4px;
+}
+.svg-flat-paypal {
+	background: url(../../img/payments/payment-sprite.svg) 42.857142857142854% 11.104731281580156% no-repeat;
+	width: 122px;
+	height: 76.4px;
+}
+.svg-flat-security-code {
+	background: url(../../img/payments/payment-sprite.svg) 42.857142857142854% 22.20946256316031% no-repeat;
+	width: 122px;
+	height: 76.4px;
+}
+.svg-flat-unionpay {
+	background: url(../../img/payments/payment-sprite.svg) 0 44.41892512632062% no-repeat;
+	width: 122px;
+	height: 76.4px;
+}
+.svg-flat-verve {
+	background: url(../../img/payments/payment-sprite.svg) 14.285714285714286% 44.41892512632062% no-repeat;
+	width: 122px;
+	height: 76.4px;
+}
+.svg-flat-visa {
+	background: url(../../img/payments/payment-sprite.svg) 28.571428571428573% 44.41892512632062% no-repeat;
+	width: 122px;
+	height: 76.4px;
+}
+.svg-mono-alipay {
+	background: url(../../img/payments/payment-sprite.svg) 42.857142857142854% 44.41892512632062% no-repeat;
+	width: 122px;
+	height: 76.4px;
+}
+.svg-mono-amex {
+	background: url(../../img/payments/payment-sprite.svg) 0 55.52365640790078% no-repeat;
+	width: 122px;
+	height: 76.4px;
+}
+.svg-mono-default {
+	background: url(../../img/payments/payment-sprite.svg) 14.285714285714286% 55.52365640790078% no-repeat;
+	width: 122px;
+	height: 76.4px;
+}
+.svg-mono-diners {
+	background: url(../../img/payments/payment-sprite.svg) 28.571428571428573% 55.52365640790078% no-repeat;
+	width: 122px;
+	height: 76.4px;
+}
+.svg-mono-discover {
+	background: url(../../img/payments/payment-sprite.svg) 42.857142857142854% 55.52365640790078% no-repeat;
+	width: 122px;
+	height: 76.4px;
+}
+.svg-mono-elo {
+	background: url(../../img/payments/payment-sprite.svg) 57.142857142857146% 0 no-repeat;
+	width: 122px;
+	height: 76.4px;
+}
+.svg-mono-hipercard {
+	background: url(../../img/payments/payment-sprite.svg) 57.142857142857146% 11.104731281580156% no-repeat;
+	width: 122px;
+	height: 76.4px;
+}
+.svg-mono-jcb {
+	background: url(../../img/payments/payment-sprite.svg) 57.142857142857146% 22.20946256316031% no-repeat;
+	width: 122px;
+	height: 76.4px;
+}
+.svg-mono-maestro {
+	background: url(../../img/payments/payment-sprite.svg) 57.142857142857146% 33.31419384474047% no-repeat;
+	width: 122px;
+	height: 76.4px;
+}
+.svg-mono-maestro-old {
+	background: url(../../img/payments/payment-sprite.svg) 57.142857142857146% 44.41892512632062% no-repeat;
+	width: 122px;
+	height: 76.4px;
+}
+.svg-mono-mastercard {
+	background: url(../../img/payments/payment-sprite.svg) 0 66.62838768948095% no-repeat;
+	width: 122px;
+	height: 76.4px;
+}
+.svg-mono-mastercard-old {
+	background: url(../../img/payments/payment-sprite.svg) 14.285714285714286% 66.62838768948095% no-repeat;
+	width: 122px;
+	height: 76.4px;
+}
+.svg-mono-paypal {
+	background: url(../../img/payments/payment-sprite.svg) 28.571428571428573% 66.62838768948095% no-repeat;
+	width: 122px;
+	height: 76.4px;
+}
+.svg-mono-security-code {
+	background: url(../../img/payments/payment-sprite.svg) 42.857142857142854% 66.62838768948095% no-repeat;
+	width: 122px;
+	height: 76.4px;
+}
+.svg-mono-unionpay {
+	background: url(../../img/payments/payment-sprite.svg) 57.142857142857146% 66.62838768948095% no-repeat;
+	width: 122px;
+	height: 76.4px;
+}
+.svg-mono-verve {
+	background: url(../../img/payments/payment-sprite.svg) 71.42857142857143% 0 no-repeat;
+	width: 122px;
+	height: 76.4px;
+}
+.svg-mono-visa {
+	background: url(../../img/payments/payment-sprite.svg) 0 0 no-repeat;
+	width: 122px;
+	height: 76.4px;
+}
+.svg-outline-alipay {
+	background: url(../../img/payments/payment-sprite.svg) 71.42857142857143% 22.20946256316031% no-repeat;
+	width: 122px;
+	height: 76.4px;
+}
+.svg-outline-amex {
+	background: url(../../img/payments/payment-sprite.svg) 71.42857142857143% 33.31419384474047% no-repeat;
+	width: 122px;
+	height: 76.4px;
+}
+.svg-outline-default {
+	background: url(../../img/payments/payment-sprite.svg) 71.42857142857143% 44.41892512632062% no-repeat;
+	width: 122px;
+	height: 76.4px;
+}
+.svg-outline-diners {
+	background: url(../../img/payments/payment-sprite.svg) 71.42857142857143% 55.52365640790078% no-repeat;
+	width: 122px;
+	height: 76.4px;
+}
+.svg-outline-discover {
+	background: url(../../img/payments/payment-sprite.svg) 0 77.73311897106109% no-repeat;
+	width: 122px;
+	height: 76.4px;
+}
+.svg-outline-elo {
+	background: url(../../img/payments/payment-sprite.svg) 14.285714285714286% 77.73311897106109% no-repeat;
+	width: 122px;
+	height: 76.4px;
+}
+.svg-outline-hipercard {
+	background: url(../../img/payments/payment-sprite.svg) 28.571428571428573% 77.73311897106109% no-repeat;
+	width: 122px;
+	height: 76.4px;
+}
+.svg-outline-jcb {
+	background: url(../../img/payments/payment-sprite.svg) 42.857142857142854% 77.73311897106109% no-repeat;
+	width: 122px;
+	height: 76.4px;
+}
+.svg-outline-maestro {
+	background: url(../../img/payments/payment-sprite.svg) 57.142857142857146% 77.73311897106109% no-repeat;
+	width: 122px;
+	height: 76.4px;
+}
+.svg-outline-maestro-old {
+	background: url(../../img/payments/payment-sprite.svg) 71.42857142857143% 77.73311897106109% no-repeat;
+	width: 122px;
+	height: 76.4px;
+}
+.svg-outline-mastercard {
+	background: url(../../img/payments/payment-sprite.svg) 0 88.83785025264125% no-repeat;
+	width: 122px;
+	height: 76.4px;
+}
+.svg-outline-mastercard-old {
+	background: url(../../img/payments/payment-sprite.svg) 14.285714285714286% 88.83785025264125% no-repeat;
+	width: 122px;
+	height: 76.4px;
+}
+.svg-outline-paypal {
+	background: url(../../img/payments/payment-sprite.svg) 28.571428571428573% 88.83785025264125% no-repeat;
+	width: 122px;
+	height: 76.4px;
+}
+.svg-outline-security-code {
+	background: url(../../img/payments/payment-sprite.svg) 42.857142857142854% 88.83785025264125% no-repeat;
+	width: 122px;
+	height: 76.4px;
+}
+.svg-outline-unionpay {
+	background: url(../../img/payments/payment-sprite.svg) 57.142857142857146% 88.83785025264125% no-repeat;
+	width: 122px;
+	height: 76.4px;
+}
+.svg-outline-verve {
+	background: url(../../img/payments/payment-sprite.svg) 71.42857142857143% 88.83785025264125% no-repeat;
+	width: 122px;
+	height: 76.4px;
+}
+.svg-outline-visa {
+	background: url(../../img/payments/payment-sprite.svg) 85.71428571428571% 0 no-repeat;
+	width: 122px;
+	height: 76.4px;
+}
+.svg-single-alipay {
+	background: url(../../img/payments/payment-sprite.svg) 85.71428571428571% 11.104731281580156% no-repeat;
+	width: 122px;
+	height: 76.4px;
+}
+.svg-single-amex {
+	background: url(../../img/payments/payment-sprite.svg) 85.71428571428571% 22.20946256316031% no-repeat;
+	width: 122px;
+	height: 76.4px;
+}
+.svg-single-diners {
+	background: url(../../img/payments/payment-sprite.svg) 85.71428571428571% 33.31419384474047% no-repeat;
+	width: 122px;
+	height: 76.4px;
+}
+.svg-single-discover {
+	background: url(../../img/payments/payment-sprite.svg) 85.71428571428571% 44.52886663213032% no-repeat;
+	width: 122px;
+	height: 79.08px;
+}
+.svg-single-elo {
+	background: url(../../img/payments/payment-sprite.svg) 85.71428571428571% 53.36886495693622% no-repeat;
+	width: 122px;
+	height: 46.01px;
+}
+.svg-single-hipercard {
+	background: url(../../img/payments/payment-sprite.svg) 85.71428571428571% 62.52949979853796% no-repeat;
+	width: 122px;
+	height: 79.08px;
+}
+.svg-single-jcb {
+	background: url(../../img/payments/payment-sprite.svg) 85.71428571428571% 73.72674552135967% no-repeat;
+	width: 122px;
+	height: 76.4px;
+}
+.svg-single-maestro {
+	background: url(../../img/payments/payment-sprite.svg) 85.71428571428571% 87.0443197384119% no-repeat;
+	width: 122px;
+	height: 95.07px;
+}
+.svg-single-maestro-old {
+	background: url(../../img/payments/payment-sprite.svg) 0 99.9425815342214% no-repeat;
+	width: 122px;
+	height: 76.4px;
+}
+.svg-single-mastercard {
+	background: url(../../img/payments/payment-sprite.svg) 100% 0 no-repeat;
+	width: 122px;
+	height: 95.01px;
+}
+.svg-single-mastercard-old {
+	background: url(../../img/payments/payment-sprite.svg) 100% 13.638321084060633% no-repeat;
+	width: 122px;
+	height: 76.4px;
+}
+.svg-single-paypal {
+	background: url(../../img/payments/payment-sprite.svg) 100% 24.80429401945548% no-repeat;
+	width: 122px;
+	height: 79.08px;
+}
+.svg-single-unionpay {
+	background: url(../../img/payments/payment-sprite.svg) 100% 36.0946830500689% no-repeat;
+	width: 122px;
+	height: 76.4px;
+}
+.svg-single-verve {
+	background: url(../../img/payments/payment-sprite.svg) 100% 45.375634797968644% no-repeat;
+	width: 122px;
+	height: 49.36px;
+}
+.svg-single-visa {
+	background: url(../../img/payments/payment-sprite.svg) 100% 54.28485300872761% no-repeat;
+	width: 122px;
+	height: 76.4px;
+}

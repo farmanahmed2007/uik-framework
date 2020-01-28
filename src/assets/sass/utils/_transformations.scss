@@ -1,0 +1,5 @@
+@for $value from 0 through 360 {
+    .rotate#{$value} {
+        @include transform(rotate(#{$value + 'deg'}));
+    }
+}

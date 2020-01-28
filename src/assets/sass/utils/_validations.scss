@@ -1,0 +1,194 @@
+p.error {
+    color: var(--red) !important;
+    font-size: 12px;
+    font-weight: 600;
+    @include animation(slideInUp 300ms ease);
+}
+
+
+input.error {
+    border-color: var(--red) !important;
+    @include transition(border-color 300ms forward ease-out linear);
+}
+
+.error {
+	&.style1 {
+		@extend %posRelative;
+		input {
+			color: var(--danger);
+			border: 1px solid var(--danger);
+			width: 100%;
+		}
+		.error-text {
+			padding: 5px 10px;
+			margin-top: 10px;
+			display: inline-block;
+			border-radius: 3px;
+			color: var(--white);
+			background: var(--danger);
+			border: 1px solid var(--danger-dark);
+			font-size: 12px;
+			width: fit-content;
+			@extend %posAbsolute;
+			bottom: -40px;
+			z-index: 1;
+
+			&:before {
+				@extend %posAbsolute;
+				content: "";
+				top: -11px;
+				border-style: solid;
+				border-width: 4px 8px 7px 8px;
+				border-color: transparent transparent var(--danger) transparent;
+			}
+		}
+	}
+	&.error-message-xs {
+		span {
+			font-size: 10px;
+			padding: 4px 10px;
+			bottom: -36px;
+		}
+	}
+	&.left {
+		span {
+			left: 0;
+			&:before {
+				left: 15px;
+			}
+		}
+	}
+	&.right {
+		span {
+			right: 0;
+			&:before {
+				right: 15px;
+			}
+		}
+	}
+	&.center {
+		span {
+			@extend %floatToXCenter;
+			&:before {
+				@extend %floatToXCenter;
+			}
+		}
+	}
+	&.style2 {
+		@extend %posRelative;
+		.icon {
+			padding: 2px;
+			/* font-size: 13px; */
+			border-radius: 50%;
+			height: 22px;
+			width: 22px;
+			top: -9px;
+			right: -5px;
+			@extend %displayFlex;
+			align-items: center;
+			justify-content: center;
+			@extend %posAbsolute;
+			&.icon-xs {
+				top: -8px;
+				font-size: 13px;
+				height: 18px;
+				width: 18px;
+			}
+			&.icon-xl {
+				top: -10px;
+				font-size: 19px;
+				height: 26px;
+				width: 26px;
+			}
+		}
+	}
+	&.style3 {
+		&.input-group {
+			input {
+				background: transparent !important;
+				border: 0 solid transparent !important;
+			}
+		}
+		&.top,
+		&.top input {
+			border-width: 6px 1px 1px 1px;
+		}
+		&.bottom,
+		&.bottom input {
+			border-width: 1px 1px 6px 1px;
+		}
+		&.left,
+		&.left input {
+			border-width: 1px 1px 1px 6px;
+		}
+		&.right,
+		&.right input {
+			border-width: 1px 6px 1px 1px;
+		}
+		@each $color, $value in $notifColors {
+			$dashColor: "--" + $color;
+			&.error-#{$color} {
+				input,
+				&.input-group {
+					color: var(#{$dashColor}-dark);
+					background: var(#{$dashColor}-alpha4);
+
+					border-style: solid;
+					border-color: var(#{$dashColor});
+					.icon {
+						color: var(#{$dashColor}-dark);
+					}
+				}
+			}
+		}
+	}
+	&.style5 {
+		@extend %posRelative;
+
+		.input-icon:hover +.error-text {
+			display: block;
+		}
+
+		.error-text {
+			@extend %posAbsolute;			
+			background: var(--danger);
+			padding: 5px;
+			border-radius: 3px;
+			z-index: 1;
+            display: none;
+            color:var(--white);
+			&:before {
+				content: "";
+				position: absolute;
+				top: -10px;
+				right: 5px;
+				border-style: solid;
+				border-width: 4px 8px 7px 8px;
+				border-color: transparent transparent var(--danger) transparent;
+			}
+			&.error-text-xs {
+                right: -1px;
+                bottom: -36px;
+                font-size: 12px;
+			}
+			&.error-text-sm {
+                right: 3px;
+                bottom: -37px;
+                font-size: 12px;
+			}
+			&.error-text-md {
+                right: 5px;
+                bottom: -36px;
+                font-size: 12px;
+			}
+			&.error-text-lg {
+                right: 9px;
+                bottom: -41px;
+			}
+			&.error-text-xl {
+				right: 16px;
+				bottom: -40px;
+			}
+		}
+	}
+}

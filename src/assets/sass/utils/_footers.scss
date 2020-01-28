@@ -1,0 +1,109 @@
+/*=============================================
+=                    FOOTER                   =
+=============================================*/
+
+#footer {
+    @extend %width100;
+	padding-top: 45px;
+    a,
+    a:not(.button)
+    li,
+    p {
+        font-size: 13px;
+	}
+	a {
+		font-weight: 700;
+	}
+	.logo {
+		@extend %pullLeft;
+		clear: left;
+		opacity: 0.6;
+		&:hover {
+			opacity: 1;
+		}
+	}
+}
+
+.social_menu,
+.payment_menu {
+	@extend %pullLeft;
+	clear: left;
+	@extend %width100;
+	display: flex;
+	flex-wrap: wrap;
+	li {
+		margin-right: 10px;
+		a {
+			display: block;
+		}
+	}
+}
+
+.payment_menu {
+	li {
+		a {
+			i {
+				font-size: 30px !important;
+			}
+		}
+	}
+}
+
+#copyrights {
+	padding: 10px 0;
+	ul {
+		@include tabletP {
+			text-align: center;
+			width: 100%;
+			display: block;
+		}
+		> li {
+			display: inline-block;
+			> a {
+				padding: 5px;
+				display: block;
+				@include tabletP {
+					text-align: center;
+				}
+			}
+		}
+	}
+}
+
+/*=====  End of FOOTER  ======*/
+
+.callout {
+	ul {
+		text-align: center;
+		padding: 30px 0;
+		border-top: 1px solid transparent;
+		li {
+			h4 {
+				margin: 0;
+			}
+			a {
+				font-size: 13px;
+				font-weight: 600;
+				text-transform: uppercase;
+				@include opacity (0.5);
+				&:hover {
+					opacity: 1;
+					@include opacity (1);
+				}
+			}
+		}
+	}
+	&.with-seperator {
+		li {
+			@include phone {
+				border-left: 0px;
+			}
+			@include tabletP {
+				border-left: 1px solid transparent;
+				&:first-child {
+					border-left: 0px;
+				}
+			}
+		}
+	}
+}

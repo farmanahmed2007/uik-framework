@@ -1,0 +1,94 @@
+.pretty * {
+    box-sizing: border-box;
+}
+
+//Throw error on invalid input types.
+.pretty input:not([type='checkbox']):not([type='radio']) {
+    display: none;
+
+    @if $pretty--debug {
+        +*:after {
+            content: $pretty--err-message;
+            border: 1px solid #dedede;
+            border-left: 3px solid #d9534f;
+            padding: 9px;
+            font-size: 1em;
+            font-weight: 600;
+            color: #d9534f;
+            @extend %posAbsolute;
+            z-index: 3;
+            background: #fbfbfb;
+            top: 0;
+            left: 0;
+        }
+    }
+}
+
+.pretty {
+	width: fit-content;
+    @extend %posRelative;
+    display: inline-block;
+    margin-right: 10px;
+	margin-bottom: 10px;
+	// white-space: nowrap;
+	word-break: break-word;
+    line-height: 1;
+    input {
+        @extend %posAbsolute;
+        left: 0;
+        top: 0;
+        min-width: 1em;
+        @extend %width100;
+        @extend %height100;
+        z-index: $pretty--z-index-front;
+        opacity: 0;
+        margin: 0 !important;
+        padding: 0;
+    }
+    .state {
+        line-height: 15px;
+		@extend %transitionAll300;
+        label {
+            position: initial;
+            display: inline-block;
+            @extend %fw-5;
+            @extend %m0;
+            @extend %transitionAll300;
+			// text-indent: $pretty--label-text-offset;
+			padding-left: $pretty--label-text-offset;
+            min-width: $pretty--box-size;
+            &:before,
+            &:after {
+                content: '';
+                width: 15px;
+                height: 15px;
+                box-sizing: border-box;
+                @extend %themeRadius;
+				@extend %b1;
+				border-color: var(--black-alpha4);
+                z-index: $pretty--z-index-back;
+                @extend %posAbsolute;
+                left: 0;
+                top: 0;
+                @extend %transitionAll300;
+                background-color: var(--white-alpha6);
+            }
+            &:before {
+                border-color: var(--black-alpha4);
+            }
+            &:after {
+				border-color: transparent;
+			}
+            &.b-0 {
+                &:before,
+                &:after {
+                    border: 0px;
+                }
+            }
+        }
+        &.p-is-hover,
+        &.p-is-indeterminate {
+            display: none;
+        }
+    }
+}

@@ -1,0 +1,155 @@
+.op-0 {	@include opacity(0); }
+@for $opacity from 1 through 10 {
+	@if $opacity==10 {
+		.op-1 { @include opacity($opacity/10); }
+	} @else {
+		.op-0-#{$opacity} { @include opacity($opacity/10); }
+	}
+}
+
+.hide {
+	display: none !important;
+}
+
+.show {
+	display: block !important;
+}
+
+.invisible {
+	visibility: hidden;
+}
+
+.hidden {
+	display: none !important;
+}
+
+.affix {
+	position: fixed;
+}
+
+@-ms-viewport {
+	width: device-width;
+}
+
+.visible-lg,
+.visible-md,
+.visible-sm,
+.visible-xs,
+.visible-print {
+	display: none !important;
+}
+
+@include phone_and_tabletL {
+	.hidden-xs {
+		display: none;
+	}
+
+	.visible-xs {
+		display: flex !important;
+	}
+
+	table.visible-xs {
+		display: table !important;
+	}
+
+	tr.visible-xs {
+		display: table-row !important;
+	}
+
+	td.visible-xs,
+	th.visible-xs {
+		display: table-cell !important;
+	}
+}
+
+@include tabletP {
+	.hidden-sm {
+		display: none;
+	}
+
+	.visible-sm {
+		display: flex !important;
+	}
+
+	table.visible-sm {
+		display: table !important;
+	}
+
+	tr.visible-sm {
+		display: table-row !important;
+	}
+
+	td.visible-sm,
+	th.visible-sm {
+		display: table-cell !important;
+	}
+}
+
+@include tabletL {
+	.hidden-md {
+		display: none !important;
+	}
+
+	.visible-md {
+		display: flex !important;
+	}
+
+	table.visible-md {
+		display: table !important;
+	}
+
+	tr.visible-md {
+		display: table-row !important;
+	}
+
+	td.visible-md,
+	th.visible-md {
+		display: table-cell !important;
+	}
+}
+
+@include desktop {
+	.hidden-lg {
+		display: none !important;
+	}
+
+	.visible-lg {
+		display: flex !important;
+	}
+
+	table.visible-lg {
+		display: table !important;
+	}
+
+	tr.visible-lg {
+		display: table-row !important;
+	}
+
+	td.visible-lg,
+	th.visible-lg {
+		display: table-cell !important;
+	}
+}
+
+@media print {
+	.hidden-print {
+		display: none !important;
+	}
+
+	.visible-print {
+		display: flex !important;
+	}
+
+	table.visible-print {
+		display: table !important;
+	}
+
+	tr.visible-print {
+		display: table-row !important;
+	}
+
+	td.visible-print,
+	th.visible-print {
+		display: table-cell !important;
+	}
+}

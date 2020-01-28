@@ -1,0 +1,178 @@
+.ribbon {
+    box-shadow: 1px 1px 2px 1px #00000085;
+    padding: 10px;
+    border: 1px solid var(--black-alpha1);
+    &.style1 {
+        margin: 0 10px;
+        .ribbon-heading {
+            margin-bottom: 10px;
+            a {
+                padding: 5px 30px;
+                @extend %posRelative;
+                &:before {
+                    content: "";
+                    @extend %posAbsolute;
+                    top: 26px;
+                    height: 15px;
+                    width: 18px;
+                }
+            }
+        }
+        &.left {
+            a {
+                border-top-left-radius: 0;
+                border-bottom-left-radius: 0;
+                margin-left: -28px;
+                &:before {
+                    clip-path: polygon(0% 0%, 100% 0%, 100% 100%);
+                    left: 0px;
+                }
+            }
+        }
+        &.right {
+            .ribbon-heading {
+                text-align: right;
+                a {
+                    border-top-right-radius: 0;
+                    border-bottom-right-radius: 0;
+                    margin-right: -28px;
+                    margin-left: 5px;
+                    &:before {
+                        clip-path: polygon(0% 0%, 0% 100%, 100% 0%);
+                        right: 0px;
+                    }
+                }
+            }
+        }
+    }
+    &.style2 {
+        .ribbon-heading {
+            @extend %posRelative;
+            margin-bottom: 50px;
+            >a {
+                padding: 10px;
+                @extend %posAbsolute;
+                top: -20px;
+                &:before {
+                    content: "";
+                    @extend %posAbsolute;
+                    top: 0px;
+                    height: 10px;
+                    width: 10px;
+                    z-index: -1;
+                    clip-path: ellipse(100% 78% at 102% 80%);
+                }
+                &:after {
+                    @extend %posAbsolute;
+                    content: "";
+                    bottom: -10px;
+                    height: 10px;
+                    width: 100%;
+                    left: 0;
+                    clip-path: polygon(50% 100%, 0 0, 100% 0);
+                }
+            }
+        }
+        &.left {
+            .ribbon-heading {
+                >a {
+                    left: 5px;
+                    border-top-left-radius: 8px;
+                    &:before {
+                        right: -9px;
+                        transform: rotate(90deg);
+                    }
+                }
+            }
+        }
+        &.right {
+            .ribbon-heading {
+                >a {
+                    right: 5px;
+                    border-top-right-radius: 8px;
+                    &:before {
+                        left: -9px;
+                    }
+                }
+            }
+        }
+    }
+    &.style3 {
+        margin: 0 10px;
+        background: var(--white);
+        .ribbon-heading {
+            margin-bottom: 50px;
+            z-index: 1;
+            a {
+                @extend %posAbsolute;
+                padding: 10px;
+                text-align: center;
+                &:before {
+                    content: "";
+                    @extend %posAbsolute;
+                    bottom: -4px;
+                    clip-path: ellipse(75% 50% at 83% 52%);
+                    background: var(--gray-alpha4) !important;
+                    height: 5px;
+                    width: 5px;
+                }
+            }
+        }
+        &.left {
+            .ribbon-heading {
+                a {
+                    left: 11px;
+                    border-top-left-radius: 5px;
+                    &:before {
+                        left: 3px;
+                    }
+                    &:after {
+                        @extend %posAbsolute;
+                        content: "";
+                        height: 13px;
+                        width: 14px;
+                        top: 35px;
+                        left: 0px;
+                        z-index: -1;
+                        clip-path: ellipse(45% 50% at 42% 50%);
+                    }
+                }
+            }
+        }
+        &.right {
+            .ribbon-heading {
+                a {
+                    right: 11px;
+                    border-top-right-radius: 5px;
+                    &:before {
+                        right: 5px;
+                        z-index: 1;
+                        transform: rotate(180deg);
+                    }
+                    &:after {
+                        @extend %posAbsolute;
+                        content: "";
+                        height: 12px;
+                        width: 12px;
+                        top: 35px;
+                        border-radius: 50%;
+                        right: 0;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@each $color,
+$value in $colors {
+    .ribbon-heading a.bg-#{$color} {
+        $dashColor: '--' + $color;
+        &:before {
+            background: var(#{$dashColor}-dark)
+        }
+        &:after {
+            background: var(#{$dashColor})
+        }
+    }
+}

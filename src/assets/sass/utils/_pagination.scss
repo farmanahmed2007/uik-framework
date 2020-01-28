@@ -1,0 +1,288 @@
+.pagination {
+    overflow: hidden;
+    margin: 20px 0;
+    font-family: var(--monospace);
+    @extend %b1;
+    border-color: var(--gray-dark);
+    display: inline-flex;
+    > li {
+        margin: -1px 0 -1px -1px;
+        font-weight: bold;
+        @extend %transitionAll150;
+        &:first-child {
+            margin-left: 0px;
+            > a,
+            > strong {
+                border-left-color: transparent !important;
+            }
+        }
+        &:last-child {
+            > a,
+            > strong {
+                border-right-color: transparent !important;
+            }
+        }
+        > a,
+        > strong {
+            position: relative;
+            padding: 6px 12px;
+            line-height: 1.42857143;
+            text-decoration: none;
+            display: block;
+            @extend %b1;
+            @extend %transitionAll150;
+            border-color: var(--gray-dark);
+            border-top-color: transparent !important;
+            border-bottom-color: transparent !important;
+        }
+        &:hover,
+        &:focus {
+            > a,
+            > strong {
+                border-color: var(--black-alpha1);
+                background-color: var(--gray-light);
+                z-index: 2;
+            }
+        }
+        &.active{
+            z-index: 3;
+            cursor: default;
+        }
+        &.disabled {
+            > a,
+            > a:hover,
+            > a:focus,
+            > strong,
+            > strong:hover,
+            > strong:focus {
+                color: var(--gray-dark);
+                border-color: var(--gray);
+                background-color: var(--white);
+            }
+        }
+    }
+    &.pagination-xs {
+        @include pagination-size("xs", 3px);
+    }
+    &.pagination-sm {
+        @include pagination-size("sm", 3px);
+    }
+    &.pagination-md {
+        @include pagination-size("md", 3px);
+    }
+    &.pagination-lg {
+        @include pagination-size("lg", 6px);
+    }
+    &.pagination-xl {
+        @include pagination-size("xl", 10px);
+    }
+    &.style1 {
+        li {
+            background-color: var(--gray);
+            &:hover,
+            &:focus {
+                >a,
+                >strong {
+                    background-color: var(--gray-dark);
+                }
+            }
+            &.active {
+                >a,
+                >a:hover,
+                >a:focus,
+                >strong,
+                >strong:hover,
+                >strong:focus {
+                    background-color: var(--gray-dark);
+                }
+            }
+        }
+    }
+    &.style2 {
+        li {
+            background-color: var(--gray-light);
+            color: var(--blue);
+            &:hover,
+            &:focus {
+                > a,
+                > strong {
+                    background-color: var(--blue);
+                    color: var(--white);
+                }
+            }
+            &.active {
+                > a,
+                > a:hover,
+                > a:focus,
+                > strong,
+                > strong:hover,
+                > strong:focus {
+                    border-color: var(--blue);
+                    color: var(--white);
+                    background-color: var(--blue);
+                    
+                }
+            }
+        }
+    }
+    &.style3,
+	&.style4,
+    &.style5, 
+    &.style6{
+		li{
+			margin-right: 5px;
+			a,strong {
+				border: none;
+			} 
+			&:last-child {
+				margin-right: 0 !important;
+			}
+		}
+	}
+
+	&.style3 {
+		border-radius: 100px;
+		padding: 10px 0;
+		li {
+			a,strong{
+				border-radius: 50%;
+				color:var(--black-alpha7);
+			}
+			&.active,&:hover {
+				a,strong {
+					background:var(--black);
+					color:var(--white);
+				}
+			}
+			&.next,
+			&.prev {
+				a,strong {
+					background:none;
+					font-size:16px;
+					&:hover{
+						color:var(--black-dark);
+					}
+				}
+			}
+			&.next {
+				a,strong {
+					padding-right:0; 
+				}
+			}
+			&.prev {
+				a,strong {
+					padding-left:0; 
+				}
+			}
+			&.two-word {
+				a,strong {
+					width: 35px;
+					padding: 0 10px;
+				}
+			}
+		}
+	}
+	&.style4 {
+		background: var(--black);
+		color:var(--white);
+		padding: 5px;
+		li {
+			&.next {
+				border-right: 1px solid var(--white-alpha3);
+				a,strong {
+					margin-right:5px; 
+				}
+			}
+			&.prev {
+				border-left: 1px solid var(--white-alpha3);
+				a,strong {
+					margin-left:5px;
+				}
+			}
+			&:hover,&.active {
+				a,strong {
+					background: var(--red);
+					border-radius:3px;
+					border-bottom: 2px solid var(--white-alpha8) !important;
+				}
+			}
+		}
+	}
+	&.style5 {
+		border-radius:100px;
+		background: var(--black);
+    	color: var(--white);
+
+		li{
+			a,strong{
+				margin-bottom: 2px;
+
+			}
+			&:hover,&.active{
+				a,strong{
+					background: transparent !important;
+					color:var(--red);
+					border-bottom:2px solid var(--red) !important;
+				}
+			}
+			&.next,&.prev {
+				a,strong{
+					border-bottom:none !important;
+				}
+			}
+		}
+    }
+    &.style6 {
+		background: linear-gradient(to right, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.65) 40%, rgba(0, 0, 0, 0.65) 50%, rgba(0, 0, 0, 0.65) 60%, rgba(0, 0, 0, 0) 100%);
+		overflow: unset;
+		border-radius: 100px;
+		li{
+		  color:var(--black);
+		  padding:5px;
+		  margin: 0;
+		  position: relative;
+		   &:hover{
+			color: var(--white);
+			a,strong{
+				background: transparent !important; 
+			}
+			 &:after{
+			  content: '';
+			   position: absolute;
+			   width: 35px;
+			   height: 35px;
+			   background:var(--blue);
+			   border-radius:100%;
+			   z-index: -1;
+			   margin: auto;
+			   @extend %floatToCenter;
+			 }
+		  }
+		  &.next , &.prev{
+			color:var(--blue);
+			 &:hover{
+			   color:var(--white);
+			   &:after{display: none;}
+			 }
+		  }
+		  &.active {
+			background:var(--blue);
+			color:var(--white);
+			&:before{
+			  content: '';
+			  position: absolute;
+			  top:-17px;
+			  left:-10px;
+			  width: 100%;
+			  border:10px solid transparent;
+			  border-bottom:7px solid var(--blue-dark);
+			  z-index: -1;
+			}
+			&:hover{
+			   &:after{display: none;}
+			 }
+		  }
+		 
+		}
+	}
+}

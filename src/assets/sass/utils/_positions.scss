@@ -1,0 +1,13 @@
+.pos-relative { position: relative !important; }
+.pos-absolute { position: absolute !important; }
+.pos-inherit { position: inherit !important; }
+@for $value from 0 through 50 {
+    .pos-t-#{$value} { top: #{$value + 'px'} !important; }
+    .pos-r-#{$value} { right: #{$value + 'px'} !important; }
+    .pos-b-#{$value} { bottom: #{$value + 'px'} !important; }
+    .pos-l-#{$value} { left: #{$value + 'px'} !important; }
+    .pos-t-l-#{$value} { top: #{$value + 'px'} !important; left: #{$value + 'px'} !important; }
+    .pos-t-r-#{$value} { top: #{$value + 'px'} !important; right: #{$value + 'px'} !important; }
+    .pos-b-l-#{$value} { bottom: #{$value + 'px'} !important; left: #{$value + 'px'} !important; }
+    .pos-b-r-#{$value} { bottom: #{$value + 'px'} !important; right: #{$value + 'px'} !important; }
+}
