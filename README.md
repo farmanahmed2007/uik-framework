@@ -52,7 +52,7 @@ All files will be added in /dist/uik-framework/ folder
 
 ## Include Files in your project
 
-Copy and Paste /dist fromm package inside your project
+Copy and Paste /dist from package inside your project
 Add them in your SCSS Production
 OR
 Add them in our HTML Document
@@ -64,7 +64,6 @@ Add them in our HTML Document
 <!-- UIK Framework-->
 <link rel="stylesheet" type="text/css" href="dist/uik.bundle.min.css">
 <script src="dist/uik.bundle.min.js"></script>
-</code>
 ```
 OR
 ```render
