@@ -1,0 +1,45 @@
+.widget {
+    margin-bottom: 15px;
+    @extend %posRelative;
+    .widget-head {
+        margin-bottom: 10px;
+        .widget-title {
+            @extend %posRelative;
+            font-weight: 700;
+            padding: 15px 0;
+        }
+    }
+    &.style2 {
+        .widget-head {
+            .widget-title {
+                margin: 0;
+                padding: 0;
+                border-bottom: 3px solid transparent;
+                > div {
+                    @extend %displayFlex;
+                    align-items: center;
+                    @extend %pullLeft;
+                    padding: 10px;
+                    border-bottom: 3px solid transparent;
+                    font-weight: 600;
+                    margin-bottom: -3px;
+                    i {
+                        font-size: 16px;
+                    }
+                }
+            }
+        }
+    }
+    .widget-body {
+        font-weight: 600;
+        color: var(--black-alpha6);
+        padding: 15px;
+        li {
+            margin-bottom: 7px;
+            a {
+                line-height: 15px;
+                font-size: 12px;
+            }
+        }
+    }
+}

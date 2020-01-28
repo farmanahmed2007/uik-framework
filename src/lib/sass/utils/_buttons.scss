@@ -1,0 +1,792 @@
+.btn {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	border: 1px solid var(--black-alpha2);
+	color: var(--white);
+	cursor: pointer;
+	border-radius: 5px;
+	padding: 6px;
+	width: fit-content;
+	line-height: initial;
+	@extend %posRelative;
+	@extend %overflowHidden;
+	@include appearance(none);
+	@include text-shadow(0px, 1px, 2px, var(--black-alpha1));
+	> i,
+	> img,
+	> span,
+	> label,
+	> label > i,
+	> label > img,
+	> label > span {
+		@extend %noUserSelect;
+		@extend %cursorDisabled;
+	}
+	i,
+	img {
+		&:first-child {
+			margin-right: 3px;
+		}
+		&:last-child {
+			margin-right: 3px;
+		}
+		&:only-child {
+			margin: 0px;
+		}
+	}
+	&:hover {
+		text-decoration: none;
+		@include box-shadow-dual(0 1px 1px 0 var(--black-alpha1), 0 10px 20px 0 var(--black-alpha2));
+		outline: 0;
+	}
+	&:active {
+		text-decoration: none;
+		@include box-shadow-tri(
+			0 5px 5px -3px rgba(0, 0, 0, 0.2),
+			0 8px 10px 1px rgba(0, 0, 0, 0.14),
+			0 3px 14px 2px rgba(0, 0, 0, 0.12)
+		);
+		outline: 0;
+		color: var(--white);
+	}
+	&.btn-xs {
+		@include btn-generator('xs');
+	}
+	&.btn-sm {
+		@include btn-generator('sm');
+	}
+	&.btn-md {
+		@include btn-generator('md');
+	}
+	&.btn-lg {
+		@include btn-generator('lg');
+	}
+	&.btn-xl {
+		@include btn-generator('xl');
+	}
+	&.btn-transparent {
+		background: none !important;
+		@extend %b0;
+		@extend %p0;
+		@extend %noShadow;
+		> img {
+			margin: 0 !important;
+			padding: 0 !important;
+		}
+	}
+	@each $color, $value in $colors {
+		$dashColor: '--' + $color;
+		@for $i from 1 through 10 {
+			@if $i == 10 {
+				&.bg-#{$color} {
+					&:hover {
+						background-color: var(#{$dashColor}-dark) !important;
+					}
+				}
+			}
+		}
+		&.bg-#{$color}-light {
+			&:hover {
+				background-color: var(#{$dashColor}) !important;
+			}
+		}
+	}
+	&.btn-circle {
+		border-radius: 50%;
+		height: unset;
+		i,
+		img {
+			@extend %floatToCenter;
+		}
+	}
+	.btn-social {
+		display: inline-block;
+		margin-right: 3px;
+		padding: 0 !important;
+		i {
+			position: absolute;
+			margin: 0;
+			left: 50%;
+			top: 50%;
+			transform: translate(-50%, -50%);
+		}
+	}
+	&.ripple {
+		overflow: hidden;
+		@extend %posRelative;
+		&:after {
+			content: '';
+			@extend %posAbsolute;
+			left: 0;
+			top: 0;
+			@extend %width100;
+			@extend %height100;
+			margin: auto;
+			background-position: center;
+			@include transition(background 0.6s);
+		}
+		&:hover {
+			&:after {
+				background: transparent radial-gradient(circle, transparent 1%, var(--white-alpha2) 1%) center/15000%;
+			}
+		}
+		&:active {
+			&:after {
+				background-color: var(--white-alpha3);
+				background-size: 100%;
+				@include transition(background 0s);
+			}
+		}
+	}
+	&.glare {
+		@extend %posRelative;
+		overflow: hidden;
+		transition: all 0.2s ease;
+		&:before {
+			content: '';
+			position: absolute;
+			height: 300px;
+			width: 20px;
+			background: var(--white);
+			top: -80px;
+			left: -30px;
+			display: block;
+			box-shadow: 0px 0px 20px 10px var(--white);
+			transform: rotate(-45deg);
+			transition: all 0.4s ease;
+		}
+		&:hover:before {
+			left: 170px;
+			top: -300px;
+		}
+	}
+	&.hover-effect {
+		&.style1,
+		&.style2,
+		&.style3,
+		&.style4 {
+			z-index: 1;
+			overflow: hidden;
+			transition: all 0.3s;
+			&:before {
+				position: absolute;
+				content: '';
+				z-index: -1;
+				transition: all 0.3s;
+			}
+			&:hover {
+				overflow: hidden;
+				&:before {
+					transition: all 0.3s;
+				}
+			}
+		}
+		&.style1,
+		&.style3 {
+			&:before {
+				height: 0;
+				@extend %width100;
+				left: 0;
+			}
+			&:hover {
+				&:before {
+					height: 100%;
+				}
+			}
+		}
+		&.style1 {
+			&:before {
+				top: 0;
+			}
+		}
+		&.style3 {
+			&:before {
+				bottom: 0;
+			}
+		}
+		&.style2,
+		&.style4 {
+			&:before {
+				height: 100%;
+				width: 0;
+			}
+			&:hover {
+				&:before {
+					@extend %width100;
+				}
+			}
+		}
+		&.style2 {
+			&:before {
+				top: 0;
+				left: 0;
+			}
+		}
+		&.style4 {
+			&:before {
+				bottom: 0;
+				right: 0;
+			}
+		}
+		@each $color, $value in $colors {
+			$dashColor: '--' + $color;
+			&.#{$color} {
+				background-color: var(#{$dashColor});
+				&:hover {
+					transition: all 0.3s;
+					background-color: darken($value, 10%) !important;
+					&:before {
+						transition: all 0.3s;
+						background-color: darken($value, 12%) !important;
+					}
+				}
+			}
+		}
+	}
+	&.btn-icon {
+		> .icon {
+			margin: 0;
+			@extend %floatToYCenter;
+			@extend %transitionAll150;
+		}
+		&.left {
+			> .icon {
+				left: 0;
+				border-right: 1px solid var(--black-alpha2);
+			}
+		}
+		&.right {
+			> .icon {
+				right: 0;
+				border-left: 1px solid var(--black-alpha2);
+			}
+		}
+		@each $color, $value in $socialColors {
+			&#{'.' + $color} {
+				background-color: #{$value};
+				color: var(--white);
+				> .icon {
+					border-color: darken($value, 12%);
+				}
+				&:hover,
+				&:focus {
+					background-color: darken($value, 6%);
+				}
+			}
+		}
+	}
+}
+
+.btn-gradient-vertical {
+	@include linear-gradient(var(--black-alpha1), var(--black-alpha3), 'vertical');
+	&:hover {
+		@include linear-gradient(var(--black-alpha3), var(--black-alpha1), 'vertical');
+	}
+}
+
+.btn-gradient-horizontal {
+	@include linear-gradient(var(--black-alpha1), var(--black-alpha3), 'horizontal');
+	&:hover {
+		@include linear-gradient(var(--black-alpha3), var(--black-alpha1), 'horizontal');
+	}
+}
+
+.btn-gradient-diagonal {
+	@include diagonal-gradient-tlbr(var(--black-alpha1), var(--black-alpha3));
+	&:hover {
+		@include diagonal-gradient-tlbr(var(--black-alpha3), var(--black-alpha1));
+	}
+}
+
+.btn-anim {
+	overflow: hidden;
+	> :first-child:not(i),
+	> :first-child:not(span) {
+		display: block;
+	}
+	> :last-child:not(i),
+	> :last-child:not(span) {
+		display: none;
+	}
+	&:hover {
+		> :first-child:not(i),
+		> :first-child:not(span) {
+			display: none;
+		}
+		> :last-child:not(i),
+		> :last-child:not(span) {
+			display: block;
+		}
+	}
+}
+
+.btnSpinner {
+	@extend %posRelative;
+	@extend %cursorDisabled;
+	user-select: none;
+	overflow: hidden;
+	&:before {
+		content: '';
+		@extend %width100;
+		@extend %height100;
+		display: block;
+		@extend %posAbsolute;
+		top: 0;
+		left: 0;
+		background: var(--black-alpha7) !important;
+	}
+	span {
+		content: '';
+		&:before {
+			content: '';
+			font-size: 18px !important;
+			width: 20px;
+			height: 20px;
+			line-height: 21px;
+			@extend %posAbsolute;
+			top: 0;
+			right: 0;
+			bottom: 0;
+			left: 0;
+			margin: auto;
+			text-align: center;
+			display: inline-block;
+			background: url('../img/loaders/svg/spin.svg') center center no-repeat;
+			background-size: 100%;
+		}
+	}
+}
+
+.btn-outline {
+	@extend %bgTransparent;
+	&.basic {
+		color: var(--black);
+		border-color: var(--black);
+	}
+	&.filled,
+	&.skew-border,
+	&.inset-border {
+		transition: all 600ms;
+		&:hover {
+			color: var(--white) !important;
+		}
+		&.white {
+			&:hover {
+				color: var(--black) !important;
+			}
+		}
+	}
+	&.inset {
+		color: var(--white);
+		&:before {
+			content: '';
+			@extend %posAbsolute;
+			border: 1px solid var(--white);
+			height: 73%;
+			width: 85%;
+			margin: -1px 0;
+			border-radius: 3px;
+		}
+	}
+	&.inset-border {
+		&:hover {
+			&:before {
+				content: '';
+				@extend %posAbsolute;
+				border: 1px solid var(--white);
+				height: 73%;
+				width: 85%;
+				margin: -1px 0;
+				border-radius: 3px;
+			}
+		}
+	}
+	&.skew,
+	&.skew-border {
+		transform: skewX(-20deg);
+		> span {
+			transform: skewX(20deg);
+		}
+	}
+
+	@each $color, $value in $colors {
+		$dashColor: '--' + $color;
+		&.basic {
+			&.#{$color} {
+				&:hover {
+					border-color: var(#{$dashColor});
+					color: var(#{$dashColor});
+				}
+			}
+		}
+		&.colored {
+			&.#{$color} {
+				border-color: var(#{$dashColor});
+				color: var(#{$dashColor});
+			}
+		}
+		&.filled,
+		&.inset-border,
+		&.skew-border {
+			&.#{$color} {
+				color: var(#{$dashColor});
+				border-color: var(#{$dashColor});
+				&:hover {
+					background-color: var(#{$dashColor});
+				}
+			}
+		}
+		&.inset,
+		&.skew {
+			&.#{$color} {
+				background-color: var(#{$dashColor});
+			}
+		}
+	}
+	@each $color, $value in $socialColors {
+		$dashColor: '--' + $color;
+		&.basic {
+			&.#{$color} {
+				&:hover {
+					border-color: var(#{$dashColor});
+					color: var(#{$dashColor});
+				}
+			}
+		}
+		&.colored {
+			&.#{$color} {
+				border-color: var(#{$dashColor});
+				color: var(#{$dashColor});
+			}
+		}
+		&.filled {
+			&.#{$color} {
+				color: var(#{$dashColor});
+				border-color: var(#{$dashColor});
+				&:hover {
+					background-color: var(#{$dashColor});
+				}
+			}
+		}
+	}
+}
+
+.btn-toggle {
+	.text {
+		display: inline-block;
+	}
+	&:not(.active) {
+		background-color: var(--white) !important;
+		color: var(--black) !important;
+		&:hover {
+			background-color: var(--white) !important;
+		}
+		.text {
+			span:first-child {
+				display: block;
+			}
+			span:last-child {
+				display: none;
+			}
+		}
+	}
+	&.active {
+		.text {
+			span:first-child {
+				display: none;
+			}
+			span:last-child {
+				display: block;
+			}
+		}
+	}
+}
+
+.caret {
+	margin-left: 0;
+}
+
+.btn-equal {
+	@extend %displayFlex;
+	> .btn {
+		flex: 1;
+	}
+}
+
+.btn-block {
+	width: 100% !important;
+	+ .btn-block {
+		margin-top: 5px;
+	}
+}
+
+.btn-group,
+.btn-group-xs,
+.btn-group-sm,
+.btn-group-md,
+.btn-group-lg,
+.btn-group-xl {
+	@extend %posRelative;
+	@extend %displayFlex;
+	flex: 1;
+	@extend %flexRow;
+	vertical-align: middle;
+	> .btn {
+		@extend %posRelative;
+		> .btn-lg + .dropdown-toggle {
+			padding-right: 12px;
+			padding-left: 12px;
+		}
+		&:not(:first-child):not(:last-child):not(.dropdown-toggle) {
+			border-radius: 0;
+			border-top-right-radius: 0;
+			border-bottom-right-radius: 0;
+		}
+		&:first-child {
+			margin-left: 0;
+		}
+		&:first-child:not(:last-child) {
+			border-bottom-right-radius: 0;
+			border-top-right-radius: 0;
+		}
+		&:last-child:not(:first-child) {
+			border-bottom-left-radius: 0;
+			border-top-left-radius: 0;
+		}
+		> .dropdown-toggle {
+			&:not(:first-child) {
+				border-bottom-left-radius: 0;
+				border-top-left-radius: 0;
+			}
+		}
+		&.btn-arrow {
+			overflow: unset;
+			@extend %posRelative;
+			&:before {
+				content: '';
+				position: absolute;
+				top: 50%;
+				transform: translateY(-50%) rotate(46deg);
+				z-index: 1;
+				transition: all 300ms ease;
+			}
+			@each $color, $value in $colors {
+				$dashColor: '--' + $color;
+				&.bg-#{$color} {
+					&:before {
+						background: var(#{$dashColor});
+					}
+					&:hover {
+						&:before {
+							background: var(#{$dashColor}-dark);
+						}
+					}
+				}
+			}
+		}
+	}
+	&.btn-equal {
+		@extend %displayFlex;
+		justify-content: space-between;
+	}
+	> .btn-group {
+		@extend %pullLeft;
+		&:not(:first-child):not(:last-child) {
+			> .btn {
+				border-radius: 0;
+			}
+		}
+		&:first-child {
+			> .btn &:last-child {
+				border-top-right-radius: 0;
+				border-bottom-right-radius: 0;
+			}
+			> .dropdown-toggle {
+				border-top-right-radius: 0;
+				border-bottom-right-radius: 0;
+			}
+		}
+		&:last-child {
+			> .btn {
+				&:first-child {
+					border-bottom-left-radius: 0;
+					border-top-left-radius: 0;
+				}
+			}
+		}
+	}
+	> .btn + .dropdown-toggle {
+		padding-right: 8px;
+		padding-left: 8px;
+	}
+	.btn + .btn,
+	.btn + .btn-group,
+	.btn-group + .btn,
+	.btn-group + .btn-group {
+		margin-left: -1px;
+	}
+	.open {
+		.dropdown-toggle {
+			box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+			&.btn-link {
+				box-shadow: none;
+			}
+			&.btn-adn {
+				color: var(--white);
+				background-image: none;
+				background-color: var(--gray);
+				border-color: var(--black-alpha2);
+				&:focus,
+				&:hover,
+				&:active,
+				&.active {
+					background-color: var(--gray-dark);
+					border-color: var(--black-alpha5);
+				}
+			}
+		}
+	}
+}
+
+.btn-group-xs {
+	> .btn {
+		@include btn-generator('xs');
+	}
+}
+
+.btn-group-sm {
+	> .btn {
+		@include btn-generator('sm');
+	}
+}
+
+.btn-group-md {
+	> .btn {
+		@include btn-generator('md');
+	}
+}
+
+.btn-group-lg {
+	> .btn {
+		@include btn-generator('lg');
+	}
+}
+
+.btn-group-xl {
+	> .btn {
+		@include btn-generator('xl');
+	}
+}
+
+.btn-group-vertical {
+	@extend %posRelative;
+	display: inline-block;
+	vertical-align: middle;
+	> .btn {
+		@extend %posRelative;
+		display: block;
+		@extend %pullNone;
+		@extend %width100;
+		@extend %maxWidth100;
+		&:not(:first-child):not(:last-child) {
+			border-radius: 0;
+		}
+		&:first-child:not(:last-child) {
+			border-top-right-radius: 4px;
+			border-bottom-right-radius: 0;
+			border-bottom-left-radius: 0;
+		}
+		&:last-child:not(:first-child) {
+			border-top-right-radius: 0;
+			border-bottom-left-radius: 4px;
+			border-top-left-radius: 0;
+		}
+	}
+	> .btn-group {
+		display: block;
+		@extend %pullNone;
+		@extend %width100;
+		@extend %maxWidth100;
+		> .btn {
+			display: block;
+			@extend %pullNone;
+			@extend %width100;
+			@extend %maxWidth100;
+		}
+		&:not(:first-child):not(:last-child) > .btn {
+			border-radius: 0;
+		}
+		&:first-child > .btn:last-child,
+		&:first-child > .dropdown-toggle {
+			border-bottom-right-radius: 0;
+			border-bottom-left-radius: 0;
+		}
+		&:last-child {
+			> .btn {
+				&:first-child {
+					border-top-right-radius: 0;
+					border-top-left-radius: 0;
+				}
+			}
+		}
+	}
+	> .btn + .btn,
+	> .btn + .btn-group,
+	> .btn-group + .btn,
+	> .btn-group + .btn-group {
+		margin-top: -1px;
+		margin-left: 0;
+	}
+}
+
+.btn-toolbar {
+	.btn-group {
+		@extend %pullLeft;
+		> .btn + .btn,
+		> .btn + .btn-group,
+		> .btn-group + .btn,
+		> .btn-group + .btn-group {
+			margin-left: 5px;
+		}
+	}
+}
+
+.btn-group-justified {
+	display: table;
+	@extend %width100;
+	border-collapse: separate;
+	table-layout: fixed;
+	> .btn {
+		display: table-cell;
+		@extend %pullNone;
+		width: 1%;
+	}
+	> .btn-group {
+		display: table-cell;
+		@extend %pullNone;
+		width: 1%;
+		.btn {
+			@extend %width100;
+		}
+	}
+}
+
+[data-toggle='buttons'] {
+	> .btn {
+		> input {
+			&[type='radio'],
+			&[type='checkbox'] {
+				display: none;
+			}
+			&[type='radio'],
+			&[type='radio'],
+			&[type='checkbox'],
+			&[type='checkbox'] {
+				@extend %posAbsolute;
+				clip: rect(0, 0, 0, 0);
+				@extend %cursorDisabled;
+			}
+		}
+	}
+}

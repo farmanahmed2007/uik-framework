@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.1.7] - 28-01-2020
+
+### Fixed
+- Missing Assets
+- Image path
+### Updated
+- /assets to /lib
+
 ## [0.1.6] - 28-01-2020
 
 ### Added

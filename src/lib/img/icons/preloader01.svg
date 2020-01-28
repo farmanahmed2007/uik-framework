@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" viewBox="0 0 24 30" y="0px" x="0px">
+	<rect transform="translate(0 10)" height="10" width="4" y="0" x="0" fill="#666">
+		<animateTransform begin="0" repeatCount="indefinite" attributeName="transform" values="0 0; 0 20; 0 0" dur="0.6s" type="translate"/>
+	</rect>
+	<rect transform="translate(0 15)" height="10" width="4" y="0" x="10" fill="#666">
+		<animateTransform begin="0.2s" repeatCount="indefinite" attributeName="transform" values="0 0; 0 20; 0 0" dur="0.6s" type="translate"/>
+	</rect>
+	<rect transform="translate(0 4)" height="10" width="4" y="0" x="20" fill="#666">
+		<animateTransform begin="0.4s" repeatCount="indefinite" attributeName="transform" values="0 0; 0 20; 0 0" dur="0.6s" type="translate"/>
+	</rect>
+</svg>

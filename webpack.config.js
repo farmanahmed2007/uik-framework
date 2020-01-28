@@ -20,8 +20,8 @@ module.exports = env => {
         mode: 'production',
         entry: {
             "uik-framework": [
-                path.resolve(currentDirectory + '/src/assets/js/uik.js'),
-                path.resolve(currentDirectory + '/src/assets/sass/uik.scss'),
+                path.resolve(currentDirectory + '/src/lib/js/uik.js'),
+                path.resolve(currentDirectory + '/src/lib/sass/uik.scss'),
             ],
         },
         output: {
@@ -38,7 +38,7 @@ module.exports = env => {
         // size maintained
         //devtool: 'eval-cheap-module-source-map',
 
-        //size decreases by 80% 
+        //size decreases by 80%
         devtool: 'source-map',
 
         //watch: true,
@@ -98,16 +98,16 @@ module.exports = env => {
                         name: '[path][name].[ext]',
                         outputPath: function (url) {
                             // console.log(url);
-                            // let temp = url.replace('src/assets/','').split('/');
+                            // let temp = url.replace('src/lib/','').split('/');
                             // let ProjectName = temp[0];
                             // console.log(ProjectName)
-                            return url.replace('src/assets/', '');
+                            return url.replace('src/lib/', '');
                         },
                         publicPath: function (url) {
-                            let temp = url.replace('src/assets/', '').split('/');
+                            let temp = url.replace('src/lib/', '').split('/');
                             let ProjectName = temp[0];
                             // console.log(ProjectName)
-                            return url.replace('src/assets/' + ProjectName, '../');
+                            return url.replace('src/lib/' + ProjectName, '../');
                         }
                     }
                 }
@@ -122,16 +122,16 @@ module.exports = env => {
                             name: '[path][name].[ext]',
                             outputPath: function (url) {
                                 // console.log(url);
-                                // let temp = url.replace('src/assets/','').split('/');
+                                // let temp = url.replace('src/lib/','').split('/');
                                 // let ProjectName = temp[0];
                                 // console.log(ProjectName)
-                                return url.replace('src/assets/', '');
+                                return url.replace('src/lib/', '');
                             },
                             publicPath: function (url) {
-                                let temp = url.replace('src/assets/', '').split('/');
+                                let temp = url.replace('src/lib/', '').split('/');
                                 let ProjectName = temp[0];
                                 // console.log(ProjectName)
-                                return url.replace('src/assets/' + ProjectName, '../');
+                                return url.replace('src/lib/' + ProjectName, '../');
                             }
                         }
                     },
@@ -168,16 +168,16 @@ module.exports = env => {
                         name: '[path][name].[ext]',
                         outputPath: function (url) {
                             // console.log(url);
-                            // let temp = url.replace('src/assets/','').split('/');
+                            // let temp = url.replace('src/lib/','').split('/');
                             // let ProjectName = temp[0];
                             // console.log(ProjectName)
-                            return url.replace('src/assets/', '');
+                            return url.replace('src/lib/', '');
                         },
                         publicPath: function (url) {
-                            let temp = url.replace('src/assets/', '').split('/');
+                            let temp = url.replace('src/lib/', '').split('/');
                             let ProjectName = temp[0];
                             // console.log(ProjectName)
-                            return url.replace('src/assets/' + ProjectName, '../');
+                            return url.replace('src/lib/' + ProjectName, '../');
                         }
                     }
                 }]
@@ -190,7 +190,7 @@ module.exports = env => {
                         name: '[name].[ext]',
                         outputPath: '/audio/',
                         // publicPath: function(url) {
-                        //     return '/assets/audio/' + url;
+                        //     return '/lib/audio/' + url;
                         // }
                     }
                 }]

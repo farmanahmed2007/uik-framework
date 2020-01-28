@@ -1,0 +1,52 @@
+.login-page {
+    background: transparent url('../img/backgrounds/login-bg.jpg') center center no-repeat !important;
+    background-size: cover !important;
+    .login-box,
+    .register-box {
+        height: 400px;
+        margin: auto;
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        @include phone {
+            width: calc(100% - 40px);
+        }
+        @include tabletP {
+            width: 540px;
+        }
+        .login-box-body {
+            background: var(--white);
+            padding: 20px 40px 40px 40px;
+            border-top: 0;
+            color: var(--black);
+            border-radius: 20px;
+            border: 1px solid var(--gray-dark);
+            .login-logo,
+            .register-logo {
+                width: 200px;
+                font-size: 35px;
+                text-align: center;
+                margin: auto;
+                a {
+                    color: var(--black);
+                }
+            }
+            .login-box-msg,
+            .register-box-msg {
+                margin-bottom: 30px;
+                text-align: center;
+                text-transform: uppercase;
+                font-style: italic;
+            }
+        }
+        .login-box-footer {
+            display: block;
+            padding: 10px 0;
+            color: var(--white);
+            text-align: center;
+            margin: 0;
+        }
+    }
+}

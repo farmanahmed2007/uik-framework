@@ -1,0 +1,20 @@
+.lSAction > a { background-image: url('../img/icons/controls.png'); }
+
+.bg_img {
+    &.bgi01 {
+        background: url('../img/backgrounds/bg-grad-1.jpg') center center no-repeat;
+        background-size: cover;
+    }
+    &.shiLight {
+        background: url('../img/backgrounds/subheader-light.jpg') center center repeat;
+    }
+    &.shiDark {
+        background: url('../img/backgrounds/subheader-dark.jpg') center center repeat;
+    }
+}
+
+.bg_world_map {
+    background: url('../img/backgrounds/world-map.png') center center no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}
