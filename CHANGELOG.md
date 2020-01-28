@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.1.6] - 28-01-2020
+
+### Added
+- Added Basic Skin and Template CSS and JS
+
+## [0.1.5] - 28-01-2020
+
+### Fixed
+- Utils
+
+## [0.1.4] - 28-01-2020
+
+### Fixed
+- Modules
+
 ## [0.1.3] - 28-01-2020
 
 ### Added
