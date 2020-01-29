@@ -7,7 +7,8 @@
 Follow Step by Step Integration Below
 
 * Install
-* Dependencies
+* Install Package
+* Global Dependencies
 * Modifications
 * Build / Compile
 * View Compiled Files
@@ -17,28 +18,34 @@ Follow Step by Step Integration Below
 ## Install
 
 ```render
+yarn install
+```
+
+## Install Package
+
+```render
 npm install uik-framework --save
 ```
 
-## Dependencies
+## Install Global Dependencies
 
 ```render
 npm install -g webpack
 npm install -g webpack-cli
-npm install -g Browserify (browserify)
-npm install -g Uglify JS (uglify-js)
-npm install -g Uglify Css (uglifycss)
+npm install -g browserify (Browserify)
+npm install -g uglify-js (Uglify JS)
+npm install -g uglifycss (Uglify Css)
 ```
 
 ## Modifications
 
 You can modify which files you want to keep in the dist.
-Files can be found in /dist/uik-framework/ folder.
+Files can be found in /lib/uik-framework/ folder.
 
 ## Build / Compile
 
-Either directly use scss as reuqired
-OR
+Either directly use scss as reuqired <br />
+OR <br />
 Run this command for each CSS & JS compilation
 
 cd uik-framework/
@@ -52,9 +59,9 @@ All files will be added in /dist/uik-framework/ folder
 
 ## Include Files in your project
 
-Copy and Paste /dist from package inside your project
-Add them in your SCSS Production
-OR
+Copy and Paste /dist from package inside your project <br />
+Add them in your SCSS Production <br />
+OR <br />
 Add them in our HTML Document
 
 ```render
