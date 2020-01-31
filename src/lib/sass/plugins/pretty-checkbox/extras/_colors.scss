@@ -1,10 +1,10 @@
 .pretty {
     @each $name,
-    $color in $pretty--colors {
+    $color in $notifColors {
         input:checked~.state.p-#{$name},
         &.p-toggle .state.p-#{$name} {
             label:after {
-                background-color: $color !important;
+                background-color: $color;
             }
 
             .icon,
@@ -15,10 +15,8 @@
         }
         input:checked~.state.p-#{$name}-o,
         &.p-toggle .state.p-#{$name}-o {
-            label:before {
-                border-color: $color;
-            }
             label:after {
+				border-color: $color;
                 background-color: transparent;
             }
             .icon,

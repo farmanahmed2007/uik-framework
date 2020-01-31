@@ -39,7 +39,7 @@
             min-width: 28px;
             &:checked~.state {
                 // &:before {
-                //     border-color: $pretty--color-dark;
+                //     border-color: var(--charcoal-light);
                 // }
                 label {
                     &:before,
@@ -50,7 +50,7 @@
                         opacity: 0;
                     }
                     &:after {
-                        // background-color: $pretty--color-dark !important;
+                        // background-color: var(--charcoal-light) !important;
                         left: 12px;
                     }
                 }
@@ -79,14 +79,14 @@
             .state {
                 &:before {
                     height: 0.1em;
-                    background: $pretty--color-default !important;
+                    background: var(--default) !important;
                     top: calc(50% - 0.1em);
                 }
             }
             input:checked~.state {
                 &:before {
-                    border-color: $pretty--color-dark;
-                    background-color: $pretty--color-dark !important;
+                    border-color: var(--charcoal-light);
+                    background-color: var(--charcoal-light) !important;
                 }
             }
         }

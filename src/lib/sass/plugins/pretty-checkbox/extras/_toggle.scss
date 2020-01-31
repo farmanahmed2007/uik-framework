@@ -19,7 +19,7 @@
             }
             &.p-off {
                 .icon {
-                    color: $pretty--color-default;
+                    color: var(--default);
                 }
             }
         }
