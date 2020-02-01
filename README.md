@@ -40,17 +40,16 @@ npm install -g uglifycss (Uglify Css)
 ## Modifications
 
 You can modify which files you want to keep in the dist.
-Files can be found in /lib/uik-framework/ folder.
+Files can be found in /lib folder.
 
 ## Build / Compile
 
 Either directly use scss as reuqired <br />
 OR <br />
-Run this command for each CSS & JS compilation
+Run this command for CSS & JS compilation <br />
 
-cd uik-framework/
 ```render
-webpack --config webpack.config.js
+uik-framework> webpack --config webpack.config.js
 ```
 
 ## View Compiled Files
