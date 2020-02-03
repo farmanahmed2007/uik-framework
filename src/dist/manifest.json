@@ -256,10 +256,10 @@
   "img/flags/4x3/za.svg.gz": "img/flags/4x3/za.svg.gz",
   "img/flags/4x3/zm.svg.gz": "img/flags/4x3/zm.svg.gz",
   "img/flags/4x3/zw.svg.gz": "img/flags/4x3/zw.svg.gz",
+  "img/flags/uik.scss": "img/flags/flags@2x.png",
   "img/icons/uik.scss": "img/icons/select-2.png",
   "img/loaders/uik.scss": "img/loaders/fancybox_loading@2x.gif",
   "img/loaders/svg/uik.scss": "img/loaders/svg/spin.svg",
   "img/loaders/svg/spin.svg.gz": "img/loaders/svg/spin.svg.gz",
-  "img/slides/uik.scss": "img/slides/slide-account.jpg",
   "js/uik.bundle.min.js.gz": "js/uik.bundle.min.js.gz"
 }
