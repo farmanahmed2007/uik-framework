@@ -1,11 +1,6 @@
 .pretty {
     &.p-toggle {
         .state {
-	        .svg {
-                color: var(--white);
-                stroke: var(--white);
-                padding: 0;
-            }
             &.p-on {
                 opacity: 0;
                 display: none;
@@ -17,17 +12,16 @@
                 opacity: 1;
                 display: inherit;
             }
-            &.p-off {
-                .icon {
-                    color: var(--default);
-                }
-            }
         }
+		&.p-icon {
+			label {
+				&:before {
+					border: 0;
+				}
+			}
+		}
         input {
-            &:checked~.state {
-				label {
-                    color: var(--blue) !important;
-                }
+            &:checked ~ .state {
                 &.p-on {
                     opacity: 1;
                     display: inherit;

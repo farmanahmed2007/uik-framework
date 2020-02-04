@@ -261,7 +261,7 @@
 			}
 		}
 		.header-tools {
-			padding: 28px 0;
+			@extend %p0;
 			@extend %displayFlex;
 			flex-direction: row;
 			align-items: center;
@@ -531,6 +531,18 @@
 					float: right;
 					@include tabletL {
 						text-align: right;
+					}
+				}
+				ul {
+					display: flex;
+					align-items: center;
+					li {
+						a {
+							@extend %themeRadius;
+							display: flex;
+							width: auto;
+							height: inherit;
+						}
 					}
 				}
 			}

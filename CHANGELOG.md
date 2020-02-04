@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.1.8] - 04-02-2020
+
+### Fixed
+- Pretty Checkbox Plugin
+- Tabination
+
 ## [0.1.7] - 28-01-2020
 
 ### Fixed

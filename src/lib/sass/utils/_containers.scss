@@ -21,13 +21,13 @@ body {
 	}
 }
 
-
 .container-fluid {
 	@extend %width100;
 	@extend %posRelative;
 	display: block;
 	margin: 0 auto;
 }
+
 .container {
 	@extend %posRelative;
 	display: block;
@@ -42,7 +42,6 @@ body {
 
     }
 }
-
 
 #content {
     @extend %posRelative;
@@ -90,46 +89,4 @@ section {
 			}
 		}
 	}
-}
-
-.page-header {
-	margin-bottom: 15px;
-	@extend %posRelative;
-	.stock-tools,
-	#stock-tools {
-		@extend %posAbsolute;
-		right: 0;
-		top: 5px;
-    	z-index: 10;
-		@include phone {
-			display: none;
-		}
-		@include tabletL {
-			display: flex;
-			align-items: flex-start;
-		}
-		.totalCartItems,
-		.compareCars {
-			@extend %displayFlex;
-			align-items: flex-start;
-			margin-right: 5px;
-		}
-		a,
-		button {
-			box-shadow: none;
-			&:hover,
-			&.active {
-				background-color: var(--blue) !important;
-				color: var(--white) !important;
-			}
-		}
-	}
-	.sorting {
-		border-bottom: 0 !important
-	}
-}
-.page-footer {
-    border-top: 1 solid var(--gray-dark);
-    padding-top: 10px;
-    margin: 10px 0;
 }

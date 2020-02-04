@@ -2,59 +2,75 @@
 	&.p-default {
 		.state {
 			label {
-				@extend %cursorPointer;
-				&:before,
-				&:after {
-					border-radius: 0;
+				&:before {
+					@extend %b1;
 				}
 				&:after {
 					transform: scale(0.6);
-				}
+                }
 			}
 		}
 		input {
 			&:checked ~ .state {
 				label {
-					&:before {
-						border-width: 3px;
-						border-style: solid;
-						border-color: var(--blue);
-					}
 					&:after {
-						// background-color: var(--default) !important;
 						display: block;
 					}
 				}
 			}
 		}
-		&.p-fill {
-			.state {
-				label {
-					&:after {
-						transform: scale(1);
-					}
-				}
-			}
-		}
-		&.p-thick {
-			.state {
-				label {
-					&:before,
-					&:after {
-						border-width: 6px;
-					}
-					&:after {
-						transform: scale(0.4) !important;
-					}
+	}
+	&.p-plain {
+        input {
+            &:checked ~ .state {
+                label {
+                    &:before {
+                        content: none;
+                    }
+                }
+            }
+        }
+        &.p-toggle {
+            .state {
+                label {
+                    &:before {
+                        content: none;
+                    }
+                }
+            }
+        }
+        .icon {
+            transform: scale(1.1);
+        }
+    }
+	&.p-fill {
+		.state {
+			label {
+				&:after {
+					transform: scale(1);
 				}
 			}
 		}
 	}
-	.pretty.p-curve {
-		.state label {
-			&:before,
-			&:after {
-				@extend %themeRadius;
+	&.p-thick {
+		.state {
+			label {
+				&:before {
+					border-width: 3px;
+				}
+				&:after {
+					transform: scale(0.4) !important;
+				}
+			}
+		}
+	}
+	&.p-curve {
+		.state {
+			label {
+				&:before,
+				&:after {
+					@extend %themeRadius;
+				}
 			}
 		}
 	}

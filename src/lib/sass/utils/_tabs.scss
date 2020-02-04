@@ -1,454 +1,456 @@
 .tabination {
-  @extend %displayFlex;
-  flex-direction: column;
-  > .nav-tabs {
-    @extend %displayFlex;
-    flex-direction: row;
-    // @include phone_and_tabletP {
-    //     flex-direction: column;
+	@extend %displayFlex;
+	flex-direction: column;
+	> .nav-tabs {
+		@extend %displayFlex;
+		flex-direction: row;
+		// @include phone_and_tabletP {
+		//     flex-direction: column;
 
-    // }
-    > li {
-      cursor: pointer;
-      margin-left: -1px;
-      z-index: 1;
-      > a {
-        font-size: 16px;
-        font-weight: 500;
-        padding: 10px 20px;
-        text-decoration: none;
-        color: var(--gray-dark);
-        display: block;
-        background: var(--white);
-        border: 1px inset transparent;
-        border-radius: 4px;
-        border-bottom-left-radius: 0px;
-        border-bottom-right-radius: 0px;
-      }
-      &:first-child {
-        margin-left: 0px;
-      }
-      &:hover,
-      &.active {
-        > a {
-          color: var(--blue);
-          border-color: var(--gray);
-          border-bottom-color: var(--white);
-        }
-        z-index: 3;
-      }
-      // @include phone_and_tabletP {
-      //     margin: 0 ;
-      // }
-    }
+		// }
+		> li {
+			cursor: pointer;
+			margin-left: -1px;
+			z-index: 1;
+			> a {
+				font-size: 16px;
+				font-weight: 500;
+				padding: 10px 20px;
+				text-decoration: none;
+				display: block;
+				border-radius: 4px;
+				border-bottom-left-radius: 0px;
+				border-bottom-right-radius: 0px;
+				@extend %b1;
+				border-color: var(--gray);
+				background-color: var(--gray-light);
+				color: var(--black-alpha6);
+			}
+			&:first-child {
+				margin-left: 0px;
+			}
+			&:hover,
+			&.active {
+				> a {
+					color: var(--blue);
+					border-color: var(--gray);
+					border-bottom-color: var(--white);
+					background-color: var(--white);
+				}
+				z-index: 3;
+			}
+			// @include phone_and_tabletP {
+			//     margin: 0 ;
+			// }
+		}
 
-    &.pill_icon {
-      > li {
-        > a {
-          // @extend %displayFlex;
-          overflow: hidden;
-          position: relative;
-          > .icon {
-            display: block;
-            transform: translate3d(0px, -120%, 0px);
-          }
-          > span {
-            display: block;
-            margin-bottom: 5px;
-          }
-          &:hover {
-            background: transparent !important;
-            color: var(--blue) !important;
-          }
-          &:before {
-            content: "";
-            position: absolute;
-            width: 70px;
-            background: rgba(0, 0, 0, 0.16);
-            height: 8px;
-            bottom: 0px;
-            transform: translate3d(-33px, 120%, 0px);
-          }
-        }
-        &.active {
-          > a {
-            &:before {
-              content: "";
-              transition: transform 0.3s;
-              transform: translate3d(-33px, 30%, 0px);
-            }
-            > .icon {
-              transition: transform 0.3s;
-              transform: translate3d(0px, 0%, 0px);
-            }
-            &:hover {
-              background: var(--blue) !important;
-              color: var(--white) !important;
-            }
-          }
-        }
-      }
-    }
-  }
-  > .tab-content {
-    border-radius: 4px;
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
-	@extend %b1;
-	border-color: var(--gray);
-    padding: 15px;
-    width: 100%;
-    margin-top: -1px;
-    z-index: 2;
-    > .tab-pane {
-      display: none;
-      &.active {
-        display: block;
-      }
-    }
-    > p {
-      margin: 0 !important;
-    }
-  }
-  &.pills {
-    > .nav-tabs {
-      margin-bottom: 10px;
-      > li {
-        padding: 0px;
-        border: 0px;
-        margin-left: 10px;
-        &:first-child {
-          margin-left: 0;
-        }
-        > a {
-          background-color: transparent;
-          border: 0;
-          display: block;
-          text-align: center;
-          border-radius: 4px;
-        }
-        &:hover,
-        &.active {
-          > a {
-            background-color: var(--blue);
-            color: var(--white);
-          }
-        }
-      }
-    }
-    > .tab-content {
-      border-radius: 4px;
-    }
-  }
-  &.vertical {
-    flex-direction: row;
-    > .nav-tabs {
-      width: 200px;
-      flex-direction: column;
-      > li {
-        @extend %displayFlex;
-        > a {
-          text-align: left;
-        }
-      }
-    }
-    > .tab-content {
-      margin-left: 10px;
-    }
-    &.pills {
-      > .nav-tabs {
-        > li {
-          margin-left: 0px;
-          margin-top: 10px;
-          &:first-child {
-            margin-top: 0;
-          }
-        }
-      }
-    }
-  }
-  &.pills.vertical {
-    &.style1 {
-      > .nav-tabs {
-        > li {
-          a {
-            padding-left: 30px;
-            @extend %posRelative;
-            &:before {
-              content: "";
-              @extend %floatToYCenter;
-              left: 10px;
-              background-color: var(--blue);
-              border-radius: 100%;
-              transition: 1s all cubic-bezier(0.075, 0.82, 0.165, 1);
-            }
-          }
-          &.active,
-          &:hover {
-            a {
-              background-color: transparent;
-              color: var(--blue-dark);
-              &:before {
-                background-color: var(--blue-dark);
-                height: 100% !important;
-                width: 5px !important;
-                border-radius: 0;
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-  &:not(.pills):not(.vertical) {
-    &.style1 {
-      > .nav-tabs {
-        overflow: hidden;
-        li {
-          margin: 0 2px;
-          z-index: auto;
-          a {
-            border: none;
-            @extend %posRelative;
-            background: var(--red-light);
-            transition: all 500ms;
-            color: var(--white);
-            border-radius: 5px 0 0 0;
+		&.pill_icon {
+			> li {
+				> a {
+					// @extend %displayFlex;
+					overflow: hidden;
+					position: relative;
+					> .icon {
+						display: block;
+						transform: translate3d(0px, -120%, 0px);
+					}
+					> span {
+						display: block;
+						margin-bottom: 5px;
+					}
+					&:hover {
+						background: transparent !important;
+						color: var(--blue) !important;
+					}
+					&:before {
+						content: '';
+						position: absolute;
+						width: 70px;
+						background: rgba(0, 0, 0, 0.16);
+						height: 8px;
+						bottom: 0px;
+						transform: translate3d(-33px, 120%, 0px);
+					}
+				}
+				&.active {
+					> a {
+						&:before {
+							content: '';
+							transition: transform 0.3s;
+							transform: translate3d(-33px, 30%, 0px);
+						}
+						> .icon {
+							transition: transform 0.3s;
+							transform: translate3d(0px, 0%, 0px);
+						}
+						&:hover {
+							background: var(--blue) !important;
+							color: var(--white) !important;
+						}
+					}
+				}
+			}
+		}
+	}
+	> .tab-content {
+		border-radius: 4px;
+		border-top-left-radius: 0;
+		border-top-right-radius: 0;
+		@extend %b1;
+		border-color: var(--gray);
+		padding: 15px;
+		width: 100%;
+		margin-top: -2px;
+		z-index: 2;
+		> .tab-pane {
+			display: none;
+			&.active {
+				display: block;
+			}
+		}
+		> p {
+			margin: 0 !important;
+		}
+	}
+	&.pills {
+		> .nav-tabs {
+			margin-bottom: 10px;
+			> li {
+				padding: 0px;
+				border: 0px;
+				margin-left: 10px;
+				&:first-child {
+					margin-left: 0;
+				}
+				> a {
+					background-color: transparent;
+					border: 0;
+					display: block;
+					text-align: center;
+					border-radius: 4px;
+				}
+				&:hover,
+				&.active {
+					> a {
+						background-color: var(--blue);
+						color: var(--white);
+					}
+				}
+			}
+		}
+		> .tab-content {
+			border-radius: 4px;
+		}
+	}
+	&.vertical {
+		flex-direction: row;
+		> .nav-tabs {
+			width: 200px;
+			flex-direction: column;
+			> li {
+				@extend %displayFlex;
+				> a {
+					text-align: left;
+				}
+			}
+		}
+		> .tab-content {
+			margin-left: 10px;
+		}
+		&.pills {
+			> .nav-tabs {
+				> li {
+					margin-left: 0px;
+					margin-top: 10px;
+					&:first-child {
+						margin-top: 0;
+					}
+				}
+			}
+		}
+	}
+	&.pills.vertical {
+		&.style1 {
+			> .nav-tabs {
+				> li {
+					a {
+						padding-left: 30px;
+						@extend %posRelative;
+						&:before {
+							content: '';
+							@extend %floatToYCenter;
+							left: 10px;
+							background-color: var(--blue);
+							border-radius: 100%;
+							transition: 1s all cubic-bezier(0.075, 0.82, 0.165, 1);
+						}
+					}
+					&.active,
+					&:hover {
+						a {
+							background-color: transparent;
+							color: var(--blue-dark);
+							&:before {
+								background-color: var(--blue-dark);
+								height: 100% !important;
+								width: 5px !important;
+								border-radius: 0;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	&:not(.pills):not(.vertical) {
+		&.style1 {
+			> .nav-tabs {
+				overflow: hidden;
+				li {
+					margin: 0 2px;
+					z-index: auto;
+					a {
+						border: none;
+						@extend %posRelative;
+						background: var(--red-light);
+						transition: all 500ms;
+						color: var(--white);
+						border-radius: 5px 0 0 0;
 
-            &:before,
-            &:after {
-              content: "";
-              @extend %posAbsolute;
-              z-index: 1;
-              width: 16px;
-              background: var(--red-light);
-              transition: all 500ms;
-            }
-            &:before {
-              top: 0;
-              right: -8px;
-              bottom: 0;
-              transform: skew(10deg);
-              border-radius: 0 5px 0 0;
+						&:before,
+						&:after {
+							content: '';
+							@extend %posAbsolute;
+							z-index: 1;
+							width: 16px;
+							background: var(--red-light);
+							transition: all 500ms;
+						}
+						&:before {
+							top: 0;
+							right: -8px;
+							bottom: 0;
+							transform: skew(10deg);
+							border-radius: 0 5px 0 0;
 
-              //
-            }
-            &:after {
-              top: 0;
-              left: -8px;
-              bottom: 0;
-              transform: skew(10deg);
-              border-radius: 5px 0 0 0;
-            }
-          }
-          &:first-child {
-            margin: 0 8px 0 0px;
-            a {
-              &:after {
-                display: none;
-              }
-            }
-          }
-          &.active,
-          &:hover {
-            z-index: 2;
-            a,
-            a:before,
-            a:after {
-              background: var(--red);
-            }
-            a {
-              &:before {
-                box-shadow: 8px 0px 7px var(--black-alpha6);
-              }
-              &:after {
-                //  box-shadow: -2px 2px 2px var(--black-alpha4);
-                box-shadow: -5px 0px 7px var(--black-alpha6);
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-  //   &.vertical:not(.pills) {
-  //   }
-  &.pills:not(.vertical) {
-    &.style1,
-    &.style2,
-    &.style3,
-    &.style4 {
-      .nav-tabs {
-        margin: 0;
-        > li {
-          margin: 0;
-          a {
-            border-radius: 0;
-          }
-          a,
-          a:before,
-          a:after,
-          &:hover,
-          &.active {
-            transition: all 700ms;
-          }
-        }
-      }
-      .tab-content {
-        border-radius: 0;
-        margin: 0;
-        box-shadow: border;
-      }
-    }
-    &.style1,
-    &.style2,
-    &.style3 {
-      .nav-tabs {
-        > li {
-          a {
-            @extend %posRelative;
-            background-color: var(--blue);
-            border-top: 3px solid transparent;
-            &:before,
-            &:after {
-              @extend %posAbsolute;
-              content: "";
-            }
-            &:before {
-              height: 25px;
-              width: 25px;
-              bottom: 0px;
-              left: 50%;
-              transform: translate(-50%, 0%) rotate(90deg);
-              clip-path: polygon(50% 0%, 50% 100%, 100% 50%);
-              z-index: 2;
-              background: transparent;
-            }
-            &:after {
-              height: 60%;
-              background-color: var(--blue-dark);
-              width: 2px;
-              right: 0;
-              top: 50%;
-              transform: translateY(-50%);
-            }
-          }
-          &:last-child {
-            a {
-              &:after {
-                display: none;
-              }
-            }
-          }
+							//
+						}
+						&:after {
+							top: 0;
+							left: -8px;
+							bottom: 0;
+							transform: skew(10deg);
+							border-radius: 5px 0 0 0;
+						}
+					}
+					&:first-child {
+						margin: 0 8px 0 0px;
+						a {
+							&:after {
+								display: none;
+							}
+						}
+					}
+					&.active,
+					&:hover {
+						z-index: 2;
+						a,
+						a:before,
+						a:after {
+							background: var(--red);
+						}
+						a {
+							&:before {
+								box-shadow: 8px 0px 7px var(--black-alpha6);
+							}
+							&:after {
+								//  box-shadow: -2px 2px 2px var(--black-alpha4);
+								box-shadow: -5px 0px 7px var(--black-alpha6);
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	//   &.vertical:not(.pills) {
+	//   }
+	&.pills:not(.vertical) {
+		&.style1,
+		&.style2,
+		&.style3,
+		&.style4 {
+			.nav-tabs {
+				margin: 0;
+				> li {
+					margin: 0;
+					a {
+						border-radius: 0;
+					}
+					a,
+					a:before,
+					a:after,
+					&:hover,
+					&.active {
+						transition: all 700ms;
+					}
+				}
+			}
+			.tab-content {
+				border-radius: 0;
+				margin: 0;
+				box-shadow: border;
+			}
+		}
+		&.style1,
+		&.style2,
+		&.style3 {
+			.nav-tabs {
+				> li {
+					a {
+						@extend %posRelative;
+						background-color: var(--blue);
+						border-top: 3px solid transparent;
+						&:before,
+						&:after {
+							@extend %posAbsolute;
+							content: '';
+						}
+						&:before {
+							height: 25px;
+							width: 25px;
+							bottom: 0px;
+							left: 50%;
+							transform: translate(-50%, 0%) rotate(90deg);
+							clip-path: polygon(50% 0%, 50% 100%, 100% 50%);
+							z-index: 2;
+							background: transparent;
+						}
+						&:after {
+							height: 60%;
+							background-color: var(--blue-dark);
+							width: 2px;
+							right: 0;
+							top: 50%;
+							transform: translateY(-50%);
+						}
+					}
+					&:last-child {
+						a {
+							&:after {
+								display: none;
+							}
+						}
+					}
 
-          &:hover,
-          &.active {
-            a {
-              &:before {
-                bottom: -12px;
-                background: var(--blue);
-              }
-            }
-          }
-        }
-      }
-    }
-    &.style2 {
-      .nav-tabs {
-        > li {
-          a {
-            background: var(--black);
-            &:after {
-              display: none;
-            }
-            &:before {
-              background: transparent;
-            }
-          }
+					&:hover,
+					&.active {
+						a {
+							&:before {
+								bottom: -12px;
+								background: var(--blue);
+							}
+						}
+					}
+				}
+			}
+		}
+		&.style2 {
+			.nav-tabs {
+				> li {
+					a {
+						background: var(--black);
+						&:after {
+							display: none;
+						}
+						&:before {
+							background: transparent;
+						}
+					}
 
-          &:hover,
-          &.active {
-            a {
-              background: var(--red) !important;
-              &:before {
-                background: var(--red) !important;
-                bottom: -16px;
-              }
-            }
-          }
-        }
-      }
-      .tab-content {
-        border-top: 4px solid var(--red);
-        border-bottom: 4px solid var(--red);
-      }
-    }
-    &.style3 {
-      min-height: 107px;
-      .nav-tabs {
-        > li {
-          align-self: flex-end;
-          overflow: hidden;
-          a {
-			background-color: var(--blue-light);
-			color:var(--white);
-            &:before {
-              top: -25px;
-              bottom: inherit !important;
-            }
-            &:after {
-              left: 50%;
-              transform: translate(-50%, 0%) rotate(90deg);
-              clip-path: polygon(50% 0%, 50% 100%, 100% 50%);
-              z-index: 2;
-			  top: -52px;
-              background-color: transparent;
-              display: block !important;
-            }
-          }
-          &.active,
-          &:hover {
-            a {
-              border-top: 3px solid var(--blue-dark);
-			  transition: 500ms all;
-			  background-color:var(--blue) ;
-              &:before {
-                height: 40px;
-                background-color: var(--blue-dark);
-              }
-              &:after {
-				top: -21px;
-                height: 30px;
-                background-color: var(--white);
-              }
-            }
-          }
-        }
-      }
-    }
-    &.style4 {
-      min-height: 50px;
-      .nav-tabs {
-        > li {
-          a {
-            color: var(--white-alpha8);
-            border-top: 3px solid transparent;
-            background-color: var(--red-light);
-            border-bottom: 3px solid var(--red);
-          }
+					&:hover,
+					&.active {
+						a {
+							background: var(--red) !important;
+							&:before {
+								background: var(--red) !important;
+								bottom: -16px;
+							}
+						}
+					}
+				}
+			}
+			.tab-content {
+				border-top: 4px solid var(--red);
+				border-bottom: 4px solid var(--red);
+			}
+		}
+		&.style3 {
+			min-height: 107px;
+			.nav-tabs {
+				> li {
+					align-self: flex-end;
+					overflow: hidden;
+					a {
+						background-color: var(--blue-light);
+						color: var(--white);
+						&:before {
+							top: -25px;
+							bottom: inherit !important;
+						}
+						&:after {
+							left: 50%;
+							transform: translate(-50%, 0%) rotate(90deg);
+							clip-path: polygon(50% 0%, 50% 100%, 100% 50%);
+							z-index: 2;
+							top: -52px;
+							background-color: transparent;
+							display: block !important;
+						}
+					}
+					&.active,
+					&:hover {
+						a {
+							border-top: 3px solid var(--blue-dark);
+							transition: 500ms all;
+							background-color: var(--blue);
+							&:before {
+								height: 40px;
+								background-color: var(--blue-dark);
+							}
+							&:after {
+								top: -21px;
+								height: 30px;
+								background-color: var(--white);
+							}
+						}
+					}
+				}
+			}
+		}
+		&.style4 {
+			min-height: 50px;
+			.nav-tabs {
+				> li {
+					a {
+						color: var(--white-alpha8);
+						border-top: 3px solid transparent;
+						background-color: var(--red-light);
+						border-bottom: 3px solid var(--red);
+					}
 
-          &:hover,
-          &.active {
-            a {
-              border-top: 3px solid var(--red-dark);
-              color: var(--white);
-              background-color: var(--red) !important;
-            }
-          }
-        }
-      }
-    }
-  }
+					&:hover,
+					&.active {
+						a {
+							border-top: 3px solid var(--red-dark);
+							color: var(--white);
+							background-color: var(--red) !important;
+						}
+					}
+				}
+			}
+		}
+	}
 	&.tabination-sm,
 	&.tabination-md,
 	&.tabination-lg {
@@ -468,205 +470,205 @@
 			}
 		}
 	}
-  &.tabination-sm {
-    .nav-tabs {
-      li {
-        a {
-          padding: 0 12px;
-          height: 30px;
-          line-height: 30px;
-        }
-      }
-    }
-    .tab-content li p,
-    .nav-tabs li a {
-      font-size: 13px;
-    }
-    &.pills:not(.vertical) {
-      &.style3 {
-        li {
-          &.active,
-          &:hover {
-            a {
-              &:before {
-                width: 20px;
-              }
-              &:after {
-                width: 15px;
-              }
-            }
-          }
-        }
-      }
-    }
-    &.pills.vertical {
-      &.style1 {
-        > .nav-tabs {
-          > li {
-            a {
-              &:before {
-                height: 10px;
-                width: 10px;
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-  &.tabination-md {
-    .nav-tabs {
-      li {
-        a {
-          padding: 0 14px;
-          height: 38px;
-          line-height: 38px;
-        }
-      }
-    }
-    .tab-content li p,
-    .nav-tabs li a {
-      font-size: 15px;
-    }
-    &.pills:not(.vertical) {
-      &.style3 {
-        li {
-          &.active,
-          &:hover {
-            a {
-              &:before {
-                width: 25px;
-              }
-              &:after {
-                width: 20px;
-              }
-            }
-          }
-        }
-      }
-    }
-    &.pills.vertical {
-      &.style1 {
-        > .nav-tabs {
-          > li {
-            a {
-              &:before {
-                height: 11px;
-                width: 11px;
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-  &.tabination-lg {
-    .nav-tabs {
-      li {
-        a {
-          padding: 0 20px;
-          height: 46px;
-          line-height: 46px;
-        }
-      }
-    }
-    .tab-content li p,
-    .nav-tabs li a {
-      font-size: 17px;
-    }
-    &.pills:not(.vertical) {
-      &.style3 {
-        li {
-          &.active,
-          &:hover {
-            a {
-              &:before {
-                width: 30px;
-              }
-              &:after {
-                width: 25px;
-              }
-            }
-          }
-        }
-      }
-    }
-    &.pills.vertical {
-      &.style1 {
-        > .nav-tabs {
-          > li {
-            a {
-              &:before {
-                height: 12px;
-                width: 12px;
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-  &.tabination-xl {
-    .nav-tabs {
-      li {
-        a {
-          padding: 0 35px;
-          height: 54px;
-          line-height: 54px;
-          .icon {
-            margin-top: 10px;
-            &:before {
-              font-size: 25px;
-            }
-          }
-        }
-      }
-      &.pill_icon {
-        > li {
-          > a {
-            height: inherit !important;
-            line-height: inherit !important;
-            display: block !important;
-          }
-        }
-      }
-    }
-    .tab-content li p,
-    .nav-tabs li a {
-      font-size: 19px;
-    }
-    &.pills:not(.vertical) {
-      &.style3 {
-        li {
-          &.active,
-          &:hover {
-            a {
-              &:before {
-                width: 30px;
-                height: 45px;
-              }
-              &:after {
-				height: 34px;
-				width: 25px;
-              }
-            }
-          }
-        }
-      }
-    }
-    &.pills.vertical {
-      &.style1 {
-        > .nav-tabs {
-          > li {
-            a {
-              &:before {
-                height: 13px;
-                width: 13px;
-              }
-            }
-          }
-        }
-      }
-    }
-  }
+	&.tabination-sm {
+		.nav-tabs {
+			li {
+				a {
+					padding: 0 12px;
+					height: 30px;
+					line-height: 30px;
+				}
+			}
+		}
+		.tab-content li p,
+		.nav-tabs li a {
+			font-size: 13px;
+		}
+		&.pills:not(.vertical) {
+			&.style3 {
+				li {
+					&.active,
+					&:hover {
+						a {
+							&:before {
+								width: 20px;
+							}
+							&:after {
+								width: 15px;
+							}
+						}
+					}
+				}
+			}
+		}
+		&.pills.vertical {
+			&.style1 {
+				> .nav-tabs {
+					> li {
+						a {
+							&:before {
+								height: 10px;
+								width: 10px;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	&.tabination-md {
+		.nav-tabs {
+			li {
+				a {
+					padding: 0 14px;
+					height: 38px;
+					line-height: 38px;
+				}
+			}
+		}
+		.tab-content li p,
+		.nav-tabs li a {
+			font-size: 15px;
+		}
+		&.pills:not(.vertical) {
+			&.style3 {
+				li {
+					&.active,
+					&:hover {
+						a {
+							&:before {
+								width: 25px;
+							}
+							&:after {
+								width: 20px;
+							}
+						}
+					}
+				}
+			}
+		}
+		&.pills.vertical {
+			&.style1 {
+				> .nav-tabs {
+					> li {
+						a {
+							&:before {
+								height: 11px;
+								width: 11px;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	&.tabination-lg {
+		.nav-tabs {
+			li {
+				a {
+					padding: 0 20px;
+					height: 46px;
+					line-height: 46px;
+				}
+			}
+		}
+		.tab-content li p,
+		.nav-tabs li a {
+			font-size: 17px;
+		}
+		&.pills:not(.vertical) {
+			&.style3 {
+				li {
+					&.active,
+					&:hover {
+						a {
+							&:before {
+								width: 30px;
+							}
+							&:after {
+								width: 25px;
+							}
+						}
+					}
+				}
+			}
+		}
+		&.pills.vertical {
+			&.style1 {
+				> .nav-tabs {
+					> li {
+						a {
+							&:before {
+								height: 12px;
+								width: 12px;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	&.tabination-xl {
+		.nav-tabs {
+			li {
+				a {
+					padding: 0 35px;
+					height: 54px;
+					line-height: 54px;
+					.icon {
+						margin-top: 10px;
+						&:before {
+							font-size: 25px;
+						}
+					}
+				}
+			}
+			&.pill_icon {
+				> li {
+					> a {
+						height: inherit !important;
+						line-height: inherit !important;
+						display: block !important;
+					}
+				}
+			}
+		}
+		.tab-content li p,
+		.nav-tabs li a {
+			font-size: 19px;
+		}
+		&.pills:not(.vertical) {
+			&.style3 {
+				li {
+					&.active,
+					&:hover {
+						a {
+							&:before {
+								width: 30px;
+								height: 45px;
+							}
+							&:after {
+								height: 34px;
+								width: 25px;
+							}
+						}
+					}
+				}
+			}
+		}
+		&.pills.vertical {
+			&.style1 {
+				> .nav-tabs {
+					> li {
+						a {
+							&:before {
+								height: 13px;
+								width: 13px;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
 }

@@ -1,94 +1,129 @@
 .pretty * {
-    box-sizing: border-box;
+	box-sizing: border-box;
 }
 
 //Throw error on invalid input types.
 .pretty input:not([type='checkbox']):not([type='radio']) {
-    display: none;
+	display: none;
 
-    @if $pretty--debug {
-        +*:after {
-            content: $pretty--err-message;
-            border: 1px solid #dedede;
-            border-left: 3px solid #d9534f;
-            padding: 9px;
-            font-size: 1em;
-            font-weight: 600;
-            color: #d9534f;
-            @extend %posAbsolute;
-            z-index: 3;
-            background: #fbfbfb;
-            top: 0;
-            left: 0;
-        }
-    }
+	@if $pretty--debug {
+		+ *:after {
+			content: $pretty--err-message;
+			border: 1px solid #dedede;
+			border-left: 3px solid #d9534f;
+			padding: 9px;
+			font-size: 1em;
+			font-weight: 600;
+			color: #d9534f;
+			@extend %posAbsolute;
+			z-index: 3;
+			background: #fbfbfb;
+			top: 0;
+			left: 0;
+		}
+	}
 }
 
 .pretty {
 	width: fit-content;
-    @extend %posRelative;
-    display: inline-block;
-    margin-right: 10px;
+	@extend %posRelative;
+	display: inline-block;
+	margin-right: 10px;
 	margin-bottom: 10px;
 	// white-space: nowrap;
 	word-break: break-word;
-    line-height: 1;
-    input {
-        @extend %posAbsolute;
-        left: 0;
-        top: 0;
-        min-width: 1em;
-        @extend %width100;
-        @extend %height100;
-        z-index: $pretty--z-index-front;
-        opacity: 0;
-        margin: 0 !important;
-        padding: 0;
-    }
-    .state {
-        line-height: 15px;
-		@extend %transitionAll300;
-        label {
-            position: initial;
-            display: inline-block;
-            @extend %fw-5;
-            @extend %m0;
-            @extend %transitionAll300;
+	line-height: 1;
+	input {
+		@extend %posAbsolute;
+		left: 0;
+		top: 0;
+		min-width: 1em;
+		@extend %width100;
+		@extend %height100;
+		z-index: $pretty--z-index-front;
+		opacity: 0;
+		margin: 0 !important;
+		padding: 0;
+		&:checked ~ .state {
+			label {
+				&:after {
+					@extend %transitionAll150;
+				}
+			}
+			.icon,
+			.svg,
+			img {
+				@extend %transitionAll150;
+			}
+		}
+	}
+	.state {
+		@extend %transitionAll150;
+		line-height: 15px;
+		&:before {
+			@extend %transitionAll150;
+		}
+		label {
+			position: initial;
+			display: inline-block;
+			@extend %fw-5;
+			@extend %m0;
+			@extend %cursorPointer;
 			// text-indent: $pretty--label-text-offset;
 			padding-left: $pretty--label-text-offset;
-            min-width: $pretty--box-size;
-            &:before,
-            &:after {
-                content: '';
-                width: 15px;
-                height: 15px;
-                box-sizing: border-box;
-                @extend %themeRadius;
-				@extend %b1;
-				border-color: var(--black-alpha4);
-                z-index: $pretty--z-index-back;
-                @extend %posAbsolute;
-                left: 0;
-                top: 0;
-                @extend %transitionAll300;
-                background-color: var(--white-alpha6);
-            }
-            &:before {
-                border-color: var(--black-alpha4);
-            }
-            &:after {
-				border-color: transparent;
+			min-width: $pretty--box-size;
+			@extend %transitionAll150;
+			&:before,
+			&:after {
+				content: '';
+				width: 15px;
+				height: 15px;
+				box-sizing: border-box;
+				z-index: $pretty--z-index-back;
+				@extend %posAbsolute;
+				@extend %transitionAll150;
+				left: 0;
+				top: 0;
 			}
-            &.b-0 {
-                &:before,
-                &:after {
-                    border: 0px;
-                }
-            }
-        }
-        &.p-is-hover,
-        &.p-is-indeterminate {
-            display: none;
-        }
-    }
+			&:before {
+				@extend %b1;
+			}
+			&.b-0 {
+				&:before,
+				&:after {
+					border: 0px;
+				}
+			}
+		}
+		&.p-is-hover,
+		&.p-is-indeterminate {
+			display: none;
+		}
+		.icon,
+		.svg,
+		img {
+			@extend %transitionAll150;
+		}
+	}
+	input[disabled] ~ * {
+		opacity: 0.5;
+	}
+	&.p-locked input,
+	input[disabled] {
+		display: none;
+		cursor: not-allowed;
+	}
+}
+
+@media print {
+	.pretty {
+		.state:before,
+		.state label:before,
+		.state label:after,
+		.state .icon {
+			color-adjust: exact;
+			/* stylelint-disable */
+			-webkit-print-color-adjust: exact;
+		}
+	}
 }
