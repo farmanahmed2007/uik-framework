@@ -14,7 +14,10 @@
     @include transition(all 300ms linear);
     &:hover {
         @include opacity(1);
-    }
+	}
+	i, img, .svg, svg {
+		@extend %floatToCenter;
+	}
 }
 
 #overlay {

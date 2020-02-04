@@ -44,8 +44,8 @@ body {
 }
 
 #content {
-    @extend %posRelative;
-    @extend %displayFlex;
+	@extend %posRelative;
+	display: block;
 	padding: 80px 0;
 }
 

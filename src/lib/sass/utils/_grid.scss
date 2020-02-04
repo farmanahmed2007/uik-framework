@@ -10,7 +10,6 @@
 }
 
 .row {
-	@extend %width100;
 	margin-right: -10px;
 	margin-left: -10px;
 	&.equal-height {

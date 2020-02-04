@@ -353,19 +353,17 @@
                 }
             }
 			> .toolBox {
+				display: flex;
+				align-items: center;
 				li {
 					margin-left: 10px;
-					padding: 20px 0;
+					padding: 0;
 					&:first-child {
 						margin-left: 0px;
 					}
-					a {
-						width: 40px;
-						height: 40px;
-						display: block;
+					a, button {
 						color: var(--blue);
 						background: var(--gray);
-						border-radius: 50%;
 						text-align: center;
 						i {
 							font-size: 21px;
@@ -392,6 +390,16 @@
 								padding: 4px 0 5px 0;
 								line-height: 30px;
 							}
+						}
+					}
+				}
+				&.rounded {
+					li {
+						a, button {
+							width: 40px;
+							height: 40px;
+							display: block;
+							border-radius: 50%;
 						}
 					}
 				}
