@@ -1,7 +1,3 @@
-/*=============================================
-=             DROPDOWN LIST STYLES            =
-=============================================*/
-
 .dropdown {
 	> .dropdown_btn {
 		@extend %displayFlex;
@@ -57,7 +53,8 @@
 			}
 		}
 		&.active {
-			display: block;
+			display: flex;
+			align-items: center;
 		}
 		li {
 			@extend %posRelative;
@@ -115,9 +112,7 @@
 	&.mega-menu {
 		position: inherit !important;
 		.dropdown_list {
-			@include phone_and_tabletL {
-				width: 100% !important;
-			}
+			@extend %width100;
 			li {
 				font-size: 13px;
 				text-align: left;

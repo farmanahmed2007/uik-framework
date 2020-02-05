@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.2.0] - 05-02-2020
+
+### Fixed
+- Classic Menu
+
 ## [0.1.9] - 05-02-2020
 
 ### Removed

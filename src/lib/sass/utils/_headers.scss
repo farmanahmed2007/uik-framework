@@ -195,21 +195,33 @@
 		@extend %width100;
 		.logo {
 			position: relative;
-			padding: 10px 0;
-			display: block;
+			display: flex;
 			@extend %height100;
 			z-index: 3;
 		}
 		.menu {
 			position: relative;
 			z-index: 2;
+			@extend %width100;
 			@include phone {
 				display: none;
 			}
 			@include tabletL {
-				display: block;
-				> ul {
-					> li {
+				display: flex;
+			}
+			&.left {
+				justify-content: flex-start;
+			}
+			&.center {
+				justify-content: center;
+			}
+			&.right {
+				justify-content: flex-end;
+			}
+			> ul {
+				@extend %width100;
+				> li {
+					@include tabletL {
 						display: inline-block;
 						position: relative;
 						margin-right: -4px;
@@ -235,28 +247,6 @@
 							margin-right: 0;
 						}
 					}
-				}
-			}
-			&.left {
-				@extend %pullLeft;
-				> ul {
-					@extend %pullLeft;
-					text-align: left;
-				}
-			}
-			&.center {
-				> ul {
-					text-align: center;
-					> li {
-						display: inline-block;
-					}
-				}
-			}
-			&.right {
-				@extend %pullRight;
-				> ul {
-					@extend %pullRight;
-					text-align: right;
 				}
 			}
 		}
@@ -518,29 +508,13 @@
 				width: 185px;
 			}
 			.menu {
+				@extend %width100;
+				padding: 26px 0px;
 				&.left {
-					float: left;
-					@include tabletL {
-						text-align: left;
-					}
+					margin-right: auto;
 				}
 				&.right {
-					float: right;
-					@include tabletL {
-						text-align: right;
-					}
-				}
-				ul {
-					display: flex;
-					align-items: center;
-					li {
-						a {
-							@extend %themeRadius;
-							display: flex;
-							width: auto;
-							height: inherit;
-						}
-					}
+					margin-left: auto;
 				}
 			}
 		}

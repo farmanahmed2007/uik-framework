@@ -1,7 +1,7 @@
 ## UIK Framework
 
-[![Keep a Changelog v0.1.9 badge][changelog-badge]][changelog]
-[![Version 0.1.9 Badge][version-badge]][changelog]
+[![Keep a Changelog v0.2.0 badge][changelog-badge]][changelog]
+[![Version 0.2.0 Badge][version-badge]][changelog]
 [![MIT License Badge][license-badge]][license]
 
 Follow Step by Step Integration Below
@@ -85,8 +85,8 @@ OR
 Free to join my slack #uik-framework
 
 [changelog]: ./CHANGELOG.md
-[changelog-badge]: https://img.shields.io/badge/changelog-v0.1.9-%23E05735
+[changelog-badge]: https://img.shields.io/badge/changelog-v0.2.0-%23E05735
 [license]: ./LICENSE.md
-[version-badge]: https://img.shields.io/badge/version-0.1.9-blue.svg
+[version-badge]: https://img.shields.io/badge/version-0.2.0-blue.svg
 [license-badge]: https://img.shields.io/badge/license-MIT-blue.svg
 
