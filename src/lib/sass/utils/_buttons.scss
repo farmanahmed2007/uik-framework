@@ -100,7 +100,7 @@
 			@extend %floatToCenter;
 		}
 	}
-	.btn-social {
+	&.btn-social {
 		display: inline-block;
 		margin-right: 3px;
 		padding: 0 !important;
@@ -276,6 +276,11 @@
 			}
 		}
 	}
+	&.tooltip {
+		i {
+			margin: 0 !important;
+		}
+	}
 }
 
 .btn-gradient-vertical {
@@ -352,7 +357,7 @@
 			margin: auto;
 			text-align: center;
 			display: inline-block;
-			background: url('../img/loaders/svg/spin.svg') center center no-repeat;
+			background: url('../img/loaders/spin.svg') center center no-repeat;
 			background-size: 100%;
 		}
 	}

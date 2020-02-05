@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.1.9] - 05-02-2020
+
+### Removed
+- Unused assets from /img folder
+
 ## [0.1.8] - 04-02-2020
 
 ### Fixed

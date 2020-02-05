@@ -365,11 +365,13 @@
 						color: var(--blue);
 						background: var(--gray);
 						text-align: center;
+						width: fit-content;
+						height: auto;
+						@extend %noShadow;
+						@extend %themeRadius;
 						i {
 							font-size: 21px;
 							padding: 4px 0 5px 0;
-							text-align: center;
-							display: block;
 						}
 						> span {
 							font-weight: 700;
@@ -513,22 +515,9 @@
 			.logo {
 				margin-right: 20px;
 				@extend %pullLeft;
-				@include phone {
-					width: 70%;
-				}
-				@include tabletL {
-					width: 185px;
-				}
+				width: 185px;
 			}
 			.menu {
-				@include tabletL {
-					width: calc(100% - 205px);
-					> ul {
-						> li {
-							padding: 31px 0px;
-						}
-					}
-				}
 				&.left {
 					float: left;
 					@include tabletL {

@@ -120,7 +120,6 @@
 			}
 			li {
 				font-size: 13px;
-				margin-bottom: 3px;
 				text-align: left;
 				&.dropdown-header {
 					border-bottom-width: 1px;
@@ -135,9 +134,10 @@
 						display: inline-block;
 					}
 				}
-				a {
+				a, button {
 					color: var(--black-alpha4);
 					font-weight: 700;
+					border-radius: 0;
 				}
 			}
 		}

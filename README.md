@@ -1,7 +1,7 @@
 ## UIK Framework
 
-[![Keep a Changelog v0.1.8 badge][changelog-badge]][changelog]
-[![Version 0.1.8 Badge][version-badge]][changelog]
+[![Keep a Changelog v0.1.9 badge][changelog-badge]][changelog]
+[![Version 0.1.9 Badge][version-badge]][changelog]
 [![MIT License Badge][license-badge]][license]
 
 Follow Step by Step Integration Below
@@ -49,16 +49,16 @@ OR <br />
 Run this command for CSS & JS compilation <br />
 
 ```render
-uik-framework> webpack --config webpack.config.js
+/uik-framework> webpack --config webpack.config.js
 ```
 
 ## View Compiled Files
 
-All files will be added in /dist/uik-framework/ folder
+All files will be added in /dist folder
 
 ## Include Files in your project
 
-Copy and Paste /dist from package inside your project <br />
+Copy and Paste /lib from package inside your project <br />
 Add them in your SCSS Production <br />
 OR <br />
 Add them in our HTML Document
@@ -85,8 +85,8 @@ OR
 Free to join my slack #uik-framework
 
 [changelog]: ./CHANGELOG.md
-[changelog-badge]: https://img.shields.io/badge/changelog-v0.1.8-%23E05735
+[changelog-badge]: https://img.shields.io/badge/changelog-v0.1.9-%23E05735
 [license]: ./LICENSE.md
-[version-badge]: https://img.shields.io/badge/version-0.1.8-blue.svg
+[version-badge]: https://img.shields.io/badge/version-0.1.9-blue.svg
 [license-badge]: https://img.shields.io/badge/license-MIT-blue.svg
 
