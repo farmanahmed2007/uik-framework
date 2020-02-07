@@ -18,6 +18,18 @@ Follow Step by Step Integration Below
 ## Install
 
 ```render
+npm init
+```
+type this in ypur project assets folder, it will crete a package.json file
+
+```render
+"dependencies": {
+	"uik-framework": "^0.2.0"
+},
+```
+Add the dependencies in your project folder<br/>
+Then Run
+```render
 yarn install
 ```
 

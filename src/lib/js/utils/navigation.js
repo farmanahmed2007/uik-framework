@@ -16,9 +16,10 @@ $(function () {
         $('.menu_wrapper .menu').detach().appendTo('.menu_wrapper_slide');
     }
 
-    if ($('body').hasClass('uik_menu_slide_right')) {
+    if ($('.menu_wrapper').hasClass('uik_menu_slide_right')) {
         sideSlide();
     }
+	sideSlide();
 
     /* Sound on or off */
     $(document).on('click', '.sound-control a', function () {

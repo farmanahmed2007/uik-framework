@@ -1,4 +1,4 @@
-@include font-face("../fonts/", "fontello");
+@include font-face('../fonts/', fontello);
 
 [class^="icon-"]:before,
 [class*=" icon-"]:before {

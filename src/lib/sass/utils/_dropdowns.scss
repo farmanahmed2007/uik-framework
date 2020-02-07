@@ -18,14 +18,7 @@
 	> .dropdown_list {
 		height: auto;
 		display: none;
-		@include phone_and_tabletL {
-			li {
-				> form > a,
-				 a {
-					text-align: left !important;
-				}
-			}
-		}
+
 		@include tabletL {
 			width: fit-content;
 			height: auto;
@@ -45,16 +38,11 @@
 				left: 0;
 				margin: auto;
 			}
-			li {
-				> form > a,
-				 a {
-					text-align:center !important;
-				}
-			}
 		}
 		&.active {
 			display: flex;
 			align-items: center;
+			flex-direction: column;
 		}
 		li {
 			@extend %posRelative;
@@ -73,6 +61,12 @@
 				@extend %p10;
 				@extend %b0;
 				@extend %m0;
+				@include phone {
+					text-align: left !important;
+				}
+				@include tabletL {
+					text-align:center !important;
+				}
 				> i {
 					&:first-child {
 						margin-right: 7px;

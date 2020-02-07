@@ -107,7 +107,8 @@ module.exports = env => {
                             let temp = url.replace('src/lib/', '').split('/');
                             let ProjectName = temp[0];
                             // console.log(ProjectName)
-                            return url.replace('src/lib/' + ProjectName, '../');
+                            // return url.replace('src/lib/' + ProjectName, '../');
+                            return url.replace('src/lib/', '../');
                         }
                     }
                 }
@@ -131,7 +132,8 @@ module.exports = env => {
                                 let temp = url.replace('src/lib/', '').split('/');
                                 let ProjectName = temp[0];
                                 // console.log(ProjectName)
-                                return url.replace('src/lib/' + ProjectName, '../');
+                                // return url.replace('src/lib/' + ProjectName, '../');
+                                return url.replace('src/lib/', '../');
                             }
                         }
                     },
@@ -177,7 +179,8 @@ module.exports = env => {
                             let temp = url.replace('src/lib/', '').split('/');
                             let ProjectName = temp[0];
                             // console.log(ProjectName)
-                            return url.replace('src/lib/' + ProjectName, '../');
+                            // return url.replace('src/lib/' + ProjectName, '../');
+                            return url.replace('src/lib/', '../');
                         }
                     }
                 }]
