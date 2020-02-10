@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.2.1] - 10-02-2020
+
+### Fixed
+- webpack.config.js
+
 ## [0.2.0] - 05-02-2020
 
 ### Fixed
