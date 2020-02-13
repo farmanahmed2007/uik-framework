@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.2.3] - 13-02-2020
+
+### Removed
+- intlTelInput v16.0.10
+
+## [0.2.2] - 13-02-2020
+
+### Fixes
+- Removed float from header and converted to flex
+- tooltip
+### Added
+- intlTelInput v16.0.10
+### Updated
+- fancybox to latest v2.1.7
+
 ## [0.2.1] - 10-02-2020
 
 ### Fixed

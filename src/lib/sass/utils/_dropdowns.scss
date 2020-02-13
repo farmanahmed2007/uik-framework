@@ -18,7 +18,6 @@
 	> .dropdown_list {
 		height: auto;
 		display: none;
-
 		@include tabletL {
 			width: fit-content;
 			height: auto;
@@ -65,7 +64,7 @@
 					text-align: left !important;
 				}
 				@include tabletL {
-					text-align:center !important;
+					text-align: center !important;
 				}
 				> i {
 					&:first-child {
@@ -123,7 +122,8 @@
 						display: inline-block;
 					}
 				}
-				a, button {
+				a,
+				button {
 					color: var(--black-alpha4);
 					font-weight: 700;
 					border-radius: 0;
@@ -147,7 +147,7 @@
 .dropup {
 	@extend %posRelative;
 	.caret {
-		content: "";
+		content: '';
 		border-top: 0;
 		border-bottom: 4px solid;
 	}
@@ -306,7 +306,7 @@
 }
 
 .navbar-fixed-bottom .dropdown .caret {
-	content: "";
+	content: '';
 	border-top: 0;
 	border-bottom: 4px solid;
 }

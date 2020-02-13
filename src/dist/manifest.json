@@ -256,8 +256,8 @@
   "img/flags/4x3/za.svg.gz": "img/flags/4x3/za.svg.gz",
   "img/flags/4x3/zm.svg.gz": "img/flags/4x3/zm.svg.gz",
   "img/flags/4x3/zw.svg.gz": "img/flags/4x3/zw.svg.gz",
-  "img/flags/uik.scss": "img/flags/flags@2x.png",
   "img/icons/uik.scss": "img/icons/select-2.png",
+  "img/intl-tel-input/uik.scss": "img/intl-tel-input/flags@2x.png",
   "img/loaders/uik.scss": "img/loaders/spin.svg",
   "img/loaders/spin.svg.gz": "img/loaders/spin.svg.gz",
   "js/uik.bundle.min.js.gz": "js/uik.bundle.min.js.gz"
