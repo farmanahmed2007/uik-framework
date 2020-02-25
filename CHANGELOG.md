@@ -2,10 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
-## [0.2.3] - 13-02-2020
+## [0.2.4] - 13-02-2020
 
-### Removed
-- intlTelInput v16.0.10
+### Fixed
+- Tabination
 
 ## [0.2.2] - 13-02-2020
 
