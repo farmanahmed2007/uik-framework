@@ -20,7 +20,7 @@ Follow Step by Step Integration Below
 ```render
 npm init
 ```
-type this in ypur project assets folder, it will crete a package.json file
+type this in your project assets folder, it will crete a package.json file
 
 ```render
 "dependencies": {
