@@ -99,7 +99,7 @@ Free to join my slack #uik-framework
 
 
 ## Documentation / Demo
-uik-framework. com
+uik-framework.com
 
 
 [changelog]: ./CHANGELOG.md
