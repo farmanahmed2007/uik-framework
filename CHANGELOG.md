@@ -2,12 +2,17 @@
 
 All notable changes to this project will be documented in this file.
 
-## [0.2.5] - 23-07-2020
+## [0.2.6] - 24-07-2020
+
+### Fixed
+- Deployed Documentation (uik-framework.com)
+
+## [0.2.5] - 15-02-2020
 
 ### Fixed
 - Input Group
 
-## [0.2.5] - 13-02-2020
+## [0.2.4] - 13-02-2020
 
 ### Fixed
 - Tabination
