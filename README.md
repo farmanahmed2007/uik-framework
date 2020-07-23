@@ -1,7 +1,7 @@
 ## UIK Framework
 
-[![Keep a Changelog v0.2.4 badge][changelog-badge]][changelog]
-[![Version 0.2.4 Badge][version-badge]][changelog]
+[![Keep a Changelog v0.2.5 badge][changelog-badge]][changelog]
+[![Version 0.2.5 Badge][version-badge]][changelog]
 [![MIT License Badge][license-badge]][license]
 
 Follow Step by Step Integration Below
@@ -20,11 +20,11 @@ Follow Step by Step Integration Below
 ```render
 npm init
 ```
-type this in ypur project assets folder, it will crete a package.json file
+type this in your project assets folder, it will crete a package.json file
 
 ```render
 "dependencies": {
-	"uik-framework": "^0.2.4"
+	"uik-framework": "^0.2.5"
 },
 ```
 Add the dependencies in your project folder<br/>
@@ -97,8 +97,8 @@ OR
 Free to join my slack #uik-framework
 
 [changelog]: ./CHANGELOG.md
-[changelog-badge]: https://img.shields.io/badge/changelog-v0.2.4-%23E05735
+[changelog-badge]: https://img.shields.io/badge/changelog-v0.2.5-%23E05735
 [license]: ./LICENSE.md
-[version-badge]: https://img.shields.io/badge/version-0.2.4-blue.svg
+[version-badge]: https://img.shields.io/badge/version-0.2.5-blue.svg
 [license-badge]: https://img.shields.io/badge/license-MIT-blue.svg
 
