@@ -14,6 +14,7 @@ Follow Step by Step Integration Below
 * View Compiled Files
 * Include Files in your project
 * Slack Support
+* Documentation / Demo
 
 ## Install
 
@@ -95,6 +96,11 @@ OR
 
 ## Slack Support
 Free to join my slack #uik-framework
+
+
+## Documentation / Demo
+uik-framework.com
+
 
 [changelog]: ./CHANGELOG.md
 [changelog-badge]: https://img.shields.io/badge/changelog-v0.2.5-%23E05735
