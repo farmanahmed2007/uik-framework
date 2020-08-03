@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.2.8] - 03-08-2020
+
+### Removed
+- version renamed
+
 ## [0.2.6] - 24-07-2020
 
 ### Fixed
