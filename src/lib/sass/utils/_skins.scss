@@ -250,12 +250,12 @@
       > .form-control.success:focus ~ span,
       > .form-control.success ~ span.active {
         &:before {
-          background-color: var(--olive);
+          background-color: var(--green);
         }
       }
       > .form-control.success ~ span.active ~ .has-feedback,
       > .form-control.success:focus ~ .has-feedback {
-        background-color: var(--olive);
+        background-color: var(--green);
         color: var(--white);
       }
     }

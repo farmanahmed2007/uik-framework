@@ -1,355 +1,355 @@
 .accordian {
-	@extend %displayFlex;
-	flex-direction: column;
-	.acc-box {
-		flex: 1;
-		width: 100%;
-		margin-bottom: 10px;
-		.acc-entry {
-			@extend %posRelative;
-			.acc-trigger {
-				width: 100%;
-				@extend %posRelative;
-				display: block;
-				color: var(--black-light);
-				text-decoration: none;
-				font-weight: 100;
-				font-size: 14px;
-				cursor: pointer;
-				a {
-					font-size: 20px;
-				}
-				i {
-					position: absolute;
-					width: 20px;
-					height: 20px;
-					line-height: 23px;
-					top: 0;
-					bottom: 0;
-					margin: auto;
-					text-align: center;
-					font-size: 13px;
-					z-index: 1;
-					&:nth-child(1) {
-						display: block;
-					}
-					&:nth-child(2) {
-						display: none;
-					}
-				}
-				&:hover,
-				&:hover a,
-				&.active {
-					color: var(--blue);
-				}
-				&.active {
-					i {
-						&:nth-child(1) {
-							display: none;
-						}
-						&:nth-child(2) {
-							display: block;
-						}
-					}
-				}
-				&.left {
-					padding: 10px 20px 10px 40px;
-					i {
-						left: 10px;
-					}
-				}
-				&.right {
-					padding: 10px 40px 10px 20px;
-					i {
-						right: 10px;
-					}
-				}
-			}
-			.acc-container {
-				@extend %width100;
-				@extend %posRelative;
-				@extend %pullLeft;
-				display: none;
-				padding: 15px 20px 15px 20px;
-				@extend %b1;
-				@extend %borderGrayDark;
-			}
-		}
-	}
-	&.style1 {
-		.acc-box {
-			.acc-entry {
-				.acc-trigger {
-					@extend %b1;
-					@extend %borderGrayDark;
-					background-color: var(--gray);
-				}
-			}
-		}
-	}
-	&.style2 {
-		.acc-box {
-			.acc-entry {
-				.acc-trigger {
-					border-bottom: 2px solid var(--gray-dark);
-				}
-			}
-		}
-	}
-	&.style3 {
-		.acc-box {
-			.acc-entry {
-				.acc-trigger {
-					border: 1px solid var(--black-alpha5);
-					border-left: 0;
-					border-right: 0;
-					.accordian-image,
-					.accordian-title {
-						display: inline-block;
-					}
-					i {
-						z-index: 1;
-						&:before {
-							position: absolute;
-							top: 50%;
-							left: 1px;
-							transform: translateY(-46%);
-						}
-					}
-					&:hover {
-						background: var(--gray-alpha3);
-					}
-				}
-				.acc-container {
-					display: none;
-					padding: 15px 20px 15px 20px;
-					width: 100%;
-				}
-			}
-		}
-	}
-	&.style4 {
-		height: 500px;
-		border-top: 1px solid var(--black-alpha9);
-		border-bottom: 1px solid var(--black-alpha9);
-		flex-direction: row !important;
-		overflow: hidden;
-		@include phone_and_tabletP {
-			display: block;
-			border: 0;
-			height: auto;
-		}
-		.acc-box {
-			transition: all 0.5s ease;
-			border-right: 1px solid var(--black-alpha9);
-			flex: 0 !important;
-			margin-bottom: 0;
-			@include phone_and_tabletP {
-				display: block;
-				width: 100% !important;
-				margin-bottom: 10px;
-				height: auto;
-			}
-			.acc-entry {
-				@extend %displayFlex;
-				@include phone_and_tabletP {
-					display: block;
-				}
-				.acc-trigger {
-					width: fit-content;
-					background: var(--gray);
-					@include phone_and_tabletP {
-						width: 100% !important;
-					}
-					.title {
-						color: var(--black-alpha9);
-						width: fit-content;
-						height: 51.5%;
-						position: relative;
-						cursor: pointer;
-						@include phone_and_tabletP {
-							width: 100%;
-						}
-						&__text {
-							@extend %displayFlex;
-							word-break: break-word;
-							// text-align: center;
-							// justify-content: center;
-							transform: rotate(180deg) !important;
-							// align-items: start;
-							// align-content: start;
-							height: 100%;
-							writing-mode: vertical-rl;
-							@include phone_and_tabletP {
-								display: block;
-								writing-mode: unset;
-								transform: none !important;
-								padding-left: 5px;
-							}
-						}
-					}
-				}
-				@include tabletP {
-					.acc-trigger:not(.active) + .acc-container {
-						display: none !important;
-					}
-				}
-				.acc-container {
-					float: none !important;
-					@include phone_and_tabletP {
-						position: unset !important;
-						min-height: unset;
-					}
-				}
-			}
-			&.open {
-				flex-grow: 1 !important;
-				transition: all 0.5s ease;
-				.title {
-					background: var(--gray-dark) !important;
-					.title__text {
-						padding: 5px;
-						border-left: 1px solid var(--black-alpha9);
-						@include phone_and_tabletP {
-							border-left: 3px solid var(--black-alpha9);
-						}
-					}
-				}
-				.acc-container {
-					padding: 15px;
-					border: 0;
-				}
-				@include phone_and_tabletP {
-					.acc-entry {
-						border: 1px solid var(--black-alpha6);
-						border-top: none;
-						display: block;
-					}
-				}
-			}
-			@include tabletP {
-				&:not(.open) .acc-container {
-					display: none !important;
-				}
-			}
-		}
-	}
-	&.style5,
-	&.style6 {
-		.acc-box {
-			margin-bottom: 0;
-			.acc-trigger {
-				background: var(--black-alpha2);
-				@extend %posRelative;
-				span {
-					padding: 10px;
-				}
-				&:after {
-					content: "";
-					@extend %posAbsolute;
-					height: 100%;
-					width: 2px;
-					background: var(--black-alpha1);
-					top: 0;
-				}
-				&.left {
-					&:after {
-						left: 40px;
-					}
-				}
-				&.right {
-					&:after {
-						right: 40px;
-					}
-				}
-			}
-			.acc-container {
-				background: var(--white-dark) !important;
-				padding: 15px 20px 15px;
-				border: none !important;
-			}
-		}
-	}
-	&.style6 {
-		.acc-box {
-			margin-bottom: 10px;
-			.acc-entry {
-				border-radius: 20px;
-				overflow: hidden;
-				.acc-trigger {
-					i {
-						top: 40%;
-						transform: translateY(-50%);
-						left: 10px;
-					}
-				}
-			}
-		}
-	}
-	&.style7 {
-		.acc-box {
-			.acc-entry {
-				.acc-trigger {
-					border-bottom: 1px solid var(--black-alpha1);
+  @extend %displayFlex;
+  flex-direction: column;
+  .acc-box {
+    flex: 1;
+    width: 100%;
+    margin-bottom: 10px;
+    .acc-entry {
+      @extend %posRelative;
+      .acc-trigger {
+        width: 100%;
+        @extend %posRelative;
+        display: block;
+        color: var(--black-light);
+        text-decoration: none;
+        font-weight: 100;
+        font-size: 14px;
+        cursor: pointer;
+        a {
+          font-size: 20px;
+        }
+        i {
+          position: absolute;
+          width: 20px;
+          height: 20px;
+          line-height: 23px;
+          top: 0;
+          bottom: 0;
+          margin: auto;
+          text-align: center;
+          font-size: 13px;
+          z-index: 1;
+          &:nth-child(1) {
+            display: block;
+          }
+          &:nth-child(2) {
+            display: none;
+          }
+        }
+        &:hover,
+        &:hover a,
+        &.active {
+          color: var(--blue);
+        }
+        &.active {
+          i {
+            &:nth-child(1) {
+              display: none;
+            }
+            &:nth-child(2) {
+              display: block;
+            }
+          }
+        }
+        &.left {
+          padding: 10px 20px 10px 40px;
+          i {
+            left: 10px;
+          }
+        }
+        &.right {
+          padding: 10px 40px 10px 20px;
+          i {
+            right: 10px;
+          }
+        }
+      }
+      .acc-container {
+        @extend %width100;
+        @extend %posRelative;
+        @extend %pullLeft;
+        display: none;
+        padding: 15px 20px 15px 20px;
+        @extend %b1;
+        @extend %borderGrayDark;
+      }
+    }
+  }
+  &.style1 {
+    .acc-box {
+      .acc-entry {
+        .acc-trigger {
+          @extend %b1;
+          @extend %borderGrayDark;
+          background-color: var(--gray);
+        }
+      }
+    }
+  }
+  &.style2 {
+    .acc-box {
+      .acc-entry {
+        .acc-trigger {
+          border-bottom: 2px solid var(--gray-dark);
+        }
+      }
+    }
+  }
+  &.style3 {
+    .acc-box {
+      .acc-entry {
+        .acc-trigger {
+          border: 1px solid var(--black-alpha5);
+          border-left: 0;
+          border-right: 0;
+          .accordian-image,
+          .accordian-title {
+            display: inline-block;
+          }
+          i {
+            z-index: 1;
+            &:before {
+              position: absolute;
+              top: 50%;
+              left: 1px;
+              transform: translateY(-46%);
+            }
+          }
+          &:hover {
+            background: var(--gray-alpha3);
+          }
+        }
+        .acc-container {
+          display: none;
+          padding: 15px 20px 15px 20px;
+          width: 100%;
+        }
+      }
+    }
+  }
+  &.style4 {
+    height: 500px;
+    border-top: 1px solid var(--black-alpha9);
+    border-bottom: 1px solid var(--black-alpha9);
+    flex-direction: row !important;
+    overflow: hidden;
+    @include phone_and_tabletP {
+      display: block;
+      border: 0;
+      height: auto;
+    }
+    .acc-box {
+      transition: all 0.5s ease;
+      border-right: 1px solid var(--black-alpha9);
+      flex: 0 !important;
+      margin-bottom: 0;
+      @include phone_and_tabletP {
+        display: block;
+        width: 100% !important;
+        margin-bottom: 10px;
+        height: auto;
+      }
+      .acc-entry {
+        @extend %displayFlex;
+        @include phone_and_tabletP {
+          display: block;
+        }
+        .acc-trigger {
+          width: fit-content;
+          background: var(--gray);
+          @include phone_and_tabletP {
+            width: 100% !important;
+          }
+          .title {
+            color: var(--black-alpha9);
+            width: fit-content;
+            height: 51.5%;
+            position: relative;
+            cursor: pointer;
+            @include phone_and_tabletP {
+              width: 100%;
+            }
+            &__text {
+              @extend %displayFlex;
+              word-break: break-word;
+              // text-align: center;
+              // justify-content: center;
+              transform: rotate(180deg) !important;
+              // align-items: start;
+              // align-content: start;
+              height: 100%;
+              writing-mode: vertical-rl;
+              @include phone_and_tabletP {
+                display: block;
+                writing-mode: unset;
+                transform: none !important;
+                padding-left: 5px;
+              }
+            }
+          }
+        }
+        @include tabletP {
+          .acc-trigger:not(.active) + .acc-container {
+            display: none !important;
+          }
+        }
+        .acc-container {
+          float: none !important;
+          @include phone_and_tabletP {
+            position: unset !important;
+            min-height: unset;
+          }
+        }
+      }
+      &.open {
+        flex-grow: 1 !important;
+        transition: all 0.5s ease;
+        .title {
+          background: var(--gray-dark) !important;
+          .title__text {
+            padding: 5px;
+            border-left: 1px solid var(--black-alpha9);
+            @include phone_and_tabletP {
+              border-left: 3px solid var(--black-alpha9);
+            }
+          }
+        }
+        .acc-container {
+          padding: 15px;
+          border: 0;
+        }
+        @include phone_and_tabletP {
+          .acc-entry {
+            border: 1px solid var(--black-alpha6);
+            border-top: none;
+            display: block;
+          }
+        }
+      }
+      @include tabletP {
+        &:not(.open) .acc-container {
+          display: none !important;
+        }
+      }
+    }
+  }
+  &.style5,
+  &.style6 {
+    .acc-box {
+      margin-bottom: 0;
+      .acc-trigger {
+        background: var(--black-alpha2);
+        @extend %posRelative;
+        span {
+          padding: 10px;
+        }
+        &:after {
+          content: '';
+          @extend %posAbsolute;
+          height: 100%;
+          width: 2px;
+          background: var(--black-alpha1);
+          top: 0;
+        }
+        &.left {
+          &:after {
+            left: 40px;
+          }
+        }
+        &.right {
+          &:after {
+            right: 40px;
+          }
+        }
+      }
+      .acc-container {
+        background: var(--white-dark) !important;
+        padding: 15px 20px 15px;
+        border: none !important;
+      }
+    }
+  }
+  &.style6 {
+    .acc-box {
+      margin-bottom: 10px;
+      .acc-entry {
+        border-radius: 20px;
+        overflow: hidden;
+        .acc-trigger {
+          i {
+            top: 40%;
+            transform: translateY(-50%);
+            left: 10px;
+          }
+        }
+      }
+    }
+  }
+  &.style7 {
+    .acc-box {
+      .acc-entry {
+        .acc-trigger {
+          border-bottom: 1px solid var(--black-alpha1);
 
-					> div {
-						.icon {
-							font-size: 16px;
-						}
-					}
-					&.active {
-						border-bottom: 1px solid var(--blue);
-					}
-				}
-				.acc-container {
-					border: none !important;
-				}
-			}
-		}
-	}
-	&.style8 {
-		.acc-box {
-			.acc-entry {
-				.acc-trigger {
-					background: var(--white-dark);
-					.accordian-image {
-						display: flex;
-						justify-content: center;
-						align-items: center;
-						> * {
-							flex: 1;
-							color: var(--black-light);
-						}
-						.s-no {
-							flex: none !important;
-							width: 30px;
-							font-size: 16px;
-							font-weight: 600;
-							color: var(--slate) !important;
-						}
-						.person-img {
-							flex: none !important;
-							width: 50px;
-							margin-right: 15px;
-							img {
-								width: 50px;
-							}
-						}
-						.person-name,
-						.year,
-						.price {
-							@include phone_and_tabletL {
-								display: none;
-							}
-						}
-					}
-				}
-				.acc-container {
-					background: var(--black-light);
-					color: var(--white);
-					padding: 10px 15px;
-				}
-			}
-		}
-	}
+          > div {
+            .icon {
+              font-size: 16px;
+            }
+          }
+          &.active {
+            border-bottom: 1px solid var(--blue);
+          }
+        }
+        .acc-container {
+          border: none !important;
+        }
+      }
+    }
+  }
+  &.style8 {
+    .acc-box {
+      .acc-entry {
+        .acc-trigger {
+          background: var(--white-dark);
+          .accordian-image {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            > * {
+              flex: 1;
+              color: var(--black-light);
+            }
+            .s-no {
+              flex: none !important;
+              width: 30px;
+              font-size: 16px;
+              font-weight: 600;
+              color: var(--black-light) !important;
+            }
+            .person-img {
+              flex: none !important;
+              width: 50px;
+              margin-right: 15px;
+              img {
+                width: 50px;
+              }
+            }
+            .person-name,
+            .year,
+            .price {
+              @include phone_and_tabletL {
+                display: none;
+              }
+            }
+          }
+        }
+        .acc-container {
+          background: var(--black-light);
+          color: var(--white);
+          padding: 10px 15px;
+        }
+      }
+    }
+  }
 }

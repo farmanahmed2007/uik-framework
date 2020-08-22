@@ -2,13 +2,17 @@
 
 All notable changes to this project will be documented in this file.
 
-## [0.3.0] - 22-08-2020
+## [0.3.1] - 22-08-2020
+
+### Removed
+- unused color from css files
+
+## [0.3.0] - 21-08-2020
 
 ### Removed
 - unnecessary color variables
 
-
-## [0.2.9] - 22-08-2020
+## [0.2.9] - 20-08-2020
 
 ### Removed
 - footer CSS

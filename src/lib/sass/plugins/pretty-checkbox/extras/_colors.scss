@@ -1,258 +1,258 @@
 .pretty {
-	.state {
-		label {
-			&:before {
-				border-color: var(--gray-dark);
-			}
-			&:after {
-				background-color: transparent;
-			}
-		}
-	}
-	input {
-		&:checked ~ .state {
-			label {
-				&:before {
-					border-color: var(--blue);
-				}
-				&:after {
-					background-color: var(--blue);
-				}
-			}
-		}
-	}
-	&.p-toggle {
-		.state {
-			.svg {
-				color: var(--white);
-				stroke: var(--white);
-			}
-		}
-	}
-	&.p-switch {
-		.state {
-			&:before {
-				border-color: var(--gray-dark);
-			}
-			label {
-				&:after {
-					background-color: var(--gray-dark);
-				}
-			}
-		}
-		input {
-			&:checked ~ .state {
-				label {
-					&:after {
-						background-color: var(--blue);
-					}
-				}
-			}
-		}
-		&.p-fill {
-			.state {
-				&:before {
-					background-color: var(--gray);
-				}
-				label {
-					&:after {
-						background-color: var(--gray-dark);
-					}
-				}
-			}
-			input {
-				&:checked ~ .state {
-					&:before {
-						background-color: var(--blue);
-					}
-					label {
-						&:after {
-							background-color: var(--white);
-						}
-					}
-				}
-			}
-		}
-		&.p-slim {
-			.state {
-				&:before {
-					background: var(--default) !important;
-				}
-			}
-			input:checked ~ .state {
-				&:before {
-					border-color: var(--charcoal-light);
-					background-color: var(--charcoal-light) !important;
-				}
-			}
-		}
-	}
-	&.p-icon {
-		.state {
-			label {
-				&:after {
-					background-color: transparent;
-				}
-			}
-		}
-		input {
-			&:checked ~ .state {
-				label {
-					&:before {
-						border-color: transparent;
-					}
-					&:after {
-						background-color: transparent;
-					}
-				}
-			}
-		}
-	}
-	@each $color, $value in $notifColors {
-		$dashColor: "--" + $color;
-		&.p-default,
-		&.p-icon {
-			input {
-				&:checked ~ .state {
-					&.p-#{$color} {
-						label {
-							&:before {
-								border-color: var(--gray-dark) !important;
-							}
-							&:after {
-								background-color: var(#{$dashColor});
-							}
-						}
-					}
-					&.p-#{$color}-o {
-						label {
-							&:before {
-								border-color: var(#{$dashColor});
-							}
-						}
-					}
-				}
-			}
-		}
-		&.p-default {
-			input {
-				&:checked ~ .state {
-					&.p-#{$color}-o {
-						label {
-							&:after {
-								background-color: var(#{$dashColor});
-							}
-						}
-					}
-				}
-			}
-		}
-		&.p-icon {
-			input {
-				&:checked ~ .state {
-					&.p-#{$color} {
-						.icon,
-						.svg {
-							color: #fff;
-							stroke: #fff;
-						}
-					}
-					&.p-#{$color}-o {
-						.icon,
-						.svg {
-							&:before {
-								color: var(#{$dashColor});
-								stroke: var(#{$dashColor});
-							}
-						}
-					}
-				}
-			}
-		}
-		&.p-toggle {
-			.state {
-				&.p-#{$color} {
-					label {
-						&:before {
-							border-color: var(#{$dashColor});
-						}
-						&:after {
-							background-color: var(#{$dashColor});
-						}
-					}
-					.icon,
-					.svg {
-						color: #fff;
-						stroke: #fff;
-					}
-				}
-				&.p-#{$color}-o {
-					label {
-						&:before {
-							border-color: var(#{$dashColor});
-						}
-						&:after {
-							background-color: transparent;
-						}
-					}
-					.icon,
-					.svg {
-						color: var(#{$dashColor});
-						stroke: var(#{$dashColor});
-					}
-				}
-			}
-		}
-		&.p-switch {
-			.state {
-				&.p-#{$color} {
-					&:before {
-						background-color: transparent;
-					}
-				}
-			}
-			input {
-				&:checked ~ .state {
-					&.p-#{$color} {
-						&:before {
-							border-color: var(#{$dashColor});
-						}
-						label {
-							&:after {
-								background-color: var(#{$dashColor});
-							}
-						}
-					}
-				}
-			}
-			&.p-fill {
-				input {
-					&:checked ~ .state {
-						&.p-#{$color} {
-							&:before {
-								background-color: var(#{$dashColor});
-							}
-							label {
-								&:after {
-									background-color: var(--white);
-								}
-							}
-						}
-					}
-				}
-			}
-			&.p-slim {
-				input {
-					&:checked ~ .state {
-						&.p-#{$color} {
-							&:before {
-								border-color: var(#{$dashColor}-dark);
-								background-color: var(#{$dashColor}-dark);
-							}
-						}
-					}
-				}
-			}
-		}
-	}
+  .state {
+    label {
+      &:before {
+        border-color: var(--gray-dark);
+      }
+      &:after {
+        background-color: transparent;
+      }
+    }
+  }
+  input {
+    &:checked ~ .state {
+      label {
+        &:before {
+          border-color: var(--blue);
+        }
+        &:after {
+          background-color: var(--blue);
+        }
+      }
+    }
+  }
+  &.p-toggle {
+    .state {
+      .svg {
+        color: var(--white);
+        stroke: var(--white);
+      }
+    }
+  }
+  &.p-switch {
+    .state {
+      &:before {
+        border-color: var(--gray-dark);
+      }
+      label {
+        &:after {
+          background-color: var(--gray-dark);
+        }
+      }
+    }
+    input {
+      &:checked ~ .state {
+        label {
+          &:after {
+            background-color: var(--blue);
+          }
+        }
+      }
+    }
+    &.p-fill {
+      .state {
+        &:before {
+          background-color: var(--gray);
+        }
+        label {
+          &:after {
+            background-color: var(--gray-dark);
+          }
+        }
+      }
+      input {
+        &:checked ~ .state {
+          &:before {
+            background-color: var(--blue);
+          }
+          label {
+            &:after {
+              background-color: var(--white);
+            }
+          }
+        }
+      }
+    }
+    &.p-slim {
+      .state {
+        &:before {
+          background: var(--default) !important;
+        }
+      }
+      input:checked ~ .state {
+        &:before {
+          border-color: var(--black-light);
+          background-color: var(--black-light) !important;
+        }
+      }
+    }
+  }
+  &.p-icon {
+    .state {
+      label {
+        &:after {
+          background-color: transparent;
+        }
+      }
+    }
+    input {
+      &:checked ~ .state {
+        label {
+          &:before {
+            border-color: transparent;
+          }
+          &:after {
+            background-color: transparent;
+          }
+        }
+      }
+    }
+  }
+  @each $color, $value in $notifColors {
+    $dashColor: '--' + $color;
+    &.p-default,
+    &.p-icon {
+      input {
+        &:checked ~ .state {
+          &.p-#{$color} {
+            label {
+              &:before {
+                border-color: var(--gray-dark) !important;
+              }
+              &:after {
+                background-color: var(#{$dashColor});
+              }
+            }
+          }
+          &.p-#{$color}-o {
+            label {
+              &:before {
+                border-color: var(#{$dashColor});
+              }
+            }
+          }
+        }
+      }
+    }
+    &.p-default {
+      input {
+        &:checked ~ .state {
+          &.p-#{$color}-o {
+            label {
+              &:after {
+                background-color: var(#{$dashColor});
+              }
+            }
+          }
+        }
+      }
+    }
+    &.p-icon {
+      input {
+        &:checked ~ .state {
+          &.p-#{$color} {
+            .icon,
+            .svg {
+              color: #fff;
+              stroke: #fff;
+            }
+          }
+          &.p-#{$color}-o {
+            .icon,
+            .svg {
+              &:before {
+                color: var(#{$dashColor});
+                stroke: var(#{$dashColor});
+              }
+            }
+          }
+        }
+      }
+    }
+    &.p-toggle {
+      .state {
+        &.p-#{$color} {
+          label {
+            &:before {
+              border-color: var(#{$dashColor});
+            }
+            &:after {
+              background-color: var(#{$dashColor});
+            }
+          }
+          .icon,
+          .svg {
+            color: #fff;
+            stroke: #fff;
+          }
+        }
+        &.p-#{$color}-o {
+          label {
+            &:before {
+              border-color: var(#{$dashColor});
+            }
+            &:after {
+              background-color: transparent;
+            }
+          }
+          .icon,
+          .svg {
+            color: var(#{$dashColor});
+            stroke: var(#{$dashColor});
+          }
+        }
+      }
+    }
+    &.p-switch {
+      .state {
+        &.p-#{$color} {
+          &:before {
+            background-color: transparent;
+          }
+        }
+      }
+      input {
+        &:checked ~ .state {
+          &.p-#{$color} {
+            &:before {
+              border-color: var(#{$dashColor});
+            }
+            label {
+              &:after {
+                background-color: var(#{$dashColor});
+              }
+            }
+          }
+        }
+      }
+      &.p-fill {
+        input {
+          &:checked ~ .state {
+            &.p-#{$color} {
+              &:before {
+                background-color: var(#{$dashColor});
+              }
+              label {
+                &:after {
+                  background-color: var(--white);
+                }
+              }
+            }
+          }
+        }
+      }
+      &.p-slim {
+        input {
+          &:checked ~ .state {
+            &.p-#{$color} {
+              &:before {
+                border-color: var(#{$dashColor}-dark);
+                background-color: var(#{$dashColor}-dark);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
 }
