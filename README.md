@@ -1,7 +1,7 @@
 ## UIK Framework
 
-[![Keep a Changelog v0.3.1 badge][changelog-badge]][changelog]
-[![Version 0.3.1 Badge][version-badge]][changelog]
+[![Keep a Changelog v0.3.2 badge][changelog-badge]][changelog]
+[![Version 0.3.2 Badge][version-badge]][changelog]
 [![MIT License Badge][license-badge]][license]
 
 Follow Step by Step Integration Below
@@ -25,7 +25,7 @@ type this in your project assets folder, it will crete a package.json file
 
 ```render
 "dependencies": {
-	"uik-framework": "^0.3.1"
+	"uik-framework": "^0.3.2"
 },
 ```
 Add the dependencies in your project folder<br/>
@@ -103,8 +103,8 @@ uik-framework.com
 
 
 [changelog]: ./CHANGELOG.md
-[changelog-badge]: https://img.shields.io/badge/changelog-v0.3.1-%23E05735
+[changelog-badge]: https://img.shields.io/badge/changelog-v0.3.2-%23E05735
 [license]: ./LICENSE.md
-[version-badge]: https://img.shields.io/badge/version-0.3.1-blue.svg
+[version-badge]: https://img.shields.io/badge/version-0.3.2-blue.svg
 [license-badge]: https://img.shields.io/badge/license-MIT-blue.svg
 

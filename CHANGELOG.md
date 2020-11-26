@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.3.2] - 22-08-2020
+### Added
+- Documention URL (uik-framework.com)
+
 ## [0.3.1] - 22-08-2020
 
 ### Removed
