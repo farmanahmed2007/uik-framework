@@ -1,6 +1,5 @@
-var path = require('path');
-
-var webpack = require('webpack');
+const path = require('path');
+const webpack = require('webpack');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CompressionPlugin = require("compression-webpack-plugin");
@@ -12,38 +11,44 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const FixStyleOnlyEntriesPlugin = require("webpack-fix-style-only-entries");
 const resolve = require('path').resolve;
 
-let currentDirectory = path.resolve(__dirname);
+const currentDirectory = path.resolve(__dirname);
+
 
 module.exports = env => {
 
   return {
     mode: 'production',
+    watch: true,
+    //devtool: 'eval-cheap-module-source-map',
+    // size maintained
+    //devtool: 'eval-cheap-module-source-map',
+    //size decreases by 80%
+    // devtool: 'source-map',
+
     entry: {
       "uik-framework": [
         path.resolve(currentDirectory + '/src/lib/js/uik.js'),
         path.resolve(currentDirectory + '/src/lib/sass/uik.scss'),
       ],
     },
-    output: {
 
+    output: {
       path: path.join(currentDirectory + '/src/dist/'),
       filename: 'js/uik.bundle.min.js'
-
-    },
-    //devtool: 'eval-cheap-module-source-map',
-    resolve: {
-      extensions: ['.webpack.js', '.web.js', '.ts', '.js', '.css', '.scss']
     },
 
-    // size maintained
-    //devtool: 'eval-cheap-module-source-map',
-
-    //size decreases by 80%
-    devtool: 'source-map',
-
-    //watch: true,
     module: {
-
+      // loaders: [
+      //   {
+      //     test: /\.js$/,
+      //     loader: 'babel-loader',
+      //     exclude: [/node_modules/],
+      //     query: {
+      //       presets: ['es2015'],
+      //       plugins: ["transform-object-assign", "transform-runtime"]
+      //     }
+      //   }
+      // ],
       rules: [{
         enforce: "pre",
         test: /\.s(a|c)ss$/,
@@ -88,7 +93,6 @@ module.exports = env => {
 
         ]
       },
-
       {
         test: /\.(png|jpg|gif|ico|jpeg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
         use: {
@@ -149,21 +153,8 @@ module.exports = env => {
           }
         ]
       },
-      //if not MiniCssExtractPlugin
-
-      // {
-      //             test: /\.scss$/,
-      //              use: [{
-      //               loader: 'style-loader'
-      //             }, {
-      //                loader: 'css-loader'
-      //              }, {
-      //                loader: 'sass-loader'
-      //              }]
-      // },
       {
         test: /\.(woff(2)?|ttf|eot)(\?v=\d+\.\d+\.\d+)?$/,
-
         use: [{
           loader: 'file-loader',
           options: {
@@ -198,25 +189,23 @@ module.exports = env => {
           }
         }]
       }
-
       ]
     },
+
+    resolve: {
+      extensions: ['.webpack.js', '.web.js', '.ts', '.js', '.css', '.scss']
+    },
+
     plugins: [
-
-
       new CleanWebpackPlugin(['src/dist']),
-
       new ManifestPlugin({
         fileName: path.resolve(currentDirectory + '/src/dist/manifest.json'),
         publicPath: '',
 
       }),
       new MiniCssExtractPlugin({
-
         filename: "css/uik.bundle.min.css",
-
       }),
-
       new OptimizeCssAssetsPlugin({
         cssProcessorPluginOptions: {
           preset: ['default', { discardComments: { removeAll: true } }],
@@ -251,7 +240,6 @@ module.exports = env => {
         })
       ]
     }
-
   }
 
 }
