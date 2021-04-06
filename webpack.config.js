@@ -5,7 +5,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CompressionPlugin = require("compression-webpack-plugin");
 const OptimizeCssAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
-const ManifestPlugin = require('webpack-manifest-plugin');
+const { WebpackManifestPlugin } = require('webpack-manifest-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const FixStyleOnlyEntriesPlugin = require("webpack-fix-style-only-entries");
@@ -18,37 +18,23 @@ module.exports = env => {
 
   return {
     mode: 'production',
-    watch: true,
-    //devtool: 'eval-cheap-module-source-map',
-    // size maintained
-    //devtool: 'eval-cheap-module-source-map',
-    //size decreases by 80%
-    // devtool: 'source-map',
+    // watch: true,
 
     entry: {
-      "uik-framework": [
-        path.resolve(currentDirectory + '/src/lib/js/uik.js'),
+      "uik-framework-scss": [
         path.resolve(currentDirectory + '/src/lib/sass/uik.scss'),
       ],
+      "uik": [
+        path.resolve(currentDirectory + '/src/lib/js/uik.js'),
+      ]
     },
 
     output: {
       path: path.join(currentDirectory + '/src/dist/'),
-      filename: 'js/uik.bundle.min.js'
+      filename: 'js/[name].bundle.min.js'
     },
 
     module: {
-      // loaders: [
-      //   {
-      //     test: /\.js$/,
-      //     loader: 'babel-loader',
-      //     exclude: [/node_modules/],
-      //     query: {
-      //       presets: ['es2015'],
-      //       plugins: ["transform-object-assign", "transform-runtime"]
-      //     }
-      //   }
-      // ],
       rules: [{
         enforce: "pre",
         test: /\.s(a|c)ss$/,
@@ -56,7 +42,7 @@ module.exports = env => {
       },
       {
         test: /\.module\.s(a|c)ss$/,
-        loader: [
+        use: [
           MiniCssExtractPlugin.loader,
           {
             loader: 'css-loader',
@@ -78,7 +64,7 @@ module.exports = env => {
       {
         test: /\.s(a|c)ss$/,
         exclude: /\.module.(s(a|c)ss)$/,
-        loader: [
+        use: [
           MiniCssExtractPlugin.loader,
 
           'css-loader',
@@ -90,7 +76,6 @@ module.exports = env => {
 
             }
           }
-
         ]
       },
       {
@@ -198,7 +183,7 @@ module.exports = env => {
 
     plugins: [
       new CleanWebpackPlugin(['src/dist']),
-      new ManifestPlugin({
+      new WebpackManifestPlugin({
         fileName: path.resolve(currentDirectory + '/src/dist/manifest.json'),
         publicPath: '',
 
