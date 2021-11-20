@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.3.4] - 20-11-2021
+### Removed
+- Updated webpack
+
 ## [0.3.3] - 05-04-2021
 ### Removed
 - Removed Duplicated Utils
