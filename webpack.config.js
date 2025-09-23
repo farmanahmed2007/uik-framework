@@ -56,7 +56,8 @@ module.exports = env => {
           {
             loader: 'sass-loader',
             options: {
-              sourceMap: false
+              sourceMap: false,
+              implementation: require('sass')
             }
           },
         ]
@@ -72,6 +73,7 @@ module.exports = env => {
             loader: 'sass-loader',
             options: {
               sourceMap: false,
+              implementation: require('sass'),
               // outputPath : path.join(currentDirectory + '/src/dist/[name]/js/')
 
             }
