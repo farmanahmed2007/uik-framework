@@ -51,7 +51,7 @@
     "sass": "^1.69.5",
     "sass-loader": "^10.4.1",
     "sinon": "^7.5.0",
-    "stylelint": "^9.10.1",
+    "stylelint": "^17.15.0",
     "svgo": "^4.1.0",
     "svgo-loader": "^5.0.0",
     "uglifyjs-webpack-plugin": "^2.2.0",
