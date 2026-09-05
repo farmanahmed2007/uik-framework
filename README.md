@@ -25,6 +25,7 @@ tabs, popups and cards.
 - [Continuous integration](#continuous-integration)
 - [Repository structure](#repository-structure)
 - [Environment variables](#environment-variables)
+- [Why there is no Dockerfile](#why-there-is-no-dockerfile)
 - [Contributing](#contributing)
 - [Known limitations](#known-limitations)
 
@@ -296,6 +297,18 @@ is no `.env` file. One optional variable affects the test run only:
 
 The `build` script sets `NODE_OPTIONS=--openssl-legacy-provider` internally; you do
 not need to set it yourself.
+
+## Why there is no Dockerfile
+
+UIK is a front-end kit with no server, no database and no external services. A
+clean checkout installs, tests and builds with npm alone, on any machine with a
+supported Node and a Chrome binary, and CI proves that on every push across two
+Node versions.
+
+Adding a Dockerfile or a Compose file would therefore add a second toolchain to
+maintain without making anything more reproducible than `package-lock.json` and
+`npm ci` already do. If a future change introduces a service — a docs site, a demo
+server, a visual-regression runner — that is the point to revisit this.
 
 ## Contributing
 
