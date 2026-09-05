@@ -173,6 +173,25 @@ blanket-disabled, and neither outcome makes the code more correct. The config th
 replaced it is a narrow set of correctness rules, and it found four genuine defects
 on its first run.
 
+## Re-removal after PR #5 (2026-09-05)
+
+Six of the packages below — `rollup`, `rollup-plugin-babel`, `rollup-plugin-commonjs`,
+`rollup-plugin-node-resolve`, `shelljs` and `shx` — briefly returned to `package.json`.
+
+A Dependabot pull request bumping `rollup` 2.79.2 -> 2.80.0 had been opened *before* this
+cleanup landed. When `master` was merged into that branch, the merge resolved in favour of
+the older `package.json`, restoring all six entries, while `package-lock.json` resolved in
+favour of the newer file, which no longer contained them.
+
+The result was a `package.json` and `package-lock.json` that disagreed, so `npm ci` failed
+with `EUSAGE — Missing: rollup@2.80.0 from lock file` and CI on `master` went red. `npm
+install` still worked, because it rewrites the lockfile rather than requiring it to match,
+which is why the breakage was invisible to anyone not running `npm ci`.
+
+They are removed again rather than restored: all six remain unreferenced by any script,
+config or source file, and the advisory the bump addressed does not apply to a package the
+project does not use. Removing `rollup` resolves it more completely than upgrading it.
+
 ## Result
 
 | Metric | Before | After |
