@@ -15,18 +15,9 @@ updates:
         update-types:
           - minor
           - patch
-    ignore:
-      # Pinned deliberately — see DEPENDENCY-AUDIT.md.
-      # webpack 5 requires reworking the loader chain and the Uglify minimizer.
-      - dependency-name: webpack
-        update-types: ["version-update:semver-major"]
-      - dependency-name: webpack-cli
-        update-types: ["version-update:semver-major"]
-      # svgo 2+ changes its plugin config format and breaks svgo-loader@2.
-      - dependency-name: svgo
-        update-types: ["version-update:semver-major"]
-      - dependency-name: svgo-loader
-        update-types: ["version-update:semver-major"]
+    # No major-version suppressions: the toolchain is now current (webpack 5,
+    # ESLint 10, Stylelint 17), so majors are worth reviewing on their merits
+    # rather than being blocked wholesale.
 
   - package-ecosystem: github-actions
     directory: "/"

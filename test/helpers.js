@@ -1,4 +1,3 @@
-/* global QUnit */
 // Shared fixture helpers for the UIK behaviour suite.
 //
 // Every UIK module binds delegated handlers to `document` at DOM-ready, so specs

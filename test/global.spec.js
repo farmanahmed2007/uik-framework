@@ -1,4 +1,3 @@
-/* global QUnit, UIKTest */
 // Characterization tests for src/lib/js/utils/global.js
 //
 // These assert what the module does TODAY. They are the safety net for any later

@@ -1,4 +1,3 @@
-/* global QUnit, UIKTest */
 // Characterization tests for the small delegated behaviour modules:
 // buttons.js, tabs.js, tooltip.js, popup.js, card.js, accordian.js, back-top.js
 (function ($) {

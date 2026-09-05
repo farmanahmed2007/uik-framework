@@ -90,10 +90,11 @@ src/lib/js/uik.js      ──▶  src/dist/js/uik.bundle.min.js    (+ .gz)
                             src/dist/img/, src/dist/fonts/, manifest.json
 ```
 
-Loader chain: `import-glob-loader` → `sass-loader` (Dart Sass) → `css-loader` →
-`MiniCssExtractPlugin`. Assets referenced from the CSS are emitted by `file-loader`,
-with SVGs passed through `svgo-loader`. Minification is `uglifyjs-webpack-plugin`
-for JS and `cssnano` for CSS; `compression-webpack-plugin` writes the `.gz` siblings.
+Loader chain: `sass-loader` (Dart Sass) → `css-loader` → `MiniCssExtractPlugin`.
+Assets referenced from the CSS are emitted by webpack 5 asset modules, with SVG
+icons passed through `svgo-loader`. Minification is `terser-webpack-plugin` for JS
+and `css-minimizer-webpack-plugin` for CSS; `compression-webpack-plugin` writes the
+`.gz` siblings.
 
 **jQuery is not bundled.** It must be a global on the page before `uik.bundle.min.js`
 loads. It is declared as a peer dependency.
@@ -107,9 +108,7 @@ loads. It is declared as a peer dependency.
 | **Browser (consumers)** | The stylesheet carries hand-written vendor prefixes and targets browsers roughly a decade old. There is no `.browserslistrc` and no autoprefixer step. |
 | **Browser (tests)** | Chrome or Chromium. See [Testing](#testing). |
 
-Node 18 and below are not tested. The build sets
-`NODE_OPTIONS=--openssl-legacy-provider` because `uglifyjs-webpack-plugin` uses MD4,
-which OpenSSL 3 rejects by default; this is handled for you by the `build` script.
+Node 18 and below are not tested.
 
 ## Installation
 
@@ -191,9 +190,7 @@ directly. If your change affects the output, rebuild and commit the result as pa
 of the same change — and say so in the commit message, since the diff is minified
 and not reviewable on its own.
 
-The build prints a webpack warning that the stylesheet exceeds the recommended
-244 KiB asset budget. That is expected and covered under
-[Known limitations](#known-limitations).
+The stylesheet is large; see [Known limitations](#known-limitations).
 
 ## Testing
 
@@ -236,13 +233,13 @@ When changing legacy behaviour, write the characterization test **first** — se
 npm run lint
 ```
 
-- **ESLint** (`.eslintrc.json`) — `eslint:recommended` plus a small correctness-focused
-  rule set. Vendored plugins under `src/lib/js/plugins/` are excluded so they stay
-  re-syncable with upstream.
-- **Stylelint** (`.stylelintrc.json`) — a narrow set of correctness rules (unknown
-  properties, shorthand overriding longhand, duplicate declarations, invalid hex).
-  Formatting rules are deliberately not enforced across 30k lines of legacy SCSS.
-  Vendored plugin styles are excluded.
+- **ESLint 10** (`eslint.config.js`, flat config) — `eslint:recommended` plus a small
+  correctness-focused rule set. Vendored plugins under `src/lib/js/plugins/` are
+  excluded so they stay re-syncable with upstream.
+- **Stylelint 17** (`.stylelintrc.json`) — a narrow set of correctness rules (unknown
+  properties, shorthand overriding longhand, duplicate declarations, invalid hex),
+  parsed with `postcss-scss`. Formatting rules are deliberately not enforced across
+  30k lines of legacy SCSS. Vendored plugin styles are excluded.
 
 Both currently pass with zero errors. A handful of loose-equality warnings remain
 where a number is compared against a raw HTML attribute string; those carry a scoped
@@ -295,9 +292,6 @@ is no `.env` file. One optional variable affects the test run only:
 | --- | --- | --- |
 | `CHROME_BIN` | Path to the Chrome/Chromium binary Karma launches | Auto-detected by `test/chrome-bin.js` |
 
-The `build` script sets `NODE_OPTIONS=--openssl-legacy-provider` internally; you do
-not need to set it yourself.
-
 ## Why there is no Dockerfile
 
 UIK is a front-end kit with no server, no database and no external services. A
@@ -347,6 +341,10 @@ in [AUDIT-BASELINE.md](./AUDIT-BASELINE.md).
   something a code change can resolve.**
 - **`src/dist/` is committed**, which is why `.git` is far larger than the working
   tree. Removing it would be a breaking change for consumers using those paths.
+- **One broken asset reference.** `utils/_steps.scss` points at `url(/image/arrow.png)`,
+  which does not exist anywhere in the repository and 404s for consumers. It is a
+  root-absolute URL, so the bundler passes it through untouched rather than resolving
+  it; the declaration needs either a real asset or removal.
 
 ## Licence
 

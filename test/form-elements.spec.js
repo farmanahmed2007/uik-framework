@@ -1,4 +1,3 @@
-/* global QUnit, UIKTest */
 // Characterization tests for src/lib/js/utils/form-elements.js
 (function ($) {
     'use strict';

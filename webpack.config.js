@@ -1,52 +1,55 @@
 const path = require('path');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
-const CompressionPlugin = require("compression-webpack-plugin");
-const OptimizeCssAssetsPlugin = require("optimize-css-assets-webpack-plugin");
-const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
+const CompressionPlugin = require('compression-webpack-plugin');
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 const { WebpackManifestPlugin } = require('webpack-manifest-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const FixStyleOnlyEntriesPlugin = require("webpack-fix-style-only-entries");
+const RemoveEmptyScriptsPlugin = require('webpack-remove-empty-scripts');
 
 const currentDirectory = path.resolve(__dirname);
 
+/**
+ * Assets are authored under src/lib/ but emitted at the root of src/dist/, so
+ * `src/lib/img/flags/4x3/ad.svg` becomes `img/flags/4x3/ad.svg`. The stylesheet
+ * sits one level down in src/dist/css/, hence the `../` public path.
+ */
+const assetGenerator = {
+  filename: (pathData) => pathData.filename.replace('src/lib/', ''),
+  publicPath: '../'
+};
 
-module.exports = env => {
+module.exports = {
+  mode: 'production',
 
-  return {
-    mode: 'production',
-    // watch: true,
+  entry: {
+    'uik-framework-scss': [path.resolve(currentDirectory, 'src/lib/sass/uik.scss')],
+    'uik': [path.resolve(currentDirectory, 'src/lib/js/uik.js')]
+  },
 
-    entry: {
-      "uik-framework-scss": [
-        path.resolve(currentDirectory + '/src/lib/sass/uik.scss'),
-      ],
-      "uik": [
-        path.resolve(currentDirectory + '/src/lib/js/uik.js'),
-      ]
-    },
+  output: {
+    path: path.join(currentDirectory, 'src/dist'),
+    filename: 'js/[name].bundle.min.js',
+    // Replaces clean-webpack-plugin, which is unmaintained and deleted the
+    // output directory at plugin-construction time rather than at build time.
+    clean: true
+  },
 
-    output: {
-      path: path.join(currentDirectory + '/src/dist/'),
-      filename: 'js/[name].bundle.min.js'
-    },
-
-    module: {
-      rules: [{
-        enforce: "pre",
-        test: /\.s(a|c)ss$/,
-        loader: 'import-glob-loader'
-      },
+  module: {
+    rules: [
       {
-        test: /\.module\.s(a|c)ss$/,
+        test: /\.s(a|c)ss$/,
         use: [
           MiniCssExtractPlugin.loader,
           {
             loader: 'css-loader',
             options: {
-              modules: true,
-              localIdentName: '[name]__[local]___[hash:base64:5]',
-              camelCase: true,
-              sourceMap: false
+              url: {
+                // css-loader 1 left root-absolute URLs alone; css-loader 7
+                // tries to resolve them against the filesystem. Keep the old
+                // behaviour: `url(/...)` is a server path, not a bundled asset,
+                // and is emitted verbatim.
+                filter: (url) => !url.startsWith('/')
+              }
             }
           },
           {
@@ -55,78 +58,45 @@ module.exports = env => {
               sourceMap: false,
               implementation: require('sass')
             }
-          },
-        ]
-      },
-      {
-        test: /\.s(a|c)ss$/,
-        exclude: /\.module.(s(a|c)ss)$/,
-        use: [
-          MiniCssExtractPlugin.loader,
-
-          'css-loader',
-          {
-            loader: 'sass-loader',
-            options: {
-              sourceMap: false,
-              implementation: require('sass'),
-              // outputPath : path.join(currentDirectory + '/src/dist/[name]/js/')
-
-            }
           }
         ]
       },
       {
-        test: /\.(png|jpg|gif|ico|jpeg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-        use: {
-          loader: 'file-loader', // this need file-loader
-          options: {
-            //limit: 50000
-            name: '[path][name].[ext]',
-            outputPath: function (url) {
-              // console.log(url);
-              // let temp = url.replace('src/lib/','').split('/');
-              // let ProjectName = temp[0];
-              // console.log(ProjectName)
-              return url.replace('src/lib/', '');
-            },
-            publicPath: function (url) {
-              // console.log(ProjectName)
-              // return url.replace('src/lib/' + ProjectName, '../');
-              return url.replace('src/lib/', '../');
-            }
-          }
-        }
+        test: /\.(png|jpe?g|gif|ico)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+        type: 'asset/resource',
+        generator: assetGenerator
+      },
+      {
+        // The SVG webfont is emitted untouched: it is a font, not an icon, and
+        // svgo's parser rejects it.
+        test: /\.svg$/,
+        include: path.resolve(currentDirectory, 'src/lib/fonts'),
+        type: 'asset/resource',
+        generator: assetGenerator
       },
       {
         test: /\.svg$/,
+        exclude: path.resolve(currentDirectory, 'src/lib/fonts'),
+        type: 'asset/resource',
+        generator: assetGenerator,
         use: [
-          {
-            loader: 'file-loader',
-            options: {
-              //limit: 50000
-              name: '[path][name].[ext]',
-              outputPath: function (url) {
-                // console.log(url);
-                // let temp = url.replace('src/lib/','').split('/');
-                // let ProjectName = temp[0];
-                // console.log(ProjectName)
-                return url.replace('src/lib/', '');
-              },
-              publicPath: function (url) {
-                // console.log(ProjectName)
-                // return url.replace('src/lib/' + ProjectName, '../');
-                return url.replace('src/lib/', '../');
-              }
-            }
-          },
           {
             loader: 'svgo-loader',
             options: {
+              // svgo 2+ replaced the flat plugin list with preset-default plus
+              // overrides. These are the same three settings the svgo 1 config
+              // expressed: keep path data untouched, do not shorten hex colours,
+              // and drop <title> (already part of preset-default).
               plugins: [
-                { removeTitle: true },
-                { convertColors: { shorthex: false } },
-                { convertPathData: false }
+                {
+                  name: 'preset-default',
+                  params: {
+                    overrides: {
+                      convertPathData: false,
+                      convertColors: { shorthex: false }
+                    }
+                  }
+                }
               ]
             }
           }
@@ -134,93 +104,51 @@ module.exports = env => {
       },
       {
         test: /\.(woff(2)?|ttf|eot)(\?v=\d+\.\d+\.\d+)?$/,
-        use: [{
-          loader: 'file-loader',
-          options: {
-            name: '[path][name].[ext]',
-            outputPath: function (url) {
-              // console.log(url);
-              // let temp = url.replace('src/lib/','').split('/');
-              // let ProjectName = temp[0];
-              // console.log(ProjectName)
-              return url.replace('src/lib/', '');
-            },
-            publicPath: function (url) {
-              // console.log(ProjectName)
-              // return url.replace('src/lib/' + ProjectName, '../');
-              return url.replace('src/lib/', '../');
-            }
-          }
-        }]
+        type: 'asset/resource',
+        generator: assetGenerator
       },
       {
         test: /\.(wav|mpg|mpeg|mp3)(\?v=\d+\.\d+\.\d+)?$/,
-        use: [{
-          loader: 'file-loader',
-          options: {
-            name: '[name].[ext]',
-            outputPath: '/audio/',
-            // publicPath: function(url) {
-            //     return '/lib/audio/' + url;
-            // }
-          }
-        }]
+        type: 'asset/resource',
+        generator: { filename: 'audio/[name][ext]' }
       }
-      ]
-    },
+    ]
+  },
 
-    resolve: {
-      extensions: ['.webpack.js', '.web.js', '.ts', '.js', '.css', '.scss']
-    },
+  resolve: {
+    extensions: ['.js', '.css', '.scss']
+  },
 
-    plugins: [
-      new CleanWebpackPlugin(['src/dist']),
-      new WebpackManifestPlugin({
-        fileName: path.resolve(currentDirectory + '/src/dist/manifest.json'),
-        publicPath: '',
+  plugins: [
+    new WebpackManifestPlugin({
+      fileName: path.resolve(currentDirectory, 'src/dist/manifest.json'),
+      publicPath: ''
+    }),
+    new MiniCssExtractPlugin({
+      filename: 'css/uik.bundle.min.css'
+    }),
+    // The SCSS entry would otherwise emit an empty companion JS chunk.
+    new RemoveEmptyScriptsPlugin(),
+    new CompressionPlugin({
+      algorithm: 'gzip',
+      test: /\.(js|css|ttf|eot|svg|gif)(\?v=\d+\.\d+\.\d+)?$/,
+      minRatio: 0.8
+    })
+  ],
 
-      }),
-      new MiniCssExtractPlugin({
-        filename: "css/uik.bundle.min.css",
-      }),
-      new OptimizeCssAssetsPlugin({
-        cssProcessorPluginOptions: {
-          preset: ['default', { discardComments: { removeAll: true } }],
-        },
-      }),
-
-      new FixStyleOnlyEntriesPlugin(),
-      // new CopyWebpackPlugin([
-      // ]),
-      new CompressionPlugin({
-        algorithm: 'gzip',
-        test: /\.(js|css|ttf|eot|svg|gif)(\?v=\d+\.\d+\.\d+)?$/,
-        minRatio: 0.8
+  optimization: {
+    minimizer: [
+      new TerserPlugin({ extractComments: false }),
+      new CssMinimizerPlugin({
+        minimizerOptions: {
+          preset: ['default', { discardComments: { removeAll: true } }]
+        }
       })
-    ],
+    ]
+  },
 
-    //If .map files required, comment the following
-    optimization: {
-      minimizer: [
-        new UglifyJsPlugin({
-          // `parallel` and `cache` must stay false: uglifyjs-webpack-plugin@1's
-          // worker pool dies silently on Node >= 17 (the build exits 0 having
-          // emitted nothing). Running in-process is slower but correct, and
-          // produces byte-identical output.
-          cache: false,
-          parallel: false,
-          sourceMap: false // set to true if you want JS source maps
-        }),
-        new OptimizeCssAssetsPlugin({
-          assetNameRegExp: /\.css$/,
-          cssProcessor: require('cssnano'),
-          cssProcessorPluginOptions: {
-            preset: ['default', { discardComments: { removeAll: true } }],
-          },
-          canPrint: true
-        })
-      ]
-    }
-  };
-
+  performance: {
+    // The stylesheet is legitimately large; see README "Known limitations".
+    hints: false
+  }
 };
