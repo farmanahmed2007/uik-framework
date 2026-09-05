@@ -9,5 +9,5 @@ $(function () {
     $(document).on('mouseleave', '.tooltip, .tooltip-inner', function () {
         $(this).removeClass("active");
         $(this).find(".tooltip-inner").removeClass("active");
-    })
+    });
 });

@@ -24,29 +24,33 @@ $(function () {
             if ($(this).parent().hasClass('focused')) {
                 $(this).parent().find('span').map((index, temp) => {
                     $(temp).addClass('active');
-                })
+                });
                 $(this).parent().find('label').map((index, temp) => {
                     $(temp).addClass('float');
-                })
+                });
             }
         } else {
             if ($(this).parent().hasClass('focused')) {
                 $(this).parent().find('span').map((index, temp) => {
                     $(temp).removeClass('active');
-                })
+                });
                 $(this).parent().find('label').map((index, temp) => {
                     $(temp).removeClass('float');
-                })
+                });
                 $(this).removeClass('focused');
             }
         }
     });
     $(document).on('click', '.interactive-forms .show_password', function () {
+        // Scoped to the toggle's own .interactive-forms container. Selecting
+        // document-wide meant one toggle unmasked every password field on the
+        // page, including fields belonging to unrelated forms.
+        var $scope = $(this).closest('.interactive-forms');
         if ($(this).is(':checked')) {
-            $('input[type=password]').addClass('password-visible').attr({ 'type': 'text' });
+            $scope.find('input[type=password]').addClass('password-visible').attr({ 'type': 'text' });
         }
         if ($(this).is(':not(:checked)')) {
-            $('.password-visible').attr({ 'type': 'password' }).removeClass('password-visible');
+            $scope.find('.password-visible').attr({ 'type': 'password' }).removeClass('password-visible');
         }
     });
 
@@ -56,7 +60,7 @@ $(function () {
 
     $('.login-form').on('submit', function (e) {
         $(this).find('input[type="text"], input[type="password"], textarea').each(function () {
-            if ($(this).val() == "") {
+            if ($(this).val() === "") {
                 e.preventDefault();
                 $(this).addClass('input-error');
             }
@@ -70,15 +74,15 @@ $(function () {
     $(document).mousedown(function (e) {
         var container = $('.selecter-list');
         if (!container.is(e.target) && container.has(e.target).length === 0) {
-            $(container).fadeOut("3000");
-        };
+            $(container).fadeOut(400);
+        }
     });
     $(document).on('click', '.selecter-item', function () {
-        $(this).parent().find('.selecter-list').fadeTo('3000', '1')
+        $(this).parent().find('.selecter-list').fadeTo(400, 1);
     });
     $(document).on("mousedown", '.selecter-list li', function () {
-        $(this).parent().fadeOut("3000");
-        var list_text = $(this).html()
+        $(this).parent().fadeOut(400);
+        var list_text = $(this).html();
         $(this).closest(".selecter").find('.selecter-item li').html(list_text);
         $(this).closest(".selecter").find('.selecter-item').addClass("active");
     });
@@ -104,8 +108,9 @@ $(function () {
     function refreshLiList(element) {
         var formID = $(element).closest("form").eq(0).attr('id');
         $('#' + formID + ' .form_data > div').removeClass('show');
-        var element = $(element).attr('id').split('-')[0];
-        $('#' + element).addClass('show');
+        // The step's id is "<paneId>-<n>"; the pane it reveals is that prefix.
+        var paneId = $(element).attr('id').split('-')[0];
+        $('#' + paneId).addClass('show');
     }
 
     $(document).on('click', '#next', function (event) {
@@ -121,6 +126,10 @@ $(function () {
             .addClass('current');
 
         refreshLiList($("#" + formID + " .steps li.current"));
+        // Intentional loose equality: `step` is a number while `max_step` is
+        // the raw `max-step` attribute string. Tightening this without also
+        // coercing the attribute would silently break step completion.
+        // eslint-disable-next-line eqeqeq
         if (forms[formID].step == forms[formID].max_step) {
             $(this).removeClass('show').addClass('hide');
             $('#' + formID + ' #submit').removeClass('hide');
@@ -138,7 +147,7 @@ $(function () {
             .addClass('current');
 
         refreshLiList($('#' + formID + ' .steps li.current'));
-        if (forms[formID].step == 0) {
+        if (forms[formID].step === 0) {
             $('#' + formID + ' .form_btns button').addClass('hide');
         }
 
@@ -178,7 +187,7 @@ $(function () {
         $('#' + formID + ' .note').removeClass('hide');
         $('#' + formID + ' #submit, .steps').addClass('disabled');
         $('#' + formID + ' #back').addClass('hide');
-    })
+    });
 
     function Reset(formID) {
         $('#' + formID).trigger('reset');
@@ -200,21 +209,13 @@ $(function () {
             max = input.attr('max');
         btnUp.click(function () {
             var oldValue = parseFloat(input.val());
-            if (oldValue >= max) {
-                var newVal = oldValue;
-            } else {
-                var newVal = oldValue + 1;
-            }
+            var newVal = (oldValue >= max) ? oldValue : oldValue + 1;
             spinner.find("input").val(newVal);
             spinner.find("input").trigger("change");
         });
         btnDown.click(function () {
             var oldValue = parseFloat(input.val());
-            if (oldValue <= min) {
-                var newVal = oldValue;
-            } else {
-                var newVal = oldValue - 1;
-            }
+            var newVal = (oldValue <= min) ? oldValue : oldValue - 1;
             spinner.find("input").val(newVal);
             spinner.find("input").trigger("change");
         });
@@ -231,10 +232,10 @@ $(function () {
         else{
             $(this).closest(".max-validation").append("<span style='width: fit-content;margin: auto;' class='badge bg-red max'>"+current_val_leng+ "/" +max_val+"</span>");
         }
-    })
+    });
     $(document).on("blur",".max-validation input",function(){
         $(this).closest(".max-validation").find("span.max ,span.min").remove();
-    })
+    });
     $(document).on('keyup',".max-validation input",function(){
         var max_val = $(this).attr("maxlength");
         var value = $(this).val();
@@ -243,10 +244,13 @@ $(function () {
         if(current_val_leng >= max_val){
             remove_span;
             $(this).closest(".max-validation").append("<span style='width: fit-content;margin: auto;' class='badge bg-red max'>"+current_val_leng+ "/" +max_val+"</span>");
+            // Intentional loose inequality: `max_val` is the raw maxlength
+            // attribute string, `current_val_leng` is a number.
+            // eslint-disable-next-line eqeqeq
             if(current_val_leng != max_val){
                 $(this).closest(".max-validation").find("span.max ,span.min").remove();
                 var total_leng_remove = current_val_leng - max_val;
-                $(this).closest(".max-validation").append("<span style='width: fit-content;margin: auto;' class='badge bg-red max'>"+eval(current_val_leng -total_leng_remove)+ "/" +max_val+"</span>");
+                $(this).closest(".max-validation").append("<span style='width: fit-content;margin: auto;' class='badge bg-red max'>"+(current_val_leng - total_leng_remove)+ "/" +max_val+"</span>");
                 $(this).val(value.substring(0, value.length - total_leng_remove));
             }
         }
@@ -254,5 +258,5 @@ $(function () {
             remove_span;
             $(this).closest(".max-validation").append("<span style='width: fit-content;margin: auto;' class='badge bg-green min'>"+current_val_leng+ "/" +max_val+"</span>");
         }
-    })
+    });
 });
