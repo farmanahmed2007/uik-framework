@@ -60,3 +60,6 @@ Thumbs.db
 *.dll
 *.lib
 *.sbr
+
+# build/test scratch
+/coverage

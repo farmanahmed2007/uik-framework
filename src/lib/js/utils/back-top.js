@@ -21,7 +21,9 @@ $(function() {
             $(extend.button).fadeOut(extend.fadeOut);
         }
     });
-    $(extend.button).add(extend.backToTop).click(function (e) {
+    // `extend.backToTop` is a class list, not a selector, so the original
+    // `.add(extend.backToTop)` matched nothing and only the button was bound.
+    $(extend.button).click(function (e) {
         $('html, body').animate({
             scrollTop: 0
         }, extend.speed);

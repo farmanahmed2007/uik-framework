@@ -1,15 +1,11 @@
 const path = require('path');
-const webpack = require('webpack');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CompressionPlugin = require("compression-webpack-plugin");
 const OptimizeCssAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 const { WebpackManifestPlugin } = require('webpack-manifest-plugin');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const FixStyleOnlyEntriesPlugin = require("webpack-fix-style-only-entries");
-const resolve = require('path').resolve;
 
 const currentDirectory = path.resolve(__dirname);
 
@@ -95,8 +91,6 @@ module.exports = env => {
               return url.replace('src/lib/', '');
             },
             publicPath: function (url) {
-              let temp = url.replace('src/lib/', '').split('/');
-              let ProjectName = temp[0];
               // console.log(ProjectName)
               // return url.replace('src/lib/' + ProjectName, '../');
               return url.replace('src/lib/', '../');
@@ -120,8 +114,6 @@ module.exports = env => {
                 return url.replace('src/lib/', '');
               },
               publicPath: function (url) {
-                let temp = url.replace('src/lib/', '').split('/');
-                let ProjectName = temp[0];
                 // console.log(ProjectName)
                 // return url.replace('src/lib/' + ProjectName, '../');
                 return url.replace('src/lib/', '../');
@@ -154,8 +146,6 @@ module.exports = env => {
               return url.replace('src/lib/', '');
             },
             publicPath: function (url) {
-              let temp = url.replace('src/lib/', '').split('/');
-              let ProjectName = temp[0];
               // console.log(ProjectName)
               // return url.replace('src/lib/' + ProjectName, '../');
               return url.replace('src/lib/', '../');
@@ -213,8 +203,12 @@ module.exports = env => {
     optimization: {
       minimizer: [
         new UglifyJsPlugin({
-          cache: true,
-          parallel: true,
+          // `parallel` and `cache` must stay false: uglifyjs-webpack-plugin@1's
+          // worker pool dies silently on Node >= 17 (the build exits 0 having
+          // emitted nothing). Running in-process is slower but correct, and
+          // produces byte-identical output.
+          cache: false,
+          parallel: false,
           sourceMap: false // set to true if you want JS source maps
         }),
         new OptimizeCssAssetsPlugin({
@@ -227,6 +221,6 @@ module.exports = env => {
         })
       ]
     }
-  }
+  };
 
-}
+};
