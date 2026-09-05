@@ -212,8 +212,12 @@ module.exports = env => {
     optimization: {
       minimizer: [
         new UglifyJsPlugin({
-          cache: true,
-          parallel: true,
+          // `parallel` and `cache` must stay false: uglifyjs-webpack-plugin@1's
+          // worker pool dies silently on Node >= 17 (the build exits 0 having
+          // emitted nothing). Running in-process is slower but correct, and
+          // produces byte-identical output.
+          cache: false,
+          parallel: false,
           sourceMap: false // set to true if you want JS source maps
         }),
         new OptimizeCssAssetsPlugin({
