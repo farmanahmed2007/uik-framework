@@ -42,11 +42,15 @@ $(function () {
         }
     });
     $(document).on('click', '.interactive-forms .show_password', function () {
+        // Scoped to the toggle's own .interactive-forms container. Selecting
+        // document-wide meant one toggle unmasked every password field on the
+        // page, including fields belonging to unrelated forms.
+        var $scope = $(this).closest('.interactive-forms');
         if ($(this).is(':checked')) {
-            $('input[type=password]').addClass('password-visible').attr({ 'type': 'text' });
+            $scope.find('input[type=password]').addClass('password-visible').attr({ 'type': 'text' });
         }
         if ($(this).is(':not(:checked)')) {
-            $('.password-visible').attr({ 'type': 'password' }).removeClass('password-visible');
+            $scope.find('.password-visible').attr({ 'type': 'password' }).removeClass('password-visible');
         }
     });
 

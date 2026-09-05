@@ -2,12 +2,13 @@
 $(function () {
 	"use strict";
 
-	$(document).on('click', 'a[href ^= "#page"]', function () {
+	$(document).on('click', 'a[href ^= "#page"]', function (event) {
 		event.preventDefault();
 		var speed = 360;
 		var href = $(this).attr("href");
-		var target = $((href == '#' || !Object.keys($(href)).length) ? 'html' : href);
-		var position = Object.keys(target).length ? target.offset().top : 0;
+		// A missing target scrolls to the top of the document rather than throwing.
+		var $target = (href == '#') ? $('html') : $(href);
+		var position = $target.length ? $target.offset().top : 0;
 		$('body,html').animate({ scrollTop: position }, speed, 'swing');
 		return false;
 	});
