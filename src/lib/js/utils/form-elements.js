@@ -74,14 +74,14 @@ $(function () {
     $(document).mousedown(function (e) {
         var container = $('.selecter-list');
         if (!container.is(e.target) && container.has(e.target).length === 0) {
-            $(container).fadeOut("3000");
+            $(container).fadeOut(400);
         };
     });
     $(document).on('click', '.selecter-item', function () {
-        $(this).parent().find('.selecter-list').fadeTo('3000', '1')
+        $(this).parent().find('.selecter-list').fadeTo(400, 1)
     });
     $(document).on("mousedown", '.selecter-list li', function () {
-        $(this).parent().fadeOut("3000");
+        $(this).parent().fadeOut(400);
         var list_text = $(this).html()
         $(this).closest(".selecter").find('.selecter-item li').html(list_text);
         $(this).closest(".selecter").find('.selecter-item').addClass("active");
