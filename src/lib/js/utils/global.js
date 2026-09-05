@@ -7,7 +7,7 @@ $(function () {
 		var speed = 360;
 		var href = $(this).attr("href");
 		// A missing target scrolls to the top of the document rather than throwing.
-		var $target = (href == '#') ? $('html') : $(href);
+		var $target = (href === '#') ? $('html') : $(href);
 		var position = $target.length ? $target.offset().top : 0;
 		$('body,html').animate({ scrollTop: position }, speed, 'swing');
 		return false;
@@ -49,7 +49,7 @@ $(function(){
             $svg = $svg.removeAttr('xmlns:a');
             // Check if the viewport is set, else we gonna set it if we can.
             if(!$svg.attr('viewBox') && $svg.attr('height') && $svg.attr('width')) {
-                $svg.attr('viewBox', '0 0 ' + $svg.attr('height') + ' ' + $svg.attr('width'))
+                $svg.attr('viewBox', '0 0 ' + $svg.attr('height') + ' ' + $svg.attr('width'));
             }
             // Replace image with new SVG
             $img.replaceWith($svg);
@@ -72,6 +72,6 @@ $(function () {
 $(function () {
     'use strict';
 	$(document).on('click', '.alert .close', function () {
-        $(this).parent().remove()
+        $(this).parent().remove();
 	});
 });

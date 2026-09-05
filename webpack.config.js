@@ -1,14 +1,11 @@
 const path = require('path');
-const webpack = require('webpack');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const CompressionPlugin = require("compression-webpack-plugin");
 const OptimizeCssAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 const { WebpackManifestPlugin } = require('webpack-manifest-plugin');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const FixStyleOnlyEntriesPlugin = require("webpack-fix-style-only-entries");
-const resolve = require('path').resolve;
 
 const currentDirectory = path.resolve(__dirname);
 
@@ -94,8 +91,6 @@ module.exports = env => {
               return url.replace('src/lib/', '');
             },
             publicPath: function (url) {
-              let temp = url.replace('src/lib/', '').split('/');
-              let ProjectName = temp[0];
               // console.log(ProjectName)
               // return url.replace('src/lib/' + ProjectName, '../');
               return url.replace('src/lib/', '../');
@@ -119,8 +114,6 @@ module.exports = env => {
                 return url.replace('src/lib/', '');
               },
               publicPath: function (url) {
-                let temp = url.replace('src/lib/', '').split('/');
-                let ProjectName = temp[0];
                 // console.log(ProjectName)
                 // return url.replace('src/lib/' + ProjectName, '../');
                 return url.replace('src/lib/', '../');
@@ -153,8 +146,6 @@ module.exports = env => {
               return url.replace('src/lib/', '');
             },
             publicPath: function (url) {
-              let temp = url.replace('src/lib/', '').split('/');
-              let ProjectName = temp[0];
               // console.log(ProjectName)
               // return url.replace('src/lib/' + ProjectName, '../');
               return url.replace('src/lib/', '../');
@@ -230,6 +221,6 @@ module.exports = env => {
         })
       ]
     }
-  }
+  };
 
-}
+};

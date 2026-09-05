@@ -7,6 +7,9 @@
   "email": "farmanahmed2007@gmail.com",
   "scripts": {
     "build": "cross-env NODE_OPTIONS=--openssl-legacy-provider webpack --config webpack.config.js",
+    "lint": "npm-run-all --continue-on-error lint:js lint:scss",
+    "lint:js": "eslint src/lib/js test karma.conf.js webpack.config.js",
+    "lint:scss": "stylelint \"src/lib/sass/**/*.scss\" --syntax scss",
     "test": "karma start karma.conf.js --single-run"
   },
   "repository": {
