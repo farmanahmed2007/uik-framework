@@ -52,7 +52,7 @@
     "qunit": "2.26.0",
     "sass": "^1.69.5",
     "sass-loader": "^16.0.8",
-    "sinon": "^7.5.0",
+    "sinon": "^22.1.0",
     "stylelint": "^17.15.0",
     "svgo": "^4.1.0",
     "svgo-loader": "^5.0.0",
