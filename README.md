@@ -118,6 +118,9 @@ Node 18 and below are not tested.
 npm install uik-framework jquery
 ```
 
+jQuery **3 or 4** both work — the behaviour suite runs green on 3.7.1 and 4.0.0,
+and `peerDependencies` accepts `^3.0.0 || ^4.0.0`.
+
 ### To work on the framework itself
 
 ```bash
@@ -185,10 +188,11 @@ npm run build
 Writes `src/dist/css/uik.bundle.min.css` and `src/dist/js/uik.bundle.min.js`, plus
 their gzip siblings, the copied image and font assets, and `manifest.json`.
 
-`src/dist/` is committed to the repository, because consumers reference those paths
-directly. If your change affects the output, rebuild and commit the result as part
-of the same change — and say so in the commit message, since the diff is minified
-and not reviewable on its own.
+`src/dist/` is **not** tracked in git — it is build output. It is regenerated
+automatically at publish time by the `prepack` script and shipped to npm via the
+`files` allowlist in `package.json`, so the paths consumers load are unchanged.
+
+Run `npm run build` after cloning if you need the bundles locally.
 
 The stylesheet is large; see [Known limitations](#known-limitations).
 
@@ -339,8 +343,12 @@ in [AUDIT-BASELINE.md](./AUDIT-BASELINE.md).
   and fancyBox has had its copyright headers stripped. The fontello font ships with
   no licence manifest. **This needs a decision from the maintainer and is not
   something a code change can resolve.**
-- **`src/dist/` is committed**, which is why `.git` is far larger than the working
-  tree. Removing it would be a breaking change for consumers using those paths.
+- **`.git` is large** (~35 MB) because `src/dist/` was tracked for years before being
+  untracked; the history still holds every rebuilt copy. Shrinking it needs a history
+  rewrite, which breaks existing clones.
+- **GitHub-raw URLs no longer resolve.** Anyone loading UIK from
+  `raw.githubusercontent.com` or a jsDelivr `gh:` path is affected by `src/dist/`
+  leaving the repository. npm-based CDN paths (unpkg, jsDelivr `npm:`) are unaffected.
 - **One broken asset reference.** `utils/_steps.scss` points at `url(/image/arrow.png)`,
   which does not exist anywhere in the repository and 404s for consumers. It is a
   root-absolute URL, so the bundler passes it through untouched rather than resolving

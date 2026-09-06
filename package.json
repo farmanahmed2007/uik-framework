@@ -6,6 +6,13 @@
     "node": ">=20.19.0"
   },
   "description": "UIK - Universal Interactive Kit | A complete framework that helps developers to code fast for elements and layouts in HTML.",
+  "files": [
+    "src/dist/",
+    "src/lib/",
+    "README.md",
+    "CHANGELOG.md",
+    "LICENSE"
+  ],
   "author": "Farman Ahmed",
   "email": "farmanahmed2007@gmail.com",
   "scripts": {
@@ -13,6 +20,7 @@
     "lint": "npm-run-all --continue-on-error lint:js lint:scss",
     "lint:js": "eslint src/lib/js test karma.conf.js webpack.config.js",
     "lint:scss": "stylelint \"src/lib/sass/**/*.scss\"",
+    "prepack": "npm run build",
     "test": "karma start karma.conf.js --single-run"
   },
   "repository": {
@@ -64,7 +72,7 @@
     "wow.js": "^1.2.2"
   },
   "peerDependencies": {
-    "jquery": "^3.0.0"
+    "jquery": "^3.0.0 || ^4.0.0"
   },
   "peerDependenciesMeta": {
     "jquery": {
