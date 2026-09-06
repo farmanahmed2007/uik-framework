@@ -137,15 +137,13 @@ Both linters must report zero errors.
 
 ## Build output
 
-`src/dist/` is committed because consumers reference those paths directly.
+`src/dist/` is **not** tracked in git. It is build output, regenerated at publish
+time by the `prepack` script and shipped to npm through the `files` allowlist.
 
-If your change affects the generated CSS or JS, rebuild and commit the result in the
-same change, and **say so in the commit message** — a minified diff is not reviewable,
-so the message is the only place a reviewer can learn what to expect.
+Run `npm run build` when you need the bundles locally. Never `git add -f` them.
 
-If your change does not affect the output, do not commit a rebuilt `dist`. The build
-is not byte-reproducible across dependency patch versions, so an incidental rebuild
-adds noise.
+If your change alters the generated CSS or JS, say so in the commit message, since
+reviewers cannot see it in the diff.
 
 ## Dependencies
 
