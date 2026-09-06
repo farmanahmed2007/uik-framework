@@ -18,9 +18,10 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        # 22 is the version this pipeline was developed and verified against.
-        # 20 is included so the previous LTS stays proven rather than assumed.
-        node: ['20', '22']
+        # 20 is the floor declared in package.json engines; 22 is what this
+        # pipeline was developed against; 24 is what the maintainer develops on.
+        # All three are proven here rather than assumed.
+        node: ['20', '22', '24']
 
     steps:
       - name: Check out
