@@ -15,9 +15,12 @@ updates:
         update-types:
           - minor
           - patch
-    # No major-version suppressions: the toolchain is now current (webpack 5,
-    # ESLint 10, Stylelint 17), so majors are worth reviewing on their merits
-    # rather than being blocked wholesale.
+    ignore:
+      # sass-loader 17 requires Node >= 22.11.0, which would silently drop the
+      # Node 20 support that README and the CI matrix both promise. Revisit
+      # when Node 20 is no longer supported.
+      - dependency-name: sass-loader
+        update-types: ["version-update:semver-major"]
 
   - package-ecosystem: github-actions
     directory: "/"
