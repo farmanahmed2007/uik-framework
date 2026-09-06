@@ -1,5 +1,0 @@
-node_modules/
-src/dist/
-# Vendored third-party plugins are kept byte-identical to upstream so they can be
-# re-synced; they are not linted against this project's rules.
-src/lib/js/plugins/

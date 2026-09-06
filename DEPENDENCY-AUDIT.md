@@ -207,3 +207,57 @@ tools: `dependencies` is empty, so none of this reaches a consumer of the publis
 package. Reducing them further means upgrading webpack, Karma and ESLint to current
 majors, which is a larger change than this effort covers and is tracked as remaining
 technical debt.
+
+
+---
+
+## webpack 5 migration (2026-09-05)
+
+The Dependabot backlog stalled on a wall of majors that all shared one blocker:
+
+```
+compression-webpack-plugin@12.0.0 -> peer {"webpack":"^5.1.0"}
+css-loader@7.1.5                  -> peer {"webpack":"^5.27.0"}
+cssnano@9.0.3                     -> peer {"postcss":"^8.5.28"}
+```
+
+The project was on `webpack@^4.4.1`, so none of them could resolve. ESLint 10 and
+Stylelint 17 were blocked separately, having dropped `.eslintrc` and the
+`--syntax` flag respectively. The toolchain was migrated rather than pinning
+those five PRs shut.
+
+### Replaced by webpack 5 built-ins
+
+| Removed | Replaced by |
+| --- | --- |
+| `clean-webpack-plugin` | `output.clean: true` |
+| `file-loader` | asset modules (`type: 'asset/resource'`) |
+| `uglifyjs-webpack-plugin` | `terser-webpack-plugin` |
+| `optimize-css-assets-webpack-plugin` + `cssnano` | `css-minimizer-webpack-plugin` |
+| `webpack-fix-style-only-entries` | `webpack-remove-empty-scripts` |
+| `import-glob-loader` | nothing — no `.scss` file used a glob `@import` |
+
+### Two behavioural differences that needed handling
+
+- **css-loader 7 resolves root-absolute URLs.** css-loader 1 left `url(/...)`
+  alone. `utils/_steps.scss` references `url(/image/arrow.png)`, which does not
+  exist in the repository, so the build began failing on a dead reference that had
+  been shipping as a 404 for years. A `url.filter` restores the old behaviour and
+  keeps the emitted CSS identical; the broken reference is recorded in the README.
+- **svgo 4 rejects the SVG webfont.** `fontello.svg` is a font, not an icon, and
+  svgo's parser errors on it. The font directory is now excluded from `svgo-loader`
+  and emitted untouched.
+
+### Result
+
+| Metric | webpack 4 | webpack 5 |
+| --- | ---: | ---: |
+| Resolved packages | 1,219 | 657 |
+| `npm audit` total | 115 | **4** |
+| — critical | 8 | **0** |
+| — high | 37 | **1** |
+| `NODE_OPTIONS=--openssl-legacy-provider` needed | yes | **no** |
+
+Output is unchanged: 8,058 CSS classes before and after, 0 added and 0 removed,
+286 asset URLs, and identical emitted paths (`url(../img/flags/4x3/ad.svg)`).
+All 49 behaviour tests pass.
