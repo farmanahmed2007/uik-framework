@@ -78,7 +78,7 @@ module.exports = [
 
   {
     // Node-side tooling.
-    files: ['karma.conf.js', 'webpack.config.js', 'eslint.config.js'],
+    files: ['karma.conf.js', 'webpack.config.js', 'eslint.config.js', 'scripts/**/*.js'],
     languageOptions: {
       ecmaVersion: 2022,
       sourceType: 'commonjs',
