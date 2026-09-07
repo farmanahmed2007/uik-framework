@@ -1,0 +1,85 @@
+name: Release
+
+# Publishing is driven by tags, not by pushes to master, so that cutting a
+# release is a deliberate act. `npm run release:minor` bumps the version,
+# writes the CHANGELOG entry, commits, tags and pushes — which lands here.
+on:
+  push:
+    tags:
+      - 'v*'
+  # Manual escape hatch: re-run a publish that failed after the tag already
+  # exists, without having to cut a new version.
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Existing tag to publish (e.g. v1.1.0)'
+        required: true
+
+permissions:
+  contents: read
+  # Required for npm provenance, which cryptographically links the published
+  # tarball to this workflow run and this commit.
+  id-token: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.inputs.tag || github.ref }}
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: Install Chrome for the test run
+        uses: browser-actions/setup-chrome@v1
+        with:
+          chrome-version: stable
+
+      - name: Point CHROME_BIN at the installed Chrome
+        run: echo "CHROME_BIN=$(which chrome || which google-chrome)" >> "$GITHUB_ENV"
+
+      - name: Install
+        run: npm ci
+
+      # The same gates CI runs on every push. A tag does not get a free pass.
+      - name: Lint
+        run: npm run lint
+
+      - name: Test
+        run: npm test
+
+      - name: Build
+        run: npm run build
+
+      - name: Confirm the tag matches package.json
+        run: |
+          TAG="${{ github.event.inputs.tag || github.ref_name }}"
+          PKG="v$(node -p "require('./package.json').version")"
+          if [ "$TAG" != "$PKG" ]; then
+            echo "Tag $TAG does not match package.json version $PKG."
+            echo "Cut releases with 'npm run release:<patch|minor|major>' so the two stay in step."
+            exit 1
+          fi
+          echo "Tag and package.json agree on $PKG"
+
+      # Proves the published tarball will actually contain the built bundles,
+      # before anything is sent to the registry.
+      - name: Confirm the tarball contains the build output
+        run: |
+          npm pack --dry-run 2>&1 | tee /tmp/pack.txt
+          for f in "src/dist/css/uik.bundle.min.css" "src/dist/js/uik.bundle.min.js"; do
+            grep -q "$f" /tmp/pack.txt || { echo "missing $f from the tarball"; exit 1; }
+          done
+          echo "bundles present in the tarball"
+
+      - name: Publish to npm
+        run: npm publish --provenance --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

@@ -23,6 +23,7 @@ tabs, popups and cards.
 - [Testing](#testing)
 - [Linting](#linting)
 - [Continuous integration](#continuous-integration)
+- [Releasing](#releasing)
 - [Repository structure](#repository-structure)
 - [Environment variables](#environment-variables)
 - [Why there is no Dockerfile](#why-there-is-no-dockerfile)
@@ -265,6 +266,66 @@ because the build previously exited successfully while producing nothing.
 `.github/dependabot.yml` opens grouped weekly dev-dependency updates and monthly
 GitHub Actions updates. Major bumps for `webpack`, `webpack-cli`, `svgo` and
 `svgo-loader` are suppressed with reasons recorded inline.
+
+## Releasing
+
+One command cuts a release. It bumps the version, writes the `CHANGELOG.md`
+entry from the commits since the last tag, commits, tags, and pushes:
+
+```bash
+npm run release:patch   # 1.1.0 -> 1.1.1   bug fixes only
+npm run release:minor   # 1.1.0 -> 1.2.0   new behaviour, backwards compatible
+npm run release:major   # 1.1.0 -> 2.0.0   breaking change to the public surface
+```
+
+Pushing the tag triggers `.github/workflows/release.yml`, which re-runs lint,
+tests and the build, checks the tag matches `package.json`, confirms the tarball
+really contains both bundles, and only then runs `npm publish --provenance`.
+
+**Provenance** means npm records, verifiably, that the tarball was built by that
+workflow from that commit. It shows as a "Built and signed on GitHub Actions"
+badge on the package page.
+
+### One-time setup
+
+The publish step needs an npm automation token in the repository secrets:
+
+1. npmjs.com → your avatar → **Access Tokens** → **Generate New Token** →
+   **Automation** (this type bypasses 2FA, which is what CI needs).
+2. GitHub → repository **Settings** → **Secrets and variables** → **Actions** →
+   **New repository secret**, named `NPM_TOKEN`.
+
+### What the lifecycle hooks do
+
+| Hook | When | What |
+|---|---|---|
+| `preversion` | before the bump | `npm run verify` — lint, test, build. A failure aborts the release. |
+| `version` | after the bump, before the commit | writes the CHANGELOG entry and stages it |
+| `postversion` | after the commit | `git push --follow-tags` |
+| `prepack` | before the tarball is built | `npm run build`, so `src/dist/` is always fresh |
+| `prepublishOnly` | before publish | lint and test once more |
+
+`scripts/update-changelog.js` groups commits by their conventional-commit type
+(`feat:` → Added, `fix:`/`perf:` → Fixed, and so on). It has no dependencies and
+re-running it for a version that already has a section rewrites that section
+rather than duplicating it, so it is safe to run by hand:
+
+```bash
+npm run changelog
+```
+
+### A note on version numbers
+
+`1.0.0` is already taken on npm. It was published on 2020-07-23 between `0.2.6`
+and `0.2.8` — an 87 MB tarball of 3,790 files, evidently accidental, after which
+development continued on the `0.2.x` line. Because it sits above every real
+release in semver order, anyone installing with a `^1` range would resolve to
+it. Releases therefore continue from `1.1.0`, and the stray version is worth
+marking:
+
+```bash
+npm deprecate uik-framework@1.0.0 "Published in error in 2020; use the latest release."
+```
 
 ## Repository structure
 

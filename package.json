@@ -18,10 +18,19 @@
   "scripts": {
     "build": "webpack --config webpack.config.js",
     "lint": "npm-run-all --continue-on-error lint:js lint:scss",
-    "lint:js": "eslint src/lib/js test karma.conf.js webpack.config.js",
+    "lint:js": "eslint src/lib/js test scripts karma.conf.js webpack.config.js",
     "lint:scss": "stylelint \"src/lib/sass/**/*.scss\"",
+    "test": "karma start karma.conf.js --single-run",
+    "changelog": "node scripts/update-changelog.js",
+    "verify": "npm run lint && npm test && npm run build",
+    "preversion": "npm run verify",
+    "version": "npm run changelog && git add CHANGELOG.md",
+    "postversion": "git push --follow-tags",
     "prepack": "npm run build",
-    "test": "karma start karma.conf.js --single-run"
+    "prepublishOnly": "npm run lint && npm test",
+    "release:patch": "npm version patch -m \"release: v%s\"",
+    "release:minor": "npm version minor -m \"release: v%s\"",
+    "release:major": "npm version major -m \"release: v%s\""
   },
   "repository": {
     "type": "git",
